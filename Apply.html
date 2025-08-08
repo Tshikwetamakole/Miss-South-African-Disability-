@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apply | Miss South Africa Disability</title>
+  <meta name="description" content="Apply to participate in Miss South Africa Disability pageant. Join us in celebrating beauty, resilience, and advocacy of women living with disabilities." />
+  <meta name="keywords" content="Miss South Africa Disability application, pageant application, women with disabilities, empowerment, advocacy" />
+  <meta name="author" content="Miss South Africa Disability" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#maincontent">Skip to main content</a>
+
+  <!-- Header and Navigation -->
+  <header>
+    <nav id="nav" class="navbar" aria-label="Primary Navigation">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo" aria-label="Miss South Africa Disability Home">
+          <img src="assets/images/logos/logo.svg" alt="Miss South Africa Disability Logo" width="150" height="50" loading="lazy" />
+        </a>
+        <button id="nav-toggle" class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="hamburger"></span>
+        </button>
+        <ul id="primary-menu" class="nav-menu" role="menubar">
+          <li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>
+          <li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>
+          <li role="none"><a role="menuitem" href="Apply.html" tabindex="0" aria-current="page">Apply</a></li>
+          <li role="none"><a role="menuitem" href="events.html" tabindex="0">Events</a></li>
+          <li role="none"><a role="menuitem" href="advocacy.html" tabindex="0">Advocacy</a></li>
+          <li role="none"><a role="menuitem" href="sponsors.html" tabindex="0">Sponsors</a></li>
+          <li role="none"><a role="menuitem" href="contact.html" tabindex="0">Contact</a></li>
+        </ul>
+        <button id="contrast-toggle" aria-pressed="false" aria-label="Toggle high contrast mode" class="contrast-toggle">
+          High Contrast
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="maincontent">
+    <!-- Hero Section -->
+    <section class="page-hero" role="banner" aria-label="Apply page hero">
+      <div class="hero-overlay">
+        <h1>Apply to Miss South Africa Disability</h1>
+        <p class="tagline">Join us in celebrating beauty, resilience, and advocacy. Take the first step toward empowering yourself and inspiring others.</p>
+      </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="application-form-section" aria-label="Pageant application form">
+      <div class="container">
+        <h2>Application Form</h2>
+        <p class="form-intro">Please complete all required fields. Your information will be kept confidential and used solely for application purposes.</p>
+        
+        <form id="pageant-application" novalidate enctype="multipart/form-data">
+          <!-- Personal Information -->
+          <fieldset>
+            <legend>Personal Information</legend>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name *</label>
+                <input type="text" id="first-name" name="first-name" required aria-required="true" 
+                       pattern="[A-Za-z\s\-']{2,50}" maxlength="50" />
+                <span class="error-message" aria-live="polite"></span>
+              </div>
+              
+              <div class="form-group">
+                <label for="last-name">Last Name *</label>
+                <input type="text" id="last-name" name="last-name" required aria-required="true" 
+                       pattern="[A-Za-z\s\-']{2,50}" maxlength="50" />
+                <span class="error-message" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date-of-birth">Date of Birth *</label>
+                <input type="date" id="date-of-birth" name="date-of-birth" required aria-required="true"
+                       max="2007-12-31" min="1990-01-01" />
+                <span class="error-message" aria-live="polite"></span>
+              </div>
+              
+              <div class="form-group">
+                <label for="id-number">South African ID Number *</label>
+                <input type="text" id="id-number" name="id-number" required aria-required="true"
+                       pattern="[0-9]{13}" maxlength="13" inputmode="numeric" />
+                <span class="error-message" aria-live="polite"></span>
+              </divI have gathered enough information about the existing project structure, styling, navigation, and form implementation.
+
+Plan:
+
+1. Populate missing sections in existing pages (like about.html, events.html, advocacy.html, sponsors.html) with realistic mock data relevant to the Miss South Africa Disability event theme. This includes names, images, text, event details, and form data.
+
+2. Create a new page named Apply.html with:
+   - An accessible, mobile-friendly application form for participants.
+   - Fields for personal details (name, date of birth, gender), disability information (type, description), contact info (email, phone), and file upload for photos/documents.
+   - Clear form validation using HTML5 and JavaScript.
+   - Integration with existing site navigation and styling.
+
+3. Update navigation menus in all pages to include the Apply.html link if missing.
+
+4. Ensure accessibility standards (WCAG) are followed in all updates.
+
+Dependent files to be edited:
+- about.html
+- events.html
+- advocacy.html
+- sponsors.html
+- Apply.html (new)
+- Possibly navigation sections in other HTML files
+
+Follow-up steps:
+- After editing, test responsiveness and accessibility.
+- Verify form validation and submission behavior.
+- Optionally, add mock backend or API endpoint for form submission if needed.
+
+Please confirm if I can proceed with this plan or if you want me to focus on specific pages or details.

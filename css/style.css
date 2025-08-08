@@ -712,6 +712,478 @@ footer {
   }
 }
 
-/* Accessibility */
-.skip-link {
-  position: absolute;
+/* Events Page Styles */
+.events-hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: var(--text-light);
+  padding: 4rem 1rem;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.events-hero h1 {
+  font-size: var(--font-size-h1);
+  margin-bottom: 1rem;
+}
+
+.events-hero p {
+  font-size: var(--font-size-body);
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.events-section,
+.past-events-section,
+.event-calendar-section {
+  padding: 4rem 1rem;
+}
+
+.events-section {
+  background: var(--background);
+}
+
+.past-events-section {
+  background: #f8f9fa;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-card {
+  background: var(--background);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.event-card.upcoming {
+  border-left: 4px solid var(--primary-color);
+}
+
+.event-card.past {
+  border-left: 4px solid var(--secondary-color);
+}
+
+.event-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.event-card:hover .event-image img {
+  transform: scale(1.05);
+}
+
+.event-content {
+  padding: 1.5rem;
+}
+
+.event-date {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.event-card.past .event-date {
+  background: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.event-content h3 {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.event-location {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.event-description {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.event-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  background: #f0f0f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+.event-achievements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.achievement {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.achievement i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.achievement span {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.event-calendar-section {
+  background: var(--background);
+}
+
+.calendar-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.calendar-nav {
+  background: none;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.calendar-nav:hover {
+  background: var(--primary-color);
+  color: var(--text-light);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: #e0e0e0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.calendar-day {
+  background: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #666;
+}
+
+.calendar-date {
+  background: var(--background);
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  min-height: 80px;
+}
+
+.calendar-date.has-event {
+  background: #f0f8ff;
+}
+
+.event-indicator {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  margin: 0.25rem auto;
+}
+
+.newsletter-section {
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 3rem 1rem;
+}
+
+.newsletter-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.newsletter-form input {
+  flex: 1;
+  min-width: 250px;
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+}
+
+.newsletter-form .btn {
+  margin: 0;
+}
+
+/* Responsive Events */
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .event-achievements {
+    grid-template-columns: 1fr;
+  }
+  
+  .calendar-grid {
+    font-size: 0.8rem;
+  }
+  
+  .calendar-day,
+  .calendar-date {
+    padding: 0.5rem;
+    min-height: 60px;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-form input {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-section,
+  .past-events-section,
+  .event-calendar-section {
+    padding: 2rem 1rem;
+  }
+  
+  .event-content {
+    padding: 1rem;
+  }
+  
+  .event-image {
+    height: 200px;
+  }
+}
+
+/* Enhanced Responsive Styles for Miss South Africa Disability */
+
+/* CSS Variables for Theme Support */
+:root {
+  --primary-color: #5a2a83;
+  --secondary-color: #d4af37;
+  --accent-color: #8b5cf6;
+  --text-color: #1c1c1c;
+  --text-light: #ffffff;
+  --background: #ffffff;
+  --background-dark: #1a1a1a;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --border-radius: 8px;
+  
+  /* Responsive Typography Scale */
+  --font-size-base: 16px;
+  --font-size-h1: clamp(2rem, 5vw, 3.5rem);
+  --font-size-h2: clamp(1.5rem, 4vw, 2.5rem);
+  --font-size-h3: clamp(1.25rem, 3vw, 2rem);
+  --font-size-body: clamp(0.875rem, 2vw, 1.125rem);
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --background: #1a1a1a;
+  --text-color: #ffffff;
+  --primary-color: #8b5cf6;
+  --secondary-color: #fbbf24;
+}
+
+/* Events Page Styles */
+.events-hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: var(--text-light);
+  padding: 4rem 1rem;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.events-hero h1 {
+  font-size: var(--font-size-h1);
+  margin-bottom: 1rem;
+}
+
+.events-hero p {
+  font-size: var(--font-size-body);
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.events-section,
+.past-events-section,
+.event-calendar-section {
+  padding: 4rem 1rem;
+}
+
+.events-section {
+  background: var(--background);
+}
+
+.past-events-section {
+  background: #f8f9fa;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-card {
+  background: var(--background);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.event-card.upcoming {
+  border-left: 4px solid var(--primary-color);
+}
+
+.event-card.past {
+  border-left: 4px solid var(--secondary-color);
+}
+
+.event-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.event-content {
+  padding: 1.5rem;
+}
+
+.event-date {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.event-location {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.event-description {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.event-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  background: #f0f0f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+.event-achievements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.achievement {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.achievement i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.achievement span {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+}
