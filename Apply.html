@@ -20,7 +20,7 @@
     <nav id="nav" class="navbar" aria-label="Primary Navigation">
       <div class="nav-container">
         <a href="index.html" class="nav-logo" aria-label="Miss South Africa Disability Home">
-          <img src="assets/images/logos/logo.svg" alt="Miss South Africa Disability Logo" width="150" height="50" loading="lazy" />
+          <img src="assets/logos/logo.svg" alt="Miss South Africa Disability Logo" width="150" height="50" loading="lazy" />
         </a>
         <button id="nav-toggle" class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation menu">
           <span class="hamburger"></span>
@@ -28,7 +28,7 @@
         <ul id="primary-menu" class="nav-menu" role="menubar">
           <li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>
           <li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>
-          <li role="none"><a role="menuitem" href="Apply.html" tabindex="0" aria-current="page">Apply</a></li>
+          <li role="none"><a role="menuitem" href="apply.html" tabindex="0" aria-current="page">Apply</a></li>
           <li role="none"><a role="menuitem" href="events.html" tabindex="0">Events</a></li>
           <li role="none"><a role="menuitem" href="advocacy.html" tabindex="0">Advocacy</a></li>
           <li role="none"><a role="menuitem" href="sponsors.html" tabindex="0">Sponsors</a></li>
@@ -90,33 +90,103 @@
                 <input type="text" id="id-number" name="id-number" required aria-required="true"
                        pattern="[0-9]{13}" maxlength="13" inputmode="numeric" />
                 <span class="error-message" aria-live="polite"></span>
-              </divI have gathered enough information about the existing project structure, styling, navigation, and form implementation.
+              </div>
+            </div>
+          </fieldset>
 
-Plan:
+          <!-- Disability Information -->
+          <fieldset>
+            <legend>Disability Information</legend>
+            <div class="form-group">
+              <label for="disability-type">Type of Disability *</label>
+              <select id="disability-type" name="disability-type" required aria-required="true">
+                <option value="">Select a type</option>
+                <option value="physical">Physical</option>
+                <option value="visual">Visual</option>
+                <option value="hearing">Hearing</option>
+                <option value="intellectual">Intellectual</option>
+                <option value="psychosocial">Psychosocial</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="error-message" aria-live="polite"></span>
+            </div>
+            <div class="form-group">
+              <label for="disability-description">Description (optional)</label>
+              <textarea id="disability-description" name="disability-description" rows="4"></textarea>
+            </div>
+          </fieldset>
 
-1. Populate missing sections in existing pages (like about.html, events.html, advocacy.html, sponsors.html) with realistic mock data relevant to the Miss South Africa Disability event theme. This includes names, images, text, event details, and form data.
+          <!-- Contact Information -->
+          <fieldset>
+            <legend>Contact Information</legend>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required aria-required="true" />
+              <span class="error-message" aria-live="polite"></span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required aria-required="true" pattern="^\+?[\d\s\-]{7,15}$" />
+              <span class="error-message" aria-live="polite"></span>
+            </div>
+          </fieldset>
 
-2. Create a new page named Apply.html with:
-   - An accessible, mobile-friendly application form for participants.
-   - Fields for personal details (name, date of birth, gender), disability information (type, description), contact info (email, phone), and file upload for photos/documents.
-   - Clear form validation using HTML5 and JavaScript.
-   - Integration with existing site navigation and styling.
+          <!-- File Uploads -->
+          <fieldset>
+            <legend>Uploads</legend>
+            <div class="form-group">
+              <label for="photo">Upload a Recent Photo *</label>
+              <input type="file" id="photo" name="photo" accept="image/*" required aria-required="true" />
+              <span class="error-message" aria-live="polite"></span>
+            </div>
+            <div class="form-group">
+              <label for="documents">Upload Supporting Documents (optional)</label>
+              <input type="file" id="documents" name="documents" accept=".pdf,.doc,.docx" multiple />
+            </div>
+          </fieldset>
 
-3. Update navigation menus in all pages to include the Apply.html link if missing.
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-4. Ensure accessibility standards (WCAG) are followed in all updates.
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Miss South Africa Disability. All Rights Reserved.</p>
+    </div>
+  </footer>
 
-Dependent files to be edited:
-- about.html
-- events.html
-- advocacy.html
-- sponsors.html
-- Apply.html (new)
-- Possibly navigation sections in other HTML files
+  <script src="js/main.js" defer></script>
+  <script>
+    // Basic form validation script
+    document.getElementById('pageant-application').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const form = event.target;
+      let valid = true;
 
-Follow-up steps:
-- After editing, test responsiveness and accessibility.
-- Verify form validation and submission behavior.
-- Optionally, add mock backend or API endpoint for form submission if needed.
+      // Clear previous errors
+      form.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 
-Please confirm if I can proceed with this plan or if you want me to focus on specific pages or details.
+      // Validate required inputs
+      form.querySelectorAll('[required]').forEach(input => {
+        if (!input.value.trim()) {
+          valid = false;
+          input.nextElementSibling.textContent = 'This field is required.';
+        } else if (input.pattern) {
+          const regex = new RegExp(input.pattern);
+          if (!regex.test(input.value.trim())) {
+            valid = false;
+            input.nextElementSibling.textContent = 'Invalid format.';
+          }
+        }
+      });
+
+      if (valid) {
+        alert('Application submitted successfully!');
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>

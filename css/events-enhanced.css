@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events | Miss South Africa Disability</title>
+  <meta name="description" content="Discover upcoming and past events from Miss South Africa Disability including pageants, workshops, advocacy campaigns, and community outreach programs." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/events-enhanced.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/logos/logo.svg" alt="Miss South Africa Disability Logo" class="logo">
+        </a>
+        <ul class="nav-menu" role="menubar">
+          <li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>
+          <li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>
+          <li role="none"><a role="menuitem" href="advocacy.html" tabindex="0">Advocacy</a></li>
+          <li role="none"><a role="menuitem" href="Apply.html" tabindex="0">Apply</a></li>
+          <li role="none"><a role="menuitem" href="events.html" tabindex="0" aria-current="page">Events</a></li>
+          <li role="none"><a role="menuitem" href="sponsors.html" tabindex="0">Sponsors</a></li>
+          <li role="none"><a role="menuitem" href="contact.html" tabindex="0">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Enhanced Hero Section -->
+    <section class="events-hero-enhanced">
+      <div class="hero-background"></div>
+      <div class="hero-content">
+        <div class="hero-badge">2024 Events</div>
+        <h1>Transformative Events & Experiences</h1>
+        <p class="hero-subtitle">Join us in celebrating diversity, inclusion, and empowerment through our signature events and community programs.</p>
+      </div>
+    </section>
+
+    <!-- Enhanced Upcoming Events -->
+    <section class="upcoming-events-enhanced">
+      <div class="container">
+        <h2>Upcoming Events</h2>
+        <div class="events-grid-enhanced">
+          <!-- Enhanced Event Card 1 -->
+          <article class="event-card-enhanced">
+            <div class="event-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Annual Pageant 2024">
+            </div>
+            <div class="event-details">
+              <span class="event-date-badge">March 15, 2024</span>
+              <h3>Annual Miss South Africa Disability Pageant 2024</h3>
+              <p>Our flagship event celebrating beauty, talent, and resilience.</p>
+              <div class="event-actions">
+                <a href="Apply.html" class="btn btn-primary-enhanced">Register to Attend</a>
+            </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <h3>Miss South Africa Disability</h3>
+        <p>Empowering women with disabilities through pageantry, advocacy, and community engagement.</p>
+    </div>
+  </footer>
+</body>
+</html>
