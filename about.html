@@ -10,34 +10,35 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#maincontent">Skip to main content</a>
+  <!-- Skip Link for Accessibility - Must be first focusable element -->
+  <a href="#maincontent" class="skip-link">Skip to main content</a>
 
   <!-- Header and Navigation -->
   <header>
     <nav id="nav" class="navbar" aria-label="Primary Navigation">
       <div class="nav-container">
         <a href="index.html" class="nav-logo" aria-label="Miss South Africa Disability Home">
-          <img src="assets/images/logo.svg" alt="Miss South Africa Disability Logo" loading="lazy" />
+          <img src="/images/logo.svg" alt="Miss South Africa Disability Logo" loading="lazy" width="150" height="75">
         </a>
-        <button id="nav-toggle" class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation menu">
-          <span class="hamburger"></span>
+        <button id="nav-toggle" class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation menu" type="button">
+          <span class="hamburger" aria-hidden="true"></span>
+          <span class="sr-only">Toggle navigation menu</span>
         </button>
-        <ul id="primary-menu" class="nav-menu" role="menubar">
-          <li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>
-          <li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>
-          <!-- <li role="none"><a role="menuitem" href="queens.html" tabindex="0">Queens</a></li> -->
-          <!-- <li role="none"><a role="menuitem" href="apply.html" tabindex="0">Apply</a></li> -->
-          <li role="none"><a role="menuitem" href="events.html" tabindex="0">Events</a></li>
-          <!-- <li role="none"><a role="menuitem" href="gallery.html" tabindex="0">Gallery</a></li> -->
-          <!-- <li role="none"><a role="menuitem" href="blog.html" tabindex="0">Blog</a></li> -->
-          <li role="none"><a role="menuitem" href="advocacy.html" tabindex="0">Advocacy</a></li>
-          <li role="none"><a role="menuitem" href="sponsors.html" tabindex="0">Sponsors</a></li>
-          <li role="none"><a role="menuitem" href="contact.html" tabindex="0">Contact</a></li>
+        <ul id="primary-menu" class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="advocacy.html">Advocacy</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
-        <button id="contrast-toggle" aria-pressed="false" aria-label="Toggle high contrast mode" class="contrast-toggle">High Contrast</button>
+        <button id="contrast-toggle" aria-pressed="false" aria-label="Toggle high contrast mode" class="contrast-toggle" type="button">
+          <span class="sr-only">Toggle high contrast mode</span>
+          High Contrast
+        </button>
       </div>
     </nav>
   </header>
@@ -79,14 +80,14 @@
       <p>© 2024 Miss South Africa Disability. All Rights Reserved.</p>
       <nav aria-label="Footer social media">
         <ul class="social-icons">
-          <li><a href="https://www.facebook.com/misssadisability" aria-label="Facebook" target="_blank" rel="noopener"><img src="assets/images/icons/facebook.svg" alt="" loading="lazy" /></a></li>
-          <li><a href="https://www.instagram.com/misssadisability" aria-label="Instagram" target="_blank" rel="noopener"><img src="assets/images/icons/instagram.svg" alt="" loading="lazy" /></a></li>
-          <li><a href="https://www.youtube.com/misssadisability" aria-label="YouTube" target="_blank" rel="noopener"><img src="assets/images/icons/youtube.svg" alt="" loading="lazy" /></a></li>
+          <li><a href="https://www.facebook.com/misssadisability" aria-label="Facebook" target="_blank" rel="noopener"><img src="/images/icons/facebook.svg" alt="" loading="lazy" /></a></li>
+          <li><a href="https://www.instagram.com/misssadisability" aria-label="Instagram" target="_blank" rel="noopener"><img src="/images/icons/instagram.svg" alt="" loading="lazy" /></a></li>
+          <li><a href="https://www.youtube.com/misssadisability" aria-label="YouTube" target="_blank" rel="noopener"><img src="/images/icons/youtube.svg" alt="" loading="lazy" /></a></li>
         </ul>
       </nav>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>

@@ -2,333 +2,293 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Miss South Africa Disability | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Miss South Africa Disability celebrates beauty, resilience & advocacy of women living with disabilities in South Africa."
+      content="Miss South Africa Disability - Empowering women with disabilities through beauty, advocacy, and leadership. Join our inclusive pageant and community."
     />
     <meta
       name="keywords"
-      content="Miss South Africa Disability, South Africa pageant, women with disabilities, advocacy, empowerment"
+      content="Miss South Africa Disability, disability advocacy, inclusive beauty pageant, women empowerment, accessibility"
     />
-    <meta name="author" content="Miss South Africa Disability" />
+    <title>
+      Miss South Africa Disability - Empowering Women with Disabilities
+    </title>
+
+    <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Miss South Africa Disability",
+        "url": "https://misssouthafricadisability.co.za",
+        "logo": "https://misssouthafricadisability.co.za/images/logo.jpg",
+        "description": "Empowering women with disabilities through beauty, advocacy, and leadership",
+        "sameAs": [
+          "https://facebook.com/MissSouthAfricaDisability",
+          "https://instagram.com/misssouthafricadisability",
+          "https://youtube.com/@MissSouthAfricaDisability"
+        ]
+      }
+    </script>
   </head>
   <body>
-    <a class="skip-link" href="#maincontent">Skip to main content</a>
+    <!-- Skip Link for Accessibility - Must be first focusable element -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Header and Navigation -->
-    <header>
-      <nav id="nav" class="navbar" aria-label="Primary Navigation">
-        <div class="nav-container">
+    <!-- High Contrast Toggle -->
+    <button
+      id="contrast-toggle"
+      class="contrast-toggle"
+      aria-label="Toggle high contrast mode"
+    >
+      <span aria-hidden="true">◐</span>
+    </button>
+
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <div class="container">
+        <div class="header-content">
           <a
-            href="index.html"
-            class="nav-logo"
+            href="/"
+            class="logo-link"
             aria-label="Miss South Africa Disability Home"
           >
             <img
-              src="assets/logos/logo.svg"
+              src="/images/logo.svg"
               alt="Miss South Africa Disability Logo"
-              width="150"
-              height="50"
-              loading="lazy"
+              width="120"
+              height="60"
             />
           </a>
-          <button
-            id="nav-toggle"
-            class="nav-toggle"
-            aria-controls="primary-menu"
-            aria-expanded="false"
-            aria-label="Toggle navigation menu"
-          >
-            <span class="hamburger"></span>
-          </button>
-          <ul id="primary-menu" class="nav-menu" role="menubar">
-            <li role="none">
-              <a role="menuitem" href="index.html" tabindex="0">Home</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="about.html" tabindex="0">About</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="apply.html" tabindex="0">Apply</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="events.html" tabindex="0">Events</a>
-            </li>
-            <!-- <li role="none"><a role="menuitem" href="gallery.html" tabindex="0">Gallery</a></li> -->
-            <!-- <li role="none"><a role="menuitem" href="blog.html" tabindex="0">Blog</a></li> -->
-            <li role="none">
-              <a role="menuitem" href="advocacy.html" tabindex="0">Advocacy</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="sponsors.html" tabindex="0">Sponsors</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="contact.html" tabindex="0">Contact</a>
-            </li>
-          </ul>
-          <button
-            id="contrast-toggle"
-            aria-pressed="false"
-            aria-label="Toggle high contrast mode"
-            class="contrast-toggle"
-          >
-            High Contrast
-          </button>
+
+          <nav class="main-nav" role="navigation" aria-label="Main navigation">
+            <button
+              class="mobile-nav-toggle"
+              aria-controls="nav-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="hamburger"></span>
+            </button>
+
+            <ul id="nav-menu" class="nav-menu">
+              <li><a href="/">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="events.html">Events</a></li>
+              <li><a href="advocacy.html">Advocacy</a></li>
+              <li><a href="apply.html">Apply</a></li>
+              <li><a href="sponsors.html">Sponsors</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
         </div>
-      </nav>
+      </div>
     </header>
 
-    <main id="maincontent">
+    <!-- Main Content -->
+    <main id="main-content" role="main">
       <!-- Hero Section -->
-      <section
-        class="hero"
-        role="banner"
-        aria-label="Hero section featuring Mathilda Mamatseane"
-      >
-        <video
-          class="hero-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          aria-hidden="true"
-          tabindex="-1"
-          preload="auto"
-          poster="images/hero-poster.jpg"
-        >
-          <!-- Video source removed due to missing videos folder -->
-          Your browser does not support the video tag.
-        </video>
-        <div class="hero-overlay">
-          <h1>Miss South Africa Disability</h1>
-          <p class="tagline">
-            Celebrating beauty, resilience, and advocacy of women living with
-            disabilities
+      <section class="hero" aria-labelledby="hero-title">
+        <picture>
+          <source srcset="/images/hero-background.webp" type="image/webp" />
+          <img
+            src="/images/hero-background.jpg"
+            alt="Empowered women with disabilities celebrating together"
+            loading="eager"
+            width="1920"
+            height="600"
+          />
+        </picture>
+        <div class="hero-content">
+          <h1 id="hero-title">Empowering Women with Disabilities</h1>
+          <p class="hero-subtitle">
+            Celebrating beauty, strength, and leadership in every form
           </p>
-          <div class="hero-ctas">
-            <a href="apply.html" class="btn btn-primary" role="button"
-              >Apply Now</a
-            >
-            <a href="advocacy.html" class="btn btn-secondary" role="button"
-              >Support Us</a
-            >
+          <div class="hero-actions">
+            <a href="apply.html" class="btn btn-primary">Apply Now</a>
+            <a href="sponsors.html" class="btn btn-secondary">Support Us</a>
           </div>
         </div>
       </section>
 
-      <!-- Countdown Timer -->
-      <section class="countdown" aria-label="Countdown to next pageant event">
-        <h2>Next Pageant Event Starts In:</h2>
-        <div
-          id="countdown-timer"
-          aria-live="polite"
-          aria-atomic="true"
-          role="timer"
-        >
-          <div><span id="days">00</span><span class="label">Days</span></div>
-          <div><span id="hours">00</span><span class="label">Hours</span></div>
-          <div>
-            <span id="minutes">00</span><span class="label">Minutes</span>
-          </div>
-          <div>
-            <span id="seconds">00</span><span class="label">Seconds</span>
+      <!-- Highlight Reel Carousel -->
+      <section class="highlight-reel" aria-labelledby="highlight-title">
+        <div class="container">
+          <h2 id="highlight-title">Recent Highlights</h2>
+          <div
+            class="carousel"
+            role="region"
+            aria-label="Recent highlights carousel"
+          >
+            <div class="carousel-container" aria-live="polite">
+              <div class="carousel-slide active">
+                <img
+                  src="/images/highlights/crowning%20momentn.jpg"
+                  alt="2023 winner crowned with sash and crown"
+                  loading="lazy"
+                  width="800"
+                  height="450"
+                />
+                <div class="slide-caption">
+                  <h3>2023 Winner Crowned</h3>
+                  <p>Witness the emotional crowning moment</p>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="/images/hero-background.jpg"
+                  alt="Contestants participating in community service project"
+                  loading="lazy"
+                  width="800"
+                  height="450"
+                />
+                <div class="slide-caption">
+                  <h3>Community Impact</h3>
+                  <p>Our queens making a difference</p>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="/images/hero-background.jpg"
+                  alt="Contestants showcasing adaptive fashion on runway"
+                  loading="lazy"
+                  width="800"
+                  height="450"
+                />
+                <div class="slide-caption">
+                  <h3>Fashion Forward</h3>
+                  <p>Inclusive fashion for all abilities</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide">‹</button>
+            <button class="carousel-next" aria-label="Next slide">›</button>
+            <div class="carousel-indicators">
+              <button aria-label="Go to slide 1" class="active"></button>
+              <button aria-label="Go to slide 2"></button>
+              <button aria-label="Go to slide 3"></button>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Mission Statement -->
-      <section class="mission" aria-label="Our Mission Statement">
-        <h2>Our Mission</h2>
-        <p>
-          The Miss South Africa Disability pageant is a national platform
-          dedicated to celebrating the innate beauty, resilience, and powerful
-          advocacy of women living with disabilities across South Africa. We aim
-          to empower, inspire, and create opportunities for inclusive
-          representation and change.
-        </p>
-      </section>
-
-      <!-- Highlight Reel -->
-      <section
-        class="highlight-reel"
-        aria-label="Highlight reel video carousel"
-      >
-        <h2>Highlight Reel</h2>
-        <div
-          class="carousel"
-          tabindex="0"
-          aria-roledescription="carousel"
-          aria-label="Highlight videos"
-        >
-          <button class="carousel-btn prev" aria-label="Previous video">
-            &laquo;
-          </button>
-          <div class="carousel-track-container">
-            <ul class="carousel-track">
-              <li class="carousel-slide" aria-hidden="false">
-                <video
-                  controls
-                  preload="metadata"
-                  width="480"
-                  height="270"
-                  poster="images/highlight1-poster.jpg"
-                  aria-label="Highlight video 1"
-                >
-                  <!-- Video source removed due to missing videos folder -->
-                  Your browser does not support the video element.
-                </video>
-              </li>
-              <li class="carousel-slide" aria-hidden="true">
-                <video
-                  controls
-                  preload="metadata"
-                  width="480"
-                  height="270"
-                  poster="images/highlight2-poster.jpg"
-                  aria-label="Highlight video 2"
-                >
-                  <!-- Video source removed due to missing videos folder -->
-                  Your browser does not support the video element.
-                </video>
-              </li>
-              <li class="carousel-slide" aria-hidden="true">
-                <video
-                  controls
-                  preload="metadata"
-                  width="480"
-                  height="270"
-                  poster="images/highlight3-poster.jpg"
-                  aria-label="Highlight video 3"
-                >
-                  <!-- Video source removed due to missing videos folder -->
-                  Your browser does not support the video element.
-                </video>
-              </li>
-            </ul>
+      <!-- Quick Stats -->
+      <section class="stats" aria-labelledby="stats-title">
+        <div class="container">
+          <h2 id="stats-title">Our Impact</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-number" aria-label="500 plus">500+</span>
+              <span class="stat-label">Women Empowered</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" aria-label="50 plus">50+</span>
+              <span class="stat-label">Community Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" aria-label="1 million plus">1M+</span>
+              <span class="stat-label">Lives Impacted</span>
+            </div>
           </div>
-          <button class="carousel-btn next" aria-label="Next video">
-            &raquo;
-          </button>
         </div>
       </section>
 
-      <!-- Quick Links Grid -->
-      <section
-        class="quick-links grid"
-        aria-label="Quick links to important sections"
-      >
-        <a
-          href="apply.html"
-          class="quick-link"
-          role="link"
-          aria-label="Apply to Miss South Africa Disability Pageant"
-        >
-          <img
-            src="assets/images/icons/apply.svg"
-            alt=""
-            aria-hidden="true"
-            width="50"
-            height="50"
-            loading="lazy"
-          />
-          <span>Apply</span>
-        </a>
-        <a
-          href="gallery.html"
-          class="quick-link"
-          role="link"
-          aria-label="View photo gallery"
-        >
-          <img
-            src="assets/images/icons/gallery.svg"
-            alt=""
-            aria-hidden="true"
-            width="50"
-            height="50"
-            loading="lazy"
-          />
-          <span>View Gallery</span>
-        </a>
-        <a
-          href="queens.html"
-          class="quick-link"
-          role="link"
-          aria-label="See Past Winners"
-        >
-          <img
-            src="assets/images/icons/queens.svg"
-            alt=""
-            aria-hidden="true"
-            width="50"
-            height="50"
-            loading="lazy"
-          />
-          <span>See Past Winners</span>
-        </a>
+      <!-- Call to Action -->
+      <section class="cta-section" aria-labelledby="cta-title">
+        <div class="container">
+          <h2 id="cta-title">Ready to Make a Difference?</h2>
+          <p>
+            Join us in creating a more inclusive South Africa where every woman
+            can shine.
+          </p>
+          <div class="cta-actions">
+            <a href="apply.html" class="btn btn-primary">Apply to Compete</a>
+            <a href="contact.html" class="btn btn-secondary">Volunteer</a>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer role="contentinfo" aria-label="Site Footer">
-      <div class="footer-container">
-        <p>&copy; 2024 Miss South Africa Disability. All Rights Reserved.</p>
-        <nav aria-label="Footer social media">
-          <ul class="social-icons">
-            <li>
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Miss South Africa Disability</h3>
+            <p>
+              Empowering women with disabilities through beauty, advocacy, and
+              leadership.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="events.html">Events</a></li>
+              <li><a href="apply.html">Apply</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Connect</h4>
+            <div class="social-links">
               <a
-                href="https://www.facebook.com/misssadisability"
+                href="https://facebook.com/MissSouthAfricaDisability"
                 aria-label="Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><img
-                  src="assets/images/icons/facebook.svg"
-                  alt=""
-                  width="30"
-                  height="30"
-                  loading="lazy"
-              /></a>
-            </li>
-            <li>
+              >
+                <img
+                  src="/images/icons/facebook.svg"
+                  alt="Facebook"
+                  width="24"
+                  height="24"
+                />
+              </a>
               <a
-                href="https://www.instagram.com/misssadisability"
+                href="https://instagram.com/misssouthafricadisability"
                 aria-label="Instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><img
-                  src="assets/images/icons/instagram.svg"
-                  alt=""
-                  width="30"
-                  height="30"
-                  loading="lazy"
-              /></a>
-            </li>
-            <li>
+              >
+                <img
+                  src="/images/icons/instagram.svg"
+                  alt="Instagram"
+                  width="24"
+                  height="24"
+                />
+              </a>
               <a
-                href="https://www.youtube.com/misssadisability"
+                href="https://youtube.com/@MissSouthAfricaDisability"
                 aria-label="YouTube"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><img
-                  src="assets/images/icons/youtube.svg"
-                  alt=""
-                  width="30"
-                  height="30"
-                  loading="lazy"
-              /></a>
-            </li>
-          </ul>
-        </nav>
+              >
+                <img
+                  src="/images/icons/youtube.svg"
+                  alt="YouTube"
+                  width="24"
+                  height="24"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Miss South Africa Disability. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
-    <script src="js/main.js" defer></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>

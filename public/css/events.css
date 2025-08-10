@@ -1,0 +1,309 @@
+/* ========================================
+   EVENTS MODULE - BEM METHODOLOGY
+   ======================================== */
+
+/* Events Container */
+.events {
+  padding: var(--space-xxl) 0;
+  background-color: var(--color-light-gray);
+}
+
+.events__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.events__title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-primary);
+}
+
+/* Events Grid */
+.events__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xxl) 0;
+}
+
+/* Event Card - BEM Block */
+.event-card {
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.event-card:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Event Card Elements */
+.event-card__image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.event-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-normal);
+}
+
+.event-card:hover .event-card__image img {
+  transform: scale(1.05);
+}
+
+.event-card__badge {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.event-card__content {
+  padding: var(--space-lg);
+}
+
+.event-card__date {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-xs);
+}
+
+.event-card__title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-heading);
+}
+
+.event-card__description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: var(--line-height-normal);
+}
+
+.event-card__meta {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.event-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Event Detail Page */
+.event-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-xxl) 0;
+}
+
+.event-detail__hero {
+  position: relative;
+  height: 400px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+}
+
+.event-detail__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-detail__info {
+  background: var(--color-bg-secondary);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.event-detail__info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+.event-detail__info-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.event-detail__info-label {
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Event Registration */
+.event-registration {
+  background: var(--color-bg-primary);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-top: var(--space-xl);
+}
+
+.event-registration__form {
+  max-width: 600px;
+}
+
+/* Past Events Gallery */
+.past-events {
+  margin-top: var(--space-xxl);
+}
+
+.past-events__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-sm);
+}
+
+.past-events__item {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+}
+
+.past-events__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-normal);
+}
+
+.past-events__item:hover img {
+  transform: scale(1.1);
+}
+
+.past-events__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: var(--color-text-inverse);
+  padding: var(--space-md);
+  transform: translateY(100%);
+  transition: var(--transition-normal);
+}
+
+.past-events__item:hover .past-events__caption {
+  transform: translateY(0);
+}
+
+/* Event Filters */
+.events__filters {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.events__filter-btn {
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-gray);
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-size: var(--font-size-sm);
+}
+
+.events__filter-btn:hover,
+.events__filter-btn:focus,
+.events__filter-btn--active {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
+}
+
+/* Loading State */
+.events__loading {
+  text-align: center;
+  padding: var(--space-xxl);
+}
+
+.events__spinner {
+  border: 4px solid var(--color-light-gray);
+  border-top: 4px solid var(--color-primary);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--space-md);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 719px) {
+  .events__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .event-detail__hero {
+    height: 250px;
+  }
+  
+  .event-detail__info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 720px) {
+  .events__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .events__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .event-detail__hero {
+    height: 500px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .event-card {
+    break-inside: avoid;
+  }
+  
+  .event-card__image {
+    height: 150px;
+  }
+}

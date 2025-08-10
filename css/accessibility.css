@@ -1,0 +1,133 @@
+/* Accessibility Styles */
+
+/* Skip Link Styles */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 0 0 4px 4px;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* High Contrast Mode Styles */
+.high-contrast {
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --background-color: #000;
+    --text-color: #fff;
+    --border-color: #fff;
+}
+
+.high-contrast * {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+.high-contrast img {
+    filter: contrast(1.5);
+}
+
+/* Focus Styles */
+*:focus {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+}
+
+/* Ensure buttons have proper cursor */
+button,
+[role="button"],
+[role="tab"] {
+    cursor: pointer;
+}
+
+/* Ensure proper color contrast */
+:root {
+    --wcag-aa-ratio: 4.5;
+    --wcag-aaa-ratio: 7;
+}
+
+/* Form Error Styles */
+.error-message {
+    color: #d32f2f;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.form-field[aria-invalid="true"] {
+    border-color: #d32f2f;
+}
+
+.form-field[aria-invalid="true"]:focus {
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Ensure proper contrast for text */
+.text-primary {
+    color: #1a1a1a;
+}
+
+.text-secondary {
+    color: #4a4a4a;
+}
+
+.bg-primary {
+    background-color: #f5f5f5;
+}
+
+/* Ensure buttons have proper contrast */
+.btn-primary {
+    background-color: #005fcc;
+    color: #fff;
+    border: 2px solid #005fcc;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #004499;
+    border-color: #004499;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #005fcc;
+    border: 2px solid #005fcc;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #005fcc;
+    color: #fff;
+}

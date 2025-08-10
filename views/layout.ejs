@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: title, description: description, keywords: keywords }) %>
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main id="main-content" role="main">
+        <%- body %>
+    </main>
+    
+    <%- include('partials/footer') %>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* ========================================
+   GLOBAL CSS VARIABLES - DESIGN SYSTEM
+   Miss South African Disability
+   ======================================== */
+
+:root {
+  /* Brand Colors */
+  --color-primary: #00A7B5;
+  --color-primary-dark: #008C99;
+  --color-secondary: #0B1B34;
+  --color-accent: #FFD700;
+  
+  /* Neutral Colors */
+  --color-white: #FFFFFF;
+  --color-light-gray: #F5F5F5;
+  --color-gray: #666666;
+  --color-dark-gray: #333333;
+  
+  /* Semantic Colors */
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #17a2b8;
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+  
+  /* Spacing Scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-xxl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* High Contrast Mode */
+[data-theme="high-contrast"] {
+  --color-primary: #FFD700;
+  --color-secondary: #FFFFFF;
+  --color-white: #000000;
+  --color-light-gray: #000000;
+  --color-gray: #FFFFFF;
+  --color-dark-gray: #FFFFFF;
+}
