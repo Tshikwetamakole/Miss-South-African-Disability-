@@ -4,239 +4,134 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Events | Miss South Africa Disability</title>
-  <meta name="description" content="Discover upcoming and past events from Miss South Africa Disability including pageants, workshops, advocacy campaigns, and community outreach programs." />
-  <link rel="stylesheet" href="/css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta name="description" content="Discover upcoming and past events from Miss South Africa Disability, including pageants, workshops, advocacy campaigns, and community outreach programs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="index.html" class="nav-logo">
-          <img src="/images/logo.svg" alt="Miss South Africa Disability Logo" class="logo">
-        </a>
-        <ul class="nav-menu" role="menubar">
-          <li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>
-          <li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>
-          <li role="none"><a role="menuitem" href="advocacy.html" tabindex="0">Advocacy</a></li>
-          <li role="none"><a role="menuitem" href="apply.html" tabindex="0">Apply</a></li>
-          <li role="none"><a role="menuitem" href="events.html" tabindex="0" aria-current="page">Events</a></li>
-          <li role="none"><a role="menuitem" href="sponsors.html" tabindex="0">Sponsors</a></li>
-          <li role="none"><a role="menuitem" href="contact.html" tabindex="0">Contact</a></li>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo-link" aria-label="Miss South Africa Disability Home">
+        <img src="/images/logo.svg" alt="Miss South Africa Disability Logo" width="120" height="60">
+      </a>
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <button class="mobile-nav-toggle" aria-controls="nav-menu" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="hamburger"></span>
+        </button>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="advocacy.html">Advocacy</a></li>
+          <li><a href="apply.html">Apply</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="hero-section events-hero">
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero events-hero">
       <div class="hero-content">
         <h1>Our Events</h1>
         <p>Join us in celebrating diversity, inclusion, and empowerment through our signature events and community programs.</p>
       </div>
     </section>
 
-    <section class="events-section">
+    <!-- Events Section -->
+    <section class="events">
       <div class="container">
         <h2>Upcoming Events</h2>
         <div class="events-grid">
-          
-          <!-- Upcoming Event 1 -->
-          <div class="event-card upcoming">
-            <div class="event-image">
-              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Annual Pageant 2024">
-            </div>
+          <article class="event-card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Annual Miss South Africa Disability Pageant 2024" loading="lazy">
             <div class="event-content">
-              <span class="event-date">March 15, 2024</span>
+              <time class="event-date" datetime="2024-03-15">March 15, 2024</time>
               <h3>Annual Miss South Africa Disability Pageant 2024</h3>
               <p class="event-location"><i class="fas fa-map-marker-alt"></i> Cape Town International Convention Centre</p>
-              <p class="event-description">Our flagship event celebrating beauty, talent, and resilience. Join us for an evening of glamour and inspiration as we crown the next ambassador for disability inclusion.</p>
-              <div class="event-highlights">
-                <span class="highlight">Evening Gown Competition</span>
-                <span class="highlight">Talent Showcase</span>
-                <span class="highlight">Advocacy Speeches</span>
-              </div>
+              <p>Our flagship event celebrating beauty, talent, and resilience.</p>
+              <ul class="event-highlights">
+                <li>Evening Gown Competition</li>
+                <li>Talent Showcase</li>
+                <li>Advocacy Speeches</li>
+              </ul>
               <a href="apply.html" class="btn btn-primary">Register to Attend</a>
             </div>
-          </div>
+          </article>
 
-          <!-- Upcoming Event 2 -->
-          <div class="event-card upcoming">
-            <div class="event-image">
-              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Empowerment Workshop">
-            </div>
+          <article class="event-card">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="Disability Empowerment Workshop Series" loading="lazy">
             <div class="event-content">
-              <span class="event-date">February 10, 2024</span>
+              <time class="event-date" datetime="2024-02-10">February 10, 2024</time>
               <h3>Disability Empowerment Workshop Series</h3>
               <p class="event-location"><i class="fas fa-map-marker-alt"></i> Johannesburg Business School</p>
-              <p class="event-description">A transformative workshop series focusing on personal development, career advancement, and entrepreneurship for women with disabilities.</p>
-              <div class="event-highlights">
-                <span class="highlight">Leadership Training</span>
-                <span class="highlight">CV Building</span>
-                <span class="highlight">Interview Skills</span>
-              </div>
-              <a href="contact.html" class="btn btn-secondary">Learn More</a>
+              <p>A transformative workshop series focusing on personal development, career advancement, and entrepreneurship.</p>
+              <ul class="event-highlights">
+                <li>Leadership Training</li>
+                <li>CV Building</li>
+                <li>Interview Skills</li>
+              </ul>
+              <a href="contact.html" class="btn btn-primary">Learn More</a>
             </div>
-          </div>
+          </article>
 
-          <!-- Upcoming Event 3 -->
-          <div class="event-card upcoming">
-            <div class="event-image">
-              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2dfb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Community Outreach">
-            </div>
+          <article class="event-card">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2dfb0?auto=format&fit=crop&w=800&q=80" alt="Community Outreach: Rural Schools Program" loading="lazy">
             <div class="event-content">
-              <span class="event-date">April 22, 2024</span>
+              <time class="event-date" datetime="2024-04-22">April 22, 2024</time>
               <h3>Community Outreach: Rural Schools Program</h3>
               <p class="event-location"><i class="fas fa-map-marker-alt"></i> Limpopo Province - Various Locations</p>
-              <p class="event-description">Bringing awareness and support to rural schools, promoting inclusive education and inspiring young girls with disabilities across South Africa.</p>
-              <div class="event-highlights">
-                <span class="highlight">School Visits</span>
-                <span class="highlight">Motivational Talks</span>
-                <span class="highlight">Educational Resources</span>
-              </div>
-              <a href="contact.html" class="btn btn-secondary">Volunteer</a>
+              <p>Bringing awareness and support to rural schools, promoting inclusive education.</p>
+              <ul class="event-highlights">
+                <li>School Visits</li>
+                <li>Motivational Talks</li>
+                <li>Educational Resources</li>
+              </ul>
+              <a href="contact.html" class="btn btn-primary">Volunteer</a>
             </div>
-          </div>
-
+          </article>
         </div>
-      </div>
-    </section>
 
-    <section class="past-events-section">
-      <div class="container">
         <h2>Past Events</h2>
         <div class="events-grid">
-          
-          <!-- Past Event 1 -->
-          <div class="event-card past">
-            <div class="event-image">
-              <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="2023 Pageant">
-            </div>
+          <article class="event-card past">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" alt="Miss South Africa Disability 2023" loading="lazy">
             <div class="event-content">
-              <span class="event-date">October 28, 2023</span>
+              <time class="event-date" datetime="2023-10-28">October 28, 2023</time>
               <h3>Miss South Africa Disability 2023</h3>
               <p class="event-location"><i class="fas fa-map-marker-alt"></i> Durban ICC Arena</p>
-              <p class="event-description">A spectacular showcase of beauty and resilience featuring 20 exceptional contestants from across South Africa. Zanele Mthembu was crowned the winner.</p>
-              <div class="event-achievements">
-                <div class="achievement">
-                  <i class="fas fa-trophy"></i>
-                  <span>Winner: Zanele Mthembu</span>
-                </div>
-                <div class="achievement">
-                  <i class="fas fa-users"></i>
-                  <span>2,500+ Attendees</span>
-                </div>
-                <div class="achievement">
-                  <i class="fas fa-heart"></i>
-                  <span>Raised R500,000 for charity</span>
-                </div>
-              </div>
-              <a href="#" class="btn btn-outline">View Gallery</a>
+              <p>A spectacular showcase of beauty and resilience featuring 20 exceptional contestants.</p>
+              <ul class="event-highlights">
+                <li>Winner: Zanele Mthembu</li>
+                <li>2,500+ Attendees</li>
+                <li>Raised R500,000 for charity</li>
+              </ul>
+              <a href="#" class="btn btn-secondary">View Gallery</a>
             </div>
-          </div>
-
-          <!-- Past Event 2 -->
-          <div class="event-card past">
-            <div class="event-image">
-              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Leadership Summit">
-            </div>
-            <div class="event-content">
-              <span class="event-date">August 15, 2023</span>
-              <h3>Women's Leadership Summit 2023</h3>
-              <p class="event-location"><i class="fas fa-map-marker-alt"></i> Pretoria Women's Memorial</p>
-              <p class="event-description">A groundbreaking summit bringing together women leaders with disabilities to discuss policy, representation, and economic empowerment.</p>
-              <div class="event-achievements">
-                <div class="achievement">
-                  <i class="fas fa-microphone"></i>
-                  <span>15+ Speakers</span>
-                </div>
-                <div class="achievement">
-                  <i class="fas fa-handshake"></i>
-                  <span>5 Policy Recommendations</span>
-                </div>
-                <div class="achievement">
-                  <i class="fas fa-network-wired"></i>
-                  <span>200+ Network Connections</span>
-                </div>
-              </div>
-              <a href="#" class="btn btn-outline">Watch Highlights</a>
-            </div>
-          </div>
-
-          <!-- Past Event 3 -->
-          <div class="event-card past">
-            <div class="event-image">
-              <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Fashion Show">
-            </div>
-            <div class="event-content">
-              <span class="event-date">June 5, 2023</span>
-              <h3>Inclusive Fashion Show & Gala</h3>
-              <p class="event-location"><i class="fas fa-map-marker-alt"></i> Sandton Convention Centre</p>
-              <p class="event-description">A glamorous evening celebrating adaptive fashion and inclusive design, featuring models with disabilities on the runway.</p>
-              <div class="event-achievements">
-                <i class="fas fa-star"></i>
-                <span>25+ Models</span>
-              </div>
-              <div class="achievement">
-                <i class="fas fa-palette"></i>
-                <span>10 Designers Featured</span>
-              </div>
-              <div class="achievement">
-                <i class="fas fa-newspaper"></i>
-                <span>National Media Coverage</span>
-              </div>
-              <a href="#" class="btn btn-outline">View Collection</a>
-            </div>
-          </div>
-
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="event-calendar-section">
-      <div class="container">
-        <h2>Event Calendar</h2>
-        <div class="calendar-container">
-          <div class="calendar-header">
-            <button class="calendar-nav" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
-            <h3 id="currentMonth">January 2024</h3>
-            <button class="calendar-nav" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
-          </div>
-          <div class="calendar-grid">
-            <div class="calendar-day">Sun</div>
-            <div class="calendar-day">Mon</div>
-            <div class="calendar-day">Tue</div>
-            <div class="calendar-day">Wed</div>
-            <div class="calendar-day">Thu</div>
-            <div class="calendar-day">Fri</div>
-            <div class="calendar-day">Sat</div>
-            
-            <!-- Calendar days will be populated by JavaScript -->
-            <div class="calendar-date" data-date="2024-01-15">
-              <span class="date-number">15</span>
-              <div class="event-indicator" title="Workshop Series"></div>
-            </div>
-            <div class="calendar-date" data-date="2024-03-15">
-              <span class="date-number">15</span>
-              <div class="event-indicator" title="Annual Pageant"></div>
-            </div>
-            <div class="calendar-date" data-date="2024-04-22">
-              <span class="date-number">22</span>
-              <div class="event-indicator" title="Community Outreach"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Newsletter -->
     <section class="newsletter-section">
       <div class="container">
         <div class="newsletter-content">
           <h2>Stay Updated</h2>
           <p>Subscribe to our newsletter to receive updates about upcoming events, workshops, and opportunities.</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email address" required>
+          <form class="newsletter-form" aria-label="Newsletter Subscription">
+            <label for="newsletter-email" class="sr-only">Email Address</label>
+            <input id="newsletter-email" type="email" placeholder="Enter your email address" required>
             <button type="submit" class="btn btn-primary">Subscribe</button>
           </form>
         </div>
@@ -244,26 +139,26 @@
     </section>
   </main>
 
-  <footer>
+  <!-- Footer -->
+  <footer class="site-footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
           <h3>Miss South Africa Disability</h3>
           <p>Empowering women with disabilities through pageantry, advocacy, and community engagement.</p>
-          <div class="social-links">
+          <nav aria-label="Social Media">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          </div>
+          </nav>
         </div>
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
-            <li><a href="Apply.html">Apply</a></li>
+            <li><a href="apply.html">Apply</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -280,19 +175,6 @@
     </div>
   </footer>
 
-  <script src="/js/main.js"></script>
-  <script>
-    // Event calendar functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const events = [
-        { date: '2024-02-10', title: 'Disability Empowerment Workshop', type: 'workshop' },
-        { date: '2024-03-15', title: 'Annual Miss South Africa Disability Pageant', type: 'pageant' },
-        { date: '2024-04-22', title: 'Community Outreach Program', type: 'outreach' }
-      ];
-
-      // Calendar functionality would be implemented here
-      // This is a placeholder for interactive calendar features
-    });
-  </script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>
