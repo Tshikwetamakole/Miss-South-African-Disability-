@@ -45,7 +45,6 @@ function initAccessibilityControls() {
   }
 
   // Font size controls
-  const baseFontSize = 16;
   const minFontSize = 12;
   const maxFontSize = 24;
 
@@ -58,7 +57,7 @@ function initAccessibilityControls() {
   });
 
   document.getElementById('font-reset')?.addEventListener('click', function() {
-    document.documentElement.style.fontSize = baseFontSize + 'px';
+    document.documentElement.style.removeProperty('font-size');
     localStorage.removeItem('fontSize');
   });
 
