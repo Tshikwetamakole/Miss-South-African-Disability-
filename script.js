@@ -3,6 +3,7 @@
 // Wait for DOM to fully load
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all functionality
+  initPreloader();
   initAccessibilityControls();
   initNavigation();
   initCarousel();
@@ -13,6 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
   initCountUpAnimation();
   initSkipLink();
 });
+
+// Initialize pre-loader
+function initPreloader() {
+  const preloader = document.querySelector('.preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.classList.add('hidden');
+    });
+  }
+}
 
 // Initialize accessibility controls
 function initAccessibilityControls() {
@@ -269,7 +280,10 @@ function initAnimations() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
+          const delay = parseInt(entry.target.dataset.delay) || 0;
+          setTimeout(() => {
+            entry.target.classList.add('animated');
+          }, delay);
           observer.unobserve(entry.target);
         }
       });
