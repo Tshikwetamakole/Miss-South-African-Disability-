@@ -58,12 +58,20 @@ rel="stylesheet"
 
 <!-- Accessibility Controls -->
 <div class="accessibility-controls">
-<button id="contrast-toggle" class="contrast-toggle" aria-label="Toggle high contrast mode">
-<span aria-hidden="true">◐</span>
-</button>
-<button id="font-increase" class="font-control" aria-label="Increase font size">A+</button>
-<button id="font-decrease" class="font-control" aria-label="Decrease font size">A-</button>
-<button id="font-reset" class="font-control" aria-label="Reset font size">A</button>
+  <button id="contrast-toggle" class="contrast-toggle" aria-label="Toggle high contrast mode">
+    <span aria-hidden="true">◐</span>
+  </button>
+  <button id="font-increase" class="font-control" aria-label="Increase font size">A+</button>
+  <button id="font-decrease" class="font-control" aria-label="Decrease font size">A-</button>
+  <button id="font-reset" class="font-control" aria-label="Reset font size">A</button>
+  <div class="language-toggle">
+    <button class="language-current" aria-haspopup="true" aria-expanded="false">English</button>
+    <div class="language-dropdown">
+      <a href="#" class="language-option">English</a>
+      <a href="#" class="language-option">isiZulu</a>
+      <a href="#" class="language-option">isiXhosa</a>
+    </div>
+  </div>
 </div>
 
 <!-- Header -->
@@ -112,9 +120,10 @@ height="60"
 Celebrating the strength, talent, and leadership of women with disabilities in South Africa.
 </p>
 <div class="hero-actions">
-<a href="apply.html" class="btn btn-primary">Apply Now</a>
-<a href="#about" class="btn btn-outline">Learn More</a>
+  <a href="registration.html" class="btn btn-primary">Apply for 2026</a>
+  <a href="#about" class="btn btn-outline">Learn More</a>
 </div>
+<p class="hero-deadline">Applications for the 2026 pageant close October 31, 2025</p>
 </div>
 </section>
 
@@ -162,6 +171,28 @@ height="400"
 </div>
 </div>
 </div>
+</section>
+
+<!-- Alumni Stories Section -->
+<section id="alumni-stories" class="section section-secondary" aria-labelledby="alumni-title">
+  <div class="container">
+    <h2 id="alumni-title">Alumni Stories: Where Are They Now?</h2>
+    <p class="section-intro">
+      The journey doesn't end with the pageant. See the incredible impact our alumni are making in their communities and beyond.
+    </p>
+    <div class="alumni-grid">
+      <div class="alumni-story animate-in" data-animation="fade-in-up">
+        <img src="assets/images/miss2.jpg" alt="Photo of an alumna" class="alumni-photo">
+        <h3 class="alumni-name">Thando Ndlovu</h3>
+        <p class="alumni-bio">"After the pageant, I launched my own non-profit organization that provides skills training to young people with disabilities. The platform gave me the confidence to pursue my dreams."</p>
+      </div>
+      <div class="alumni-story animate-in" data-animation="fade-in-up" data-delay="100">
+        <img src="assets/images/hero-background.jpg" alt="Photo of an alumna" class="alumni-photo">
+        <h3 class="alumni-name">Lerato Khumalo</h3>
+        <p class="alumni-bio">"I now work with the Department of Social Development, advising on policies to improve accessibility in public spaces. My voice, amplified by the pageant, is now heard in rooms where decisions are made."</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Highlight Reel Carousel -->
@@ -301,19 +332,19 @@ Measuring our progress in empowering women with disabilities
 
 <div class="stats-grid">
 <div class="stat-item animate-in" data-animation="fade-in-up">
-<span class="stat-number" data-count="150">0</span>
+<span class="stat-number" data-count="150">150</span>
 <span class="stat-label">Participants Empowered</span>
 </div>
 <div class="stat-item animate-in" data-animation="fade-in-up" data-delay="100">
-<span class="stat-number" data-count="32">0</span>
+<span class="stat-number" data-count="32">32</span>
 <span class="stat-label">Events Hosted</span>
 </div>
 <div class="stat-item animate-in" data-animation="fade-in-up" data-delay="200">
-<span class="stat-number" data-count="18">0</span>
+<span class="stat-number" data-count="18">18</span>
 <span class="stat-label">Community Partners</span>
 </div>
 <div class="stat-item animate-in" data-animation="fade-in-up" data-delay="300">
-<span class="stat-number" data-count="12">0</span>
+<span class="stat-number" data-count="12">12</span>
 <span class="stat-label">Advocacy Campaigns</span>
 </div>
 </div>
@@ -331,35 +362,35 @@ Join us at our next activities and gatherings
 <div class="events-grid">
 <article class="event-card animate-in" data-animation="fade-in-up">
 <div class="event-date">
-<span class="event-day">15</span>
+<span class="event-day">18</span>
 <span class="event-month">Oct</span>
 </div>
 <div class="event-details">
-<h3><a href="events.html#pageant-2023">2023 National Pageant Finals</a></h3>
+<h3><a href="events.html#pageant-2025">2025 National Pageant Finals</a></h3>
 <p class="event-location">
-Johannesburg Convention Center
+Durban International Convention Centre
 </p>
 <p class="event-description">
-Witness the crowning of our next ambassador for disability inclusion and empowerment.
+A night of glamour, advocacy, and empowerment as we crown our 2025 ambassador.
 </p>
-<a href="events.html#pageant-2023" class="event-link">Event Details</a>
+<a href="events.html#pageant-2025" class="event-link">Event Details</a>
 </div>
 </article>
 
 <article class="event-card animate-in" data-animation="fade-in-up" data-delay="100">
 <div class="event-date">
-<span class="event-day">28</span>
+<span class="event-day">22</span>
 <span class="event-month">Nov</span>
 </div>
 <div class="event-details">
-<h3><a href="events.html#advocacy-forum">Disability Advocacy Forum</a></h3>
+<h3><a href="events.html#advocacy-workshop">Leadership &amp; Advocacy Workshop</a></h3>
 <p class="event-location">
-Cape Town International Conference Center
+Online Virtual Event
 </p>
 <p class="event-description">
-Join thought leaders and advocates in discussions about accessibility and inclusion policies.
+An interactive workshop for aspiring leaders to hone their public speaking and advocacy skills.
 </p>
-<a href="events.html#advocacy-forum" class="event-link">Event Details</a>
+<a href="events.html#advocacy-workshop" class="event-link">Event Details</a>
 </div>
 </article>
 
@@ -369,14 +400,14 @@ Join thought leaders and advocates in discussions about accessibility and inclus
 <span class="event-month">Dec</span>
 </div>
 <div class="event-details">
-<h3><a href="events.html#international-day">International Day of Persons with Disabilities</a></h3>
+<h3><a href="events.html#international-day-2025">International Day of Persons with Disabilities 2025</a></h3>
 <p class="event-location">
-Nationwide Virtual Event
+Nationwide Awareness Campaign
 </p>
 <p class="event-description">
-A day of celebration, awareness, and commitment to creating an inclusive society.
+Join our nationwide campaign to celebrate and advocate for the rights of persons with disabilities.
 </p>
-<a href="events.html#international-day" class="event-link">Event Details</a>
+<a href="events.html#international-day-2025" class="event-link">Event Details</a>
 </div>
 </article>
 </div>
@@ -430,9 +461,8 @@ Organizations that share our vision for inclusion
 Be part of a community that celebrates diversity and empowers women with disabilities to reach their full potential.
 </p>
 <div class="cta-actions">
-<a href="apply.html" class="btn btn-primary">Become a Contestant</a>
-<a href="sponsors.html" class="btn btn-secondary">Sponsor Our Mission</a>
-<a href="volunteer.html" class="btn btn-outline">Volunteer</a>
+  <a href="registration.html" class="btn btn-primary">Apply for 2026</a>
+  <a href="sponsors.html" class="btn btn-secondary">Become a Partner</a>
 </div>
 </div>
 </section>
@@ -506,7 +536,8 @@ Empowering women with disabilities through advocacy, community, and leadership.
 <p>
 &copy; 2024 Miss South Africa Disability. All Rights Reserved.
 <a href="privacy-policy.html">Privacy Policy</a> |
-<a href="terms-of-service.html">Terms of Service</a>
+<a href="terms-of-service.html">Terms of Service</a> |
+<a href="accessibility-statement.html">Accessibility Statement</a>
 </p>
 </div>
 </div>

@@ -339,6 +339,14 @@ a:hover, a:focus {
   font-family: var(--body-font);
 }
 
+.hero-deadline {
+  margin-top: var(--spacing-md);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
 .hero-actions {
   display: flex;
   gap: var(--spacing-sm);
@@ -545,4 +553,197 @@ a:hover, a:focus {
   to {
     transform: rotate(360deg);
   }
+}
+
+/*--------------------------------------------------------------
+# Alumni Stories Section
+--------------------------------------------------------------*/
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.alumni-story {
+  text-align: center;
+}
+
+.alumni-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.alumni-name {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.alumni-bio {
+  color: var(--gray-color);
+}
+
+/*--------------------------------------------------------------
+# Gallery Section
+--------------------------------------------------------------*/
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item a::after {
+  content: 'View Image';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(18, 23, 59, 0.7);
+  color: var(--light-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.gallery-item:hover a::after {
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Blog Section
+--------------------------------------------------------------*/
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.blog-post {
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blog-post-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-post-content {
+  padding: var(--spacing-md);
+}
+
+.blog-post-meta {
+  font-size: 0.875rem;
+  color: var(--gray-color);
+  margin-bottom: var(--spacing-xs);
+}
+
+.blog-post-meta .blog-post-category {
+  margin-left: var(--spacing-sm);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.blog-post-title {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.blog-post-title a {
+  color: var(--dark-color);
+}
+
+.blog-post-excerpt {
+  color: var(--gray-color);
+  margin-bottom: var(--spacing-md);
+}
+
+/*--------------------------------------------------------------
+# FAQ Section
+--------------------------------------------------------------*/
+.faq-container {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.faq-question:hover,
+.faq-question:focus {
+  background-color: #f9f9f9;
+}
+
+.faq-question .fa-chevron-down {
+  transition: transform 0.3s ease;
+}
+
+.faq-question[aria-expanded="true"] .fa-chevron-down {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: 0 1rem;
+}
+
+.faq-answer p {
+  margin: 0;
+  padding-bottom: 1.5rem;
+  color: #555;
+  line-height: 1.6;
 }
