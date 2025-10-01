@@ -41,12 +41,20 @@ rel="stylesheet"
 
 <!-- Accessibility Controls -->
 <div class="accessibility-controls">
-<button id="contrast-toggle" class="contrast-toggle" aria-label="Toggle high contrast mode">
-<span aria-hidden="true">◐</span>
-</button>
-<button id="font-increase" class="font-control" aria-label="Increase font size">A+</button>
-<button id="font-decrease" class="font-control" aria-label="Decrease font size">A-</button>
-<button id="font-reset" class="font-control" aria-label="Reset font size">A</button>
+  <button id="contrast-toggle" class="contrast-toggle" aria-label="Toggle high contrast mode">
+    <span aria-hidden="true">◐</span>
+  </button>
+  <button id="font-increase" class="font-control" aria-label="Increase font size">A+</button>
+  <button id="font-decrease" class="font-control" aria-label="Decrease font size">A-</button>
+  <button id="font-reset" class="font-control" aria-label="Reset font size">A</button>
+  <div class="language-toggle">
+    <button class="language-current" aria-haspopup="true" aria-expanded="false">English</button>
+    <div class="language-dropdown">
+      <a href="#" class="language-option">English</a>
+      <a href="#" class="language-option">isiZulu</a>
+      <a href="#" class="language-option">isiXhosa</a>
+    </div>
+  </div>
 </div>
 
 <!-- Header -->
@@ -92,76 +100,68 @@ rel="stylesheet"
 
 <!-- Main Content -->
 <main id="main-content" role="main">
-  <!-- Hero Section -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-content">
-      <h1 id="hero-title">Our Blog</h1>
-      <p class="hero-subtitle">
-        News, stories, and insights from the Miss South Africa Disability community.
-      </p>
+
+<section class="section">
+<div class="container">
+<h1 class="section-title">Blog</h1>
+<p class="section-intro">
+Read our latest news, stories, and articles on disability advocacy and empowerment.
+</p>
+<div class="blog-grid">
+  <article class="blog-post animate-in" data-animation="fade-in-up">
+    <div class="blog-post-image">
+      <a href="#"><img src="assets/images/Miss2.jpg" alt="A group of smiling contestants" loading="lazy"></a>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="blog-grid">
-        <article class="blog-post animate-in" data-animation="fade-in-up">
-          <div class="blog-post-image">
-
-            <a href="#"><img src="https://via.placeholder.com/800x450" alt="Blog post image" loading="lazy"></a>
-
-          </div>
-          <div class="blog-post-content">
-            <div class="blog-post-meta">
-              <span class="blog-post-date">October 15, 2023</span>
-              <span class="blog-post-category">Advocacy</span>
-            </div>
-            <h3 class="blog-post-title"><a href="#">Breaking Barriers: The Power of Inclusive Beauty</a></h3>
-            <p class="blog-post-excerpt">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <a href="#" class="btn btn-primary">Read More</a>
-          </div>
-        </article>
-        <article class="blog-post animate-in" data-animation="fade-in-up" data-delay="100">
-          <div class="blog-post-image">
-
-            <a href="#"><img src="https://via.placeholder.com/800x450" alt="Blog post image" loading="lazy"></a>
-
-          </div>
-          <div class="blog-post-content">
-            <div class="blog-post-meta">
-              <span class="blog-post-date">November 28, 2023</span>
-              <span class="blog-post-category">Community</span>
-            </div>
-            <h3 class="blog-post-title"><a href="#">Building a Supportive Community for Women with Disabilities</a></h3>
-            <p class="blog-post-excerpt">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <a href="#" class="btn btn-primary">Read More</a>
-          </div>
-        </article>
-        <article class="blog-post animate-in" data-animation="fade-in-up" data-delay="200">
-          <div class="blog-post-image">
-            <a href="#"><img src="https://via.placeholder.com/800x450" alt="Blog post image" loading="lazy"></a>
-
-          </div>
-          <div class="blog-post-content">
-            <div class="blog-post-meta">
-              <span class="blog-post-date">December 03, 2023</span>
-              <span class="blog-post-category">Empowerment</span>
-            </div>
-            <h3 class="blog-post-title"><a href="#">From Contestant to Leader: The Journey of a Miss South Africa Disability Winner</a></h3>
-            <p class="blog-post-excerpt">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <a href="#" class="btn btn-primary">Read More</a>
-          </div>
-        </article>
+    <div class="blog-post-content">
+      <div class="blog-post-meta">
+        <span class="blog-post-date">September 05, 2025</span>
+        <span class="blog-post-category">Empowerment</span>
       </div>
+      <h3 class="blog-post-title"><a href="#">Meet Our 2025 Finalists: Stories of Strength and Resilience</a></h3>
+      <p class="blog-post-excerpt">
+        We are thrilled to introduce the incredible women who have been selected as finalists for the 2025 Miss South Africa Disability pageant. Learn more about their journeys and their passion for advocacy.
+      </p>
+      <a href="#" class="btn btn-secondary">Read More</a>
     </div>
-  </section>
-</main>
+  </article>
+
+  <article class="blog-post animate-in" data-animation="fade-in-up" data-delay="100">
+    <div class="blog-post-image">
+      <a href="#"><img src="assets/images/hero-background.jpg" alt="A person giving a speech at a podium" loading="lazy"></a>
+    </div>
+    <div class="blog-post-content">
+      <div class="blog-post-meta">
+        <span class="blog-post-date">August 21, 2025</span>
+        <span class="blog-post-category">Advocacy</span>
+      </div>
+      <h3 class="blog-post-title"><a href="#">Why Representation Matters: The Impact of Inclusive Media</a></h3>
+      <p class="blog-post-excerpt">
+        This month, we explore how positive representation in media can challenge stereotypes and create a more inclusive world for people with disabilities. Join the conversation.
+      </p>
+      <a href="#" class="btn btn-secondary">Read More</a>
+    </div>
+  </article>
+
+  <article class="blog-post animate-in" data-animation="fade-in-up" data-delay="200">
+    <div class="blog-post-image">
+      <a href="#"><img src="assets/images/Miss2.jpg" alt="Past winner smiling" loading="lazy"></a>
+    </div>
+    <div class="blog-post-content">
+      <div class="blog-post-meta">
+        <span class="blog-post-date">December 03, 2023</span>
+        <span class="blog-post-category">Community</span>
+      </div>
+      <h3 class="blog-post-title"><a href="#">A Look Back: The Journey of a Miss South Africa Disability Winner</a></h3>
+      <p class="blog-post-excerpt">
+        We catch up with a past winner to discuss her experiences since the pageant and how she continues to advocate for disability rights and inclusion in her community.
+      </p>
+      <a href="#" class="btn btn-secondary">Read More</a>
+    </div>
+  </article>
+</div>
+</div>
+</section>
+
 
 <!-- Footer -->
 <footer class="site-footer" role="contentinfo">
@@ -208,7 +208,8 @@ Empowering women with disabilities through advocacy, community, and leadership.
 <p>
 &copy; 2024 Miss South Africa Disability. All Rights Reserved.
 <a href="privacy-policy.html">Privacy Policy</a> |
-<a href="terms-of-service.html">Terms of Service</a>
+<a href="terms-of-service.html">Terms of Service</a> |
+<a href="accessibility-statement.html">Accessibility Statement</a>
 </p>
 </div>
 </div>

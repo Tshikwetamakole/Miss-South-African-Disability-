@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initLazyLoading();
   initCountUpAnimation();
   initSkipLink();
+  initFaqAccordion();
 });
 
 // Initialize pre-loader
@@ -318,6 +319,25 @@ function initFormValidation() {
     } else {
       showFormMessage(this, 'Please enter a valid email address.', 'error');
     }
+  });
+}
+
+// Initialize FAQ accordion
+function initFaqAccordion() {
+  const faqQuestions = document.querySelectorAll('.faq-question');
+
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const isExpanded = question.getAttribute('aria-expanded') === 'true';
+      question.setAttribute('aria-expanded', !isExpanded);
+
+      const answer = question.nextElementSibling;
+      if (!isExpanded) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      } else {
+        answer.style.maxHeight = '0';
+      }
+    });
   });
 }
 
