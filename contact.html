@@ -51,71 +51,86 @@ rel="stylesheet"
 
 <!-- Header -->
 <header class="site-header" role="banner">
-<div class="container">
-<div class="header-content">
-<a href="/" class="logo-link" aria-label="Miss South Africa Disability Home">
-<img
-src="/assets/logos/logo.svg"
-alt="Miss South Africa Disability Logo"
-width="120"
-height="60"
-/>
-<span class="logo-text">Miss South Africa Disability</span>
-</a>
+  <div class="container">
+    <div class="header-content">
+      <a href="/" class="logo-link" aria-label="Miss South Africa Disability Home">
+        <img
+          src="/assets/logos/logo.svg"
+          alt="Miss South Africa Disability Logo"
+          width="120"
+          height="60"
+        />
+        <span class="logo-text">Miss South Africa Disability</span>
+      </a>
 
-<nav class="main-nav" role="navigation" aria-label="Main navigation">
-<button class="mobile-nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Menu">
-<span class="sr-only">Toggle navigation</span>
-<span class="hamburger"></span>
-<span class="hamburger"></span>
-<span class="hamburger"></span>
-</button>
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <button class="mobile-nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Menu">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+        </button>
 
-<ul id="nav-menu" class="nav-menu">
-<li><a href="/" class="nav-link">Home</a></li>
-<li><a href="about.html" class="nav-link">About Us</a></li>
-<li><a href="gallery.html" class="nav-link">Gallery</a></li>
-<li><a href="events.html" class="nav-link">Events</a></li>
-<li><a href="registration.html" class="nav-link">Registration</a></li>
-<li><a href="contact.html" class="nav-link active">Contact</a></li>
-<li><a href="blog.html" class="nav-link">Blog</a></li>
-</ul>
-</nav>
-</div>
-</div>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="events.html" class="nav-link">Events</a></li>
+          <li><a href="registration.html" class="nav-link">Registration</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-social">
+        <a href="https://facebook.com/MissSouthAfricaDisability" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/misssouthafricadisability" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
 </header>
 
 <!-- Main Content -->
 <main id="main-content" role="main">
-<section class="section">
-<div class="container">
-<h1 class="section-title">Contact Us</h1>
-<p class="section-intro">
-We would love to hear from you. Whether you have a question, a suggestion, or a media inquiry, please don't hesitate to get in touch.
-</p>
-<form class="contact-form">
-<div class="form-group animate-in" data-animation="fade-in-up">
-<label for="name">Full Name</label>
-<input type="text" id="name" name="name" required>
-</div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="100">
-<label for="email">Email Address</label>
-<input type="email" id="email" name="email" required>
-</div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="200">
-<label for="subject">Subject</label>
-<input type="text" id="subject" name="subject" required>
-</div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="300">
-<label for="message">Message</label>
-<textarea id="message" name="message" rows="5" required></textarea>
-</div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="400">
-<button type="submit" class="btn btn-primary">Send Message</button>
-</div>
-</form>
-</div>
-</section>
+  <!-- Hero Section -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <h1 id="hero-title">Contact Us</h1>
+      <p class="hero-subtitle">
+        We're here to help. Reach out to us with your questions or inquiries.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-intro">
+        Whether you have a question, a suggestion, or a media inquiry, please don't hesitate to contact us using the form below.
+      </p>
+      <form class="contact-form">
+        <div class="form-group animate-in" data-animation="fade-in-up">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group animate-in" data-animation="fade-in-up" data-delay="100">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group animate-in" data-animation="fade-in-up" data-delay="200">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group animate-in" data-animation="fade-in-up" data-delay="300">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <div class="form-group animate-in" data-animation="fade-in-up" data-delay="400">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
 </main>
 
 <!-- Footer -->
