@@ -65,11 +65,14 @@ rel="stylesheet"
   <button id="font-decrease" class="font-control" aria-label="Decrease font size">A-</button>
   <button id="font-reset" class="font-control" aria-label="Reset font size">A</button>
   <div class="language-toggle">
-    <button class="language-current" aria-haspopup="true" aria-expanded="false">English</button>
-    <div class="language-dropdown">
-      <a href="#" class="language-option">English</a>
-      <a href="#" class="language-option">isiZulu</a>
-      <a href="#" class="language-option">isiXhosa</a>
+    <button class="language-current" aria-haspopup="true" aria-expanded="false" id="language-toggle">
+      <span>English</span>
+      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <div class="language-dropdown" id="language-dropdown">
+      <a href="#" class="language-option" data-lang="en">English</a>
+      <a href="#" class="language-option" data-lang="zu">isiZulu</a>
+      <a href="#" class="language-option" data-lang="xh">isiXhosa</a>
     </div>
   </div>
 </div>
