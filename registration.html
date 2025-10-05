@@ -106,27 +106,726 @@ rel="stylesheet"
 <p class="section-intro">
 Apply to become a contestant in the Miss South Africa Disability pageant and join our movement of empowerment.
 </p>
-<form class="contact-form">
-<div class="form-group animate-in" data-animation="fade-in-up">
-<label for="name">Full Name</label>
-<input type="text" id="name" name="name" required>
+<!-- Enhanced Registration Form -->
+<!-- Replace the existing form in registration.html with this comprehensive form -->
+
+<div class="registration-container">
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="step-indicators">
+            <div class="step-indicator active" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-label">Personal</span>
+            </div>
+            <div class="step-indicator" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-label">Contact</span>
+            </div>
+            <div class="step-indicator" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-label">Pageant</span>
+            </div>
+            <div class="step-indicator" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-label">Documents</span>
+            </div>
+        </div>
+    </div>
+
+    <form id="registrationForm" class="registration-form" novalidate>
+        <!-- Step 1: Personal Information -->
+        <div id="step-1" class="form-step active">
+            <div class="step-header">
+                <h2>Personal Information</h2>
+                <p>Tell us about yourself and your background</p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dateOfBirth">Date of Birth *</label>
+                    <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                    <small class="form-help">Must be between 18-30 years old</small>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" readonly>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="province">Province *</label>
+                    <select id="province" name="province" required>
+                        <option value="">Select Province</option>
+                        <option value="western-cape">Western Cape</option>
+                        <option value="gauteng">Gauteng</option>
+                        <option value="kwazulu-natal">KwaZulu-Natal</option>
+                        <option value="eastern-cape">Eastern Cape</option>
+                        <option value="limpopo">Limpopo</option>
+                        <option value="mpumalanga">Mpumalanga</option>
+                        <option value="north-west">North West</option>
+                        <option value="northern-cape">Northern Cape</option>
+                        <option value="free-state">Free State</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="city">City *</label>
+                    <select id="city" name="city" required>
+                        <option value="">Select City</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Physical Address</label>
+                <textarea id="address" name="address" rows="3" placeholder="Street address, suburb, postal code"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" name="height" step="0.1" min="100" max="250">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" name="weight" step="0.1" min="30" max="200">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary next-step">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Contact & Emergency Information -->
+        <div id="step-2" class="form-step">
+            <div class="step-header">
+                <h2>Contact Information</h2>
+                <p>How can we reach you and your emergency contact?</p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required autocomplete="tel">
+                    <small class="form-help">Format: +27 XX XXX XXXX or 0XX XXX XXXX</small>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Emergency Contact</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emergencyContactName">Emergency Contact Name *</label>
+                        <input type="text" id="emergencyContactName" name="emergencyContactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyContactPhone">Emergency Contact Phone *</label>
+                        <input type="tel" id="emergencyContactPhone" name="emergencyContactPhone" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Disability Information</h3>
+                <div class="form-group">
+                    <label for="disabilityType">Type of Disability *</label>
+                    <select id="disabilityType" name="disabilityType" required>
+                        <option value="">Select Disability Type</option>
+                        <option value="physical">Physical Disability</option>
+                        <option value="visual">Visual Impairment</option>
+                        <option value="hearing">Hearing Impairment</option>
+                        <option value="intellectual">Intellectual Disability</option>
+                        <option value="neurological">Neurological Condition</option>
+                        <option value="chronic-illness">Chronic Illness</option>
+                        <option value="multiple">Multiple Disabilities</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="disabilityDescription">Disability Description</label>
+                    <textarea id="disabilityDescription" name="disabilityDescription" rows="4"
+                              placeholder="Please provide details about your disability and any accommodations you may need"></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline prev-step">Previous</button>
+                <button type="button" class="btn btn-primary next-step">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Pageant & Background Information -->
+        <div id="step-3" class="form-step">
+            <div class="step-header">
+                <h2>Pageant Information</h2>
+                <p>Tell us about your background and motivation</p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="educationLevel">Education Level</label>
+                    <select id="educationLevel" name="educationLevel">
+                        <option value="">Select Education Level</option>
+                        <option value="high-school">High School</option>
+                        <option value="matric">Matric</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="bachelors">Bachelor's Degree</option>
+                        <option value="honours">Honours Degree</option>
+                        <option value="masters">Master's Degree</option>
+                        <option value="doctorate">Doctorate</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="occupation">Current Occupation</label>
+                    <input type="text" id="occupation" name="occupation" placeholder="e.g., Student, Teacher, Entrepreneur">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="achievements">Achievements & Awards</label>
+                <textarea id="achievements" name="achievements" rows="4"
+                          placeholder="Tell us about your achievements, awards, or notable accomplishments"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hobbies">Hobbies & Interests</label>
+                    <input type="text" id="hobbies" name="hobbies" placeholder="e.g., Reading, Swimming, Painting">
+                </div>
+                <div class="form-group">
+                    <label for="languagesSpoken">Languages Spoken</label>
+                    <input type="text" id="languagesSpoken" name="languagesSpoken"
+                           placeholder="e.g., English, Afrikaans, Zulu">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="talentDescription">Talent Description</label>
+                <textarea id="talentDescription" name="talentDescription" rows="4"
+                          placeholder="Describe your special talent or skill you would like to showcase"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="platformCause">Platform/Cause (minimum 50 words) *</label>
+                <textarea id="platformCause" name="platformCause" rows="5" required
+                          placeholder="What cause or platform would you champion if you won? How would you use your voice to make a difference?"></textarea>
+                <small class="form-help">Minimum 50 words required</small>
+            </div>
+
+            <div class="form-group">
+                <label for="whyCompete">Why do you want to compete? (minimum 50 words) *</label>
+                <textarea id="whyCompete" name="whyCompete" rows="5" required
+                          placeholder="Tell us why you want to participate in Miss South African Disability and what it means to you"></textarea>
+                <small class="form-help">Minimum 50 words required</small>
+            </div>
+
+            <div class="form-group">
+                <label for="previousPageantExperience">Previous Pageant Experience</label>
+                <textarea id="previousPageantExperience" name="previousPageantExperience" rows="3"
+                          placeholder="Have you participated in any pageants before? Tell us about your experience"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline prev-step">Previous</button>
+                <button type="button" class="btn btn-primary next-step">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Documents & Submission -->
+        <div id="step-4" class="form-step">
+            <div class="step-header">
+                <h2>Documents & Submission</h2>
+                <p>Upload required documents to complete your application</p>
+            </div>
+
+            <div class="documents-section">
+                <div class="form-group file-upload">
+                    <label for="photo">Professional Photo *</label>
+                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                    <div class="file-upload-area">
+                        <i class="fas fa-camera"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <small>JPG, PNG or HEIC (max 5MB)</small>
+                    </div>
+                    <div class="upload-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group file-upload">
+                    <label for="idDocument">ID Document/Passport *</label>
+                    <input type="file" id="idDocument" name="idDocument" accept="image/*,.pdf" required>
+                    <div class="file-upload-area">
+                        <i class="fas fa-id-card"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <small>PDF or Image (max 5MB)</small>
+                    </div>
+                    <div class="upload-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group file-upload">
+                    <label for="medicalCertificate">Medical Certificate (Optional)</label>
+                    <input type="file" id="medicalCertificate" name="medicalCertificate" accept="image/*,.pdf">
+                    <div class="file-upload-area">
+                        <i class="fas fa-file-medical"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <small>PDF or Image (max 5MB)</small>
+                    </div>
+                    <div class="upload-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Terms & Conditions</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="terms-of-service.html" target="_blank">Terms of Service</a>
+                        and <a href="privacy-policy.html" target="_blank">Privacy Policy</a> *
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeRules" name="agreeRules" required>
+                        <span class="checkmark"></span>
+                        I understand and agree to the pageant rules and requirements *
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="mediaConsent" name="mediaConsent">
+                        <span class="checkmark"></span>
+                        I consent to the use of my images and information for promotional purposes
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline prev-step">Previous</button>
+                <button type="submit" class="btn btn-primary submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Application
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="100">
-<label for="email">Email Address</label>
-<input type="email" id="email" name="email" required>
-</div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="200">
-<label for="phone">Phone Number</label>
-<input type="tel" id="phone" name="phone" required>
-</div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="300">
-<label for="message">Tell us about yourself</label>
-<textarea id="message" name="message" rows="5" required></textarea>
-</div>
-<div class="form-group animate-in" data-animation="fade-in-up" data-delay="400">
-<button type="submit" class="btn btn-primary">Submit Application</button>
-</div>
-</form>
+
+<style>
+/* Registration Form Styles */
+.registration-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.progress-container {
+    margin-bottom: 3rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #f97316;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    position: relative;
+}
+
+.step-indicator::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: #e5e7eb;
+    z-index: -1;
+}
+
+.step-indicator:last-child::after {
+    display: none;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.step-indicator.active .step-number {
+    background-color: #f97316;
+    color: white;
+}
+
+.step-indicator.active .step-label {
+    color: #f97316;
+}
+
+.step-indicator.completed .step-number {
+    background-color: #10b981;
+    color: white;
+}
+
+.step-indicator.completed .step-label {
+    color: #10b981;
+}
+
+.registration-form {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.step-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.step-header h2 {
+    margin: 0 0 0.5rem 0;
+    color: #1f2937;
+    font-size: 1.5rem;
+}
+
+.step-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.form-section {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.form-section h3 {
+    margin: 0 0 1rem 0;
+    color: #f97316;
+    font-size: 1.125rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-help {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.field-error {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #ef4444;
+}
+
+.checkbox-group {
+    margin-bottom: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.file-upload {
+    position: relative;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.file-upload-area {
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: #f9fafb;
+}
+
+.file-upload:hover .file-upload-area,
+.file-upload input[type="file"]:focus + .file-upload-area {
+    border-color: #f97316;
+    background-color: rgba(249, 115, 22, 0.05);
+}
+
+.file-upload-area i {
+    font-size: 2rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.file-upload-area p {
+    margin: 0 0 0.5rem 0;
+    color: #374151;
+    font-weight: 500;
+}
+
+.file-upload-area small {
+    color: #6b7280;
+}
+
+.upload-progress {
+    margin-top: 1rem;
+}
+
+.upload-success {
+    margin-top: 0.5rem;
+    color: #10b981;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.form-actions .btn {
+    min-width: 120px;
+}
+
+.application-success {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #10b981;
+    margin-bottom: 1rem;
+}
+
+.application-success h2 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.application-details {
+    background-color: #f0f9ff;
+    border: 1px solid #0ea5e9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.next-steps {
+    text-align: left;
+    margin: 2rem 0;
+}
+
+.next-steps h3 {
+    color: #f97316;
+    margin-bottom: 1rem;
+}
+
+.next-steps ul {
+    list-style: none;
+    padding: 0;
+}
+
+.next-steps li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.next-steps li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+}
+
+.success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .registration-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .registration-form {
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .step-indicators {
+        gap: 0.5rem;
+    }
+
+    .step-label {
+        font-size: 0.75rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+}
+</style>
 </div>
 </section>
 </main>
@@ -184,5 +883,11 @@ Empowering women with disabilities through advocacy, community, and leadership.
 </footer>
 
 <script src="script.js"></script>
+
+<!-- Supabase Integration -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+<script src="registration.js"></script>
 </body>
 </html>

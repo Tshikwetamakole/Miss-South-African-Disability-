@@ -149,6 +149,42 @@ rel="stylesheet"
         <a href="https://facebook.com/MissSouthAfricaDisability" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="https://instagram.com/misssouthafricadisability" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
+
+      <!-- User Menu (Add to your navigation) -->
+      <div class="user-menu">
+          <!-- Show when NOT authenticated -->
+          <div class="auth-login">
+              <button class="btn btn-outline login-trigger">Sign In</button>
+              <button class="btn btn-primary signup-trigger">Sign Up</button>
+          </div>
+
+          <!-- Show when authenticated -->
+          <div class="auth-logout" style="display: none;">
+              <div class="auth-user" style="display: none;">
+                  <span class="user-greeting">Welcome, <span class="user-name">User</span>!</span>
+                  <div class="user-dropdown">
+                      <button class="user-avatar" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-user-circle"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                          <a href="profile.html" class="dropdown-item">
+                              <i class="fas fa-user"></i> My Profile
+                          </a>
+                          <a href="my-applications.html" class="dropdown-item">
+                              <i class="fas fa-file-alt"></i> My Applications
+                          </a>
+                          <a href="my-rsvps.html" class="dropdown-item">
+                              <i class="fas fa-calendar-check"></i> My RSVPs
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <button class="dropdown-item logout-btn">
+                              <i class="fas fa-sign-out-alt"></i> Sign Out
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
   </div>
 </header>
@@ -1181,5 +1217,140 @@ Website developed by <a href="https://charleyraluswinga.space" target="_blank" r
   <script src="database-service.js"></script>
   <script src="realtime-service.js"></script>
   <script src="storage-service.js"></script>
+  <script src="auth.js"></script>
+
+<!-- Authentication Modal -->
+<div id="authModal" class="auth-modal" style="display: none;" role="dialog" aria-labelledby="authModalTitle" aria-modal="true">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header">
+            <h2 id="authModalTitle">Sign In</h2>
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="auth-modal-body">
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form" style="display: block;">
+                <h3>Welcome Back!</h3>
+                <p>Sign in to your account to continue</p>
+
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="email" required
+                           autocomplete="email" aria-describedby="loginEmailHelp">
+                    <small id="loginEmailHelp" class="form-help">We'll never share your email</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required
+                           autocomplete="current-password" minlength="6">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button type="button" class="btn btn-link switch-to-forgot">
+                        Forgot Password?
+                    </button>
+                </div>
+
+                <div class="auth-switch">
+                    <p>Don't have an account?
+                        <button type="button" class="btn btn-link switch-to-signup">
+                            Sign Up Here
+                        </button>
+                    </p>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form" style="display: none;">
+                <h3>Join Our Community!</h3>
+                <p>Create your account to get started</p>
+
+                <div class="form-group">
+                    <label for="signupFullName">Full Name</label>
+                    <input type="text" id="signupFullName" name="fullName" required
+                           autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" name="email" required
+                           autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPhone">Phone Number (Optional)</label>
+                    <input type="tel" id="signupPhone" name="phone"
+                           autocomplete="tel">
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" name="password" required
+                           autocomplete="new-password" minlength="6"
+                           aria-describedby="passwordHelp">
+                    <small id="passwordHelp" class="form-help">
+                        Must be at least 6 characters long
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required
+                           autocomplete="new-password" minlength="6">
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="terms-of-service.html" target="_blank">Terms of Service</a>
+                        and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </div>
+
+                <div class="auth-switch">
+                    <p>Already have an account?
+                        <button type="button" class="btn btn-link switch-to-login">
+                            Sign In Here
+                        </button>
+                    </p>
+                </div>
+            </form>
+
+            <!-- Forgot Password Form -->
+            <form id="forgotPasswordForm" class="auth-form" style="display: none;">
+                <h3>Reset Your Password</h3>
+                <p>Enter your email address and we'll send you a reset link</p>
+
+                <div class="form-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" name="email" required
+                           autocomplete="email">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                </div>
+
+                <div class="auth-switch">
+                    <p>Remember your password?
+                        <button type="button" class="btn btn-link switch-to-login">
+                            Sign In Here
+                        </button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Container -->
+<div id="notificationContainer" class="notification-container"></div>
 </body>
 </html>
