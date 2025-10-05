@@ -3518,6 +3518,34 @@ select:focus-visible {
   border: 2px solid var(--color-text);
 }
 
+/* Floating Support CTA */
+.support-cta {
+  position: fixed;
+  bottom: var(--sp-6);
+  left: var(--sp-6);
+  z-index: var(--z-fixed);
+  background: var(--gradient-secondary);
+  color: #fff;
+  border: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.support-cta:hover, .support-cta:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow-intense);
+  outline: none;
+}
+
+@media (max-width: 640px) {
+  .support-cta { bottom: var(--sp-4); left: var(--sp-4); padding: var(--sp-2) var(--sp-4); }
+}
+
 /* Accessibility Controls Enhancement */
 .accessibility-controls {
   position: fixed;
