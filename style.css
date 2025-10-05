@@ -27,6 +27,10 @@
   --color-primary-light: #fb923c;
   --color-primary-dark: #ea580c;
   --color-secondary: #ffb86b;
+  /* Added brand extension colors */
+  --color-royal-blue: #1e3a8a; /* royal blue anchor */
+  --color-soft-gold: #d4af37; /* soft gold accent for premium feel */
+  --color-soft-gold-muted: #b89024;
   --color-accent: #8b5cf6;
   --color-text: #ffffff;
   --color-text-muted: #a0a8b5;
