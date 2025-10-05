@@ -264,7 +264,19 @@ function initEliteNavigation() {
       const expanded = this.getAttribute('aria-expanded') === 'true';
       this.setAttribute('aria-expanded', !expanded);
       navMenu.classList.toggle('active');
-      document.body.style.overflow = expanded ? '': 'hidden';
+      document.body.style.overflow = expanded ? '' : 'hidden';
+      
+      // Focus management
+      if (!expanded) {
+        // Menu opened - focus first link
+        const firstLink = navMenu.querySelector('.nav-link');
+        if (firstLink) {
+          setTimeout(() => firstLink.focus(), 100);
+        }
+      } else {
+        // Menu closed - return focus to toggle
+        this.focus();
+      }
     });
 
     // Close mobile menu when clicking on nav links
@@ -280,6 +292,27 @@ function initEliteNavigation() {
     // Close mobile menu when pressing Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+        mobileToggle.focus();
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (navMenu.classList.contains('active') && 
+          !navMenu.contains(e.target) && 
+          !mobileToggle.contains(e.target)) {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Handle window resize - close menu on desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
         mobileToggle.setAttribute('aria-expanded', 'false');
         navMenu.classList.remove('active');
         document.body.style.overflow = '';
