@@ -10,122 +10,167 @@ content="Blog of Miss South Africa Disability - Read our latest news, stories, a
 <meta
 name="keywords"
 content="blog, miss south africa disability, news, stories, articles, disability advocacy"
-/>
-<title>Blog - Miss South Africa Disability</title>
-
-<!-- Preload critical fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-rel="stylesheet"
-/>
-
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.webmanifest">
-
-<!-- External CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<!-- Pre-loader -->
-<div class="preloader">
-<div class="spinner"></div>
-</div>
-
-<!-- Skip Link for Accessibility - Must be first focusable element -->
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-<!-- Accessibility Controls -->
-<div class="accessibility-controls">
-  <button id="contrast-toggle" class="contrast-toggle" aria-label="Toggle high contrast mode">
-    <span aria-hidden="true">◐</span>
-  </button>
-  <button id="font-increase" class="font-control" aria-label="Increase font size">A+</button>
-  <button id="font-decrease" class="font-control" aria-label="Decrease font size">A-</button>
-  <button id="font-reset" class="font-control" aria-label="Reset font size">A</button>
-  <div class="language-toggle">
-    <button class="language-current" aria-haspopup="true" aria-expanded="false">English</button>
-    <div class="language-dropdown">
-      <a href="#" class="language-option">English</a>
-      <a href="#" class="language-option">isiZulu</a>
-      <a href="#" class="language-option">isiXhosa</a>
-    </div>
-  </div>
-</div>
-
-<!-- Header -->
-<header class="site-header" role="banner">
+<!-- Blog Categories -->
+<section class="blog-categories" aria-labelledby="categories-title">
   <div class="container">
-    <div class="header-content">
-      <a href="/" class="logo-link" aria-label="Miss South Africa Disability Home">
-        <img
-          src="/assets/logos/logo.svg"
-          alt="Miss South Africa Disability Logo"
-          width="120"
-          height="60"
-        />
-        <span class="logo-text">Miss South Africa Disability</span>
-      </a>
-
-      <nav class="main-nav" role="navigation" aria-label="Main navigation">
-        <button class="mobile-nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Menu">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="hamburger"></span>
-          <span class="hamburger"></span>
-          <span class="hamburger"></span>
-        </button>
-
-        <ul id="nav-menu" class="nav-menu">
-          <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="about.html" class="nav-link">About Us</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li><a href="events.html" class="nav-link">Events</a></li>
-          <li><a href="registration.html" class="nav-link">Registration</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-          <li><a href="blog.html" class="nav-link active">Blog</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-social">
-        <a href="https://facebook.com/MissSouthAfricaDisability" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/misssouthafricadisability" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      </div>
+    <h2 id="categories-title" class="sr-only">Blog Categories</h2>
+    <div class="category-filters" role="tablist" aria-label="Blog categories">
+      <button class="category-btn active" data-category="all" role="tab" aria-selected="true" aria-controls="blog-posts">All Posts</button>
+      <button class="category-btn" data-category="advocacy" role="tab" aria-selected="false" aria-controls="blog-posts">Advocacy</button>
+      <button class="category-btn" data-category="events" role="tab" aria-selected="false" aria-controls="blog-posts">Events</button>
+      <button class="category-btn" data-category="success-stories" role="tab" aria-selected="false" aria-controls="blog-posts">Success Stories</button>
+      <button class="category-btn" data-category="news" role="tab" aria-selected="false" aria-controls="blog-posts">News</button>
     </div>
   </div>
-</header>
+</section>
 
-<!-- Main Content -->
-<main id="main-content" role="main">
-
-<section class="section">
-<div class="container">
-<h1 class="section-title">Blog</h1>
-<p class="section-intro">
-Read our latest news, stories, and articles on disability advocacy and empowerment.
-</p>
-<div class="blog-grid">
-  <article class="blog-post animate-in" data-animation="fade-in-up">
-    <div class="blog-post-image">
-      <a href="#"><img src="assets/images/Miss2.jpg" alt="A group of smiling contestants" loading="lazy"></a>
+<!-- Newsletter Section (Shared) -->
+<section class="newsletter" aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="newsletter-content">
+      <h2 id="newsletter-title">Stay Updated</h2>
+      <p>Subscribe to our newsletter for updates on events, opportunities, and disability advocacy news.</p>
+      <form class="newsletter-form" aria-label="Newsletter subscription form">
+        <div class="form-group">
+          <label for="blog-email" class="sr-only">Email Address</label>
+          <input type="email" id="blog-email" name="email" placeholder="Your email address" autocomplete="email" required>
+          <div class="hp-field" aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+            <label for="blog-website">Leave this field empty</label>
+            <input type="text" id="blog-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+        </div>
+        <p class="form-note">We respect your privacy. You can unsubscribe at any time. We will never share your email.</p>
+      </form>
     </div>
-    <div class="blog-post-content">
-      <div class="blog-post-meta">
-        <span class="blog-post-date">September 05, 2025</span>
-        <span class="blog-post-category">Empowerment</span>
+  </div>
+</section>
+
+<!-- Featured Post -->
+<section class="featured-post" aria-labelledby="featured-title">
+  <div class="container">
+    <h2 id="featured-title">Featured Story</h2>
+    <article class="featured-article">
+      <div class="featured-image">
+        <img src="/assets/images/Miss2.jpg" alt="2024 winner speaking at disability rights conference" loading="lazy">
       </div>
-      <h3 class="blog-post-title"><a href="#">Meet Our 2025 Finalists: Stories of Strength and Resilience</a></h3>
-      <p class="blog-post-excerpt">
-        We are thrilled to introduce the incredible women who have been selected as finalists for the 2025 Miss South Africa Disability pageant. Learn more about their journeys and their passion for advocacy.
-      </p>
-      <a href="#" class="btn btn-secondary">Read More</a>
-    </div>
-  </article>
+      <div class="featured-content">
+        <div class="post-meta">
+          <span class="post-category">Advocacy</span>
+          <time datetime="2024-12-01">December 1, 2024</time>
+        </div>
+        <h3><a href="#post-1">Breaking Barriers: Our 2024 Winner Speaks at International Disability Rights Conference</a></h3>
+        <p>Miss South Africa Disability 2024, Thandiwe Mthembu, delivered a powerful keynote address at the International Disability Rights Conference in Geneva, advocating for inclusive education and employment opportunities across Africa.</p>
+        <a href="#post-1" class="read-more-btn">Read Full Story</a>
+      </div>
+    </article>
+  </div>
+</section>
 
+<!-- Blog Posts Grid -->
+<section class="blog-posts" aria-labelledby="posts-title">
+  <div class="container">
+    <h2 id="posts-title">Latest Posts</h2>
+    <div id="blog-posts" class="posts-grid" role="tabpanel">
+      
+      <article class="post-card" data-category="success-stories">
+        <div class="post-image">
+          <img src="/assets/images/hero.jpg" alt="Alumni success story" loading="lazy">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-category">Success Stories</span>
+            <time datetime="2024-11-28">November 28, 2024</time>
+          </div>
+          <h3><a href="#post-2">From Contestant to CEO: Lerato's Inspiring Journey</a></h3>
+          <p>Five years after participating in Miss South Africa Disability, Lerato Khumalo has launched her own assistive technology company, creating innovative solutions for the visually impaired community.</p>
+          <a href="#post-2" class="read-more">Read More</a>
+        </div>
+      </article>
+
+      <article class="post-card" data-category="events">
+        <div class="post-image">
+          <img src="/assets/images/hero-background.jpg" alt="Workshop participants" loading="lazy">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-category">Events</span>
+            <time datetime="2024-11-25">November 25, 2024</time>
+          </div>
+          <h3><a href="#post-3">Leadership Workshop Empowers 50 Young Women</a></h3>
+          <p>Our recent leadership and advocacy workshop in Johannesburg brought together aspiring young women with disabilities to build confidence and public speaking skills.</p>
+          <a href="#post-3" class="read-more">Read More</a>
+        </div>
+      </article>
+      </p>
+      <article class="post-card" data-category="advocacy">
+        <div class="post-image">
+          <img src="/assets/images/Miss2.jpg" alt="Policy meeting" loading="lazy">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-category">Advocacy</span>
+            <time datetime="2024-11-20">November 20, 2024</time>
+          </div>
+          <h3><a href="#post-4">New Accessibility Guidelines Adopted by Major Retailers</a></h3>
+          <p>Following our advocacy campaign, three major South African retail chains have committed to implementing comprehensive accessibility improvements in their stores nationwide.</p>
+          <a href="#post-4" class="read-more">Read More</a>
+        </div>
+      </article>
+      <a href="#" class="btn btn-secondary">Read More</a>
+      <article class="post-card" data-category="news">
+        <div class="post-image">
+          <img src="/assets/images/hero.jpg" alt="Application announcement" loading="lazy">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-category">News</span>
+            <time datetime="2024-11-15">November 15, 2024</time>
+          </div>
+          <h3><a href="#post-5">2026 Applications Now Open: What You Need to Know</a></h3>
+          <p>Applications for Miss South Africa Disability 2026 are officially open! Learn about the new application process, eligibility criteria, and how to prepare for this life-changing opportunity.</p>
+          <a href="#post-5" class="read-more">Read More</a>
+        </div>
+      </article>
+    </div>
+      <article class="post-card" data-category="events">
+        <div class="post-image">
+          <img src="/assets/images/hero-background.jpg" alt="Community event" loading="lazy">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-category">Events</span>
+            <time datetime="2024-11-10">November 10, 2024</time>
+          </div>
+          <h3><a href="#post-6">Community Outreach Program Reaches 1000 Families</a></h3>
+          <p>Our ongoing community outreach initiative has now supported over 1000 families, providing resources, mentorship, and creating lasting connections across South Africa.</p>
+          <a href="#post-6" class="read-more">Read More</a>
+        </div>
+      </article>
+  </article>
+      <article class="post-card" data-category="success-stories">
+        <div class="post-image">
+          <img src="/assets/images/Miss2.jpg" alt="Graduate success" loading="lazy">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-category">Success Stories</span>
+            <time datetime="2024-11-05">November 5, 2024</time>
+          </div>
+          <h3><a href="#post-7">Breaking Ground: First Deaf Attorney in Constitutional Court</a></h3>
+          <p>Former Miss South Africa Disability finalist Nomsa Dlamini makes history as the first deaf attorney to argue a case before South Africa's Constitutional Court.</p>
+          <a href="#post-7" class="read-more">Read More</a>
+        </div>
+      </article>
+
+    </div>
   <article class="blog-post animate-in" data-animation="fade-in-up" data-delay="100">
+    <!-- Load More Button -->
+    <div class="load-more-container">
+      <button class="btn btn-outline load-more-btn" id="load-more">Load More Posts</button>
+    </div>
+  </div>
+</section>
     <div class="blog-post-image">
       <a href="#"><img src="assets/images/hero-background.jpg" alt="A person giving a speech at a podium" loading="lazy"></a>
     </div>
@@ -217,4 +262,102 @@ Empowering women with disabilities through advocacy, community, and leadership.
 
 <script src="script.js"></script>
 </body>
+<!-- Live Chat Widget -->
+<div class="live-chat" id="live-chat" aria-live="polite">
+  <button id="chat-toggle" class="chat-toggle" aria-label="Open live chat" aria-haspopup="dialog" aria-expanded="false">
+    <i class="fas fa-comments" aria-hidden="true"></i>
+  </button>
+  <div class="chat-window" id="chat-window" role="dialog" aria-labelledby="chat-title" aria-modal="true" aria-hidden="true">
+    <div class="chat-header">
+      <h3 id="chat-title">Live Support</h3>
+      <button class="chat-close" id="chat-close" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+    <form id="chat-form" class="chat-form" autocomplete="off">
+      <label for="chat-input" class="sr-only">Type your message</label>
+      <input id="chat-input" name="message" type="text" placeholder="Type your message..." aria-label="Chat message" required />
+      <button type="submit" class="chat-send" aria-label="Send message">
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+      </button>
+    </form>
+    <div class="chat-status" id="chat-status" aria-live="polite"></div>
+  </div>
+</div>
+</body>
 </html>
+
+<script>
+  // Blog-specific functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    initBlogFilters();
+    initLoadMore();
+  });
+
+  function initBlogFilters() {
+    const filterButtons = document.querySelectorAll('.category-btn');
+    const posts = document.querySelectorAll('.post-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+        filterPosts(category);
+        updateActiveFilter(button);
+      });
+    });
+
+    function filterPosts(category) {
+      posts.forEach(post => {
+        const postCategory = post.dataset.category;
+        const shouldShow = category === 'all' || postCategory === category;
+        
+        if (shouldShow) {
+          post.style.display = 'block';
+          post.classList.add('animate-in');
+        } else {
+          post.style.display = 'none';
+        }
+      });
+
+      // Announce filter change
+      const announcer = document.getElementById('live-announcer');
+      if (announcer) {
+        const visibleCount = document.querySelectorAll('.post-card[style*="block"], .post-card:not([style*="none"])').length;
+        announcer.textContent = `Showing ${visibleCount} posts for ${category === 'all' ? 'all categories' : category}`;
+      }
+    }
+
+    function updateActiveFilter(activeButton) {
+      filterButtons.forEach(button => {
+        button.classList.remove('active');
+        button.setAttribute('aria-selected', 'false');
+      });
+      
+      activeButton.classList.add('active');
+      activeButton.setAttribute('aria-selected', 'true');
+    }
+  }
+
+  function initLoadMore() {
+    const loadMoreBtn = document.getElementById('load-more');
+    let postsLoaded = 6;
+    
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        // Simulate loading more posts
+        loadMoreBtn.textContent = 'Loading...';
+        loadMoreBtn.disabled = true;
+        
+        setTimeout(() => {
+          loadMoreBtn.textContent = 'Load More Posts';
+          loadMoreBtn.disabled = false;
+          
+          // In a real implementation, this would fetch more posts from an API
+          const announcer = document.getElementById('live-announcer');
+          if (announcer) {
+            announcer.textContent = 'More posts loaded successfully';
+          }
+        }, 1000);
+      });
+    }
+  }
+</script>

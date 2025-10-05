@@ -3,17 +3,26 @@
 <head>
   <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta
-name="description"
-content="Miss South Africa Disability - Empowering women with disabilities through beauty, advocacy, and leadership. Join our inclusive pageant and community."
-/>
-<meta
-name="keywords"
-content="Miss South Africa Disability, disability advocacy, inclusive beauty pageant, women empowerment, accessibility"
-/>
-<title>Miss South Africa Disability - Empowering Women with Disabilities</title>
-
-<!-- Preload critical fonts -->
+  <meta
+    name="description"
+    content="Miss South Africa Disability - Empowering women with disabilities through beauty, advocacy, and leadership. Join our inclusive pageant and community."
+  />
+  <meta
+    name="keywords"
+    content="Miss South Africa Disability, disability advocacy, inclusive beauty pageant, women empowerment, accessibility"
+  />
+  <meta name="theme-color" content="#f97316">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Miss South Africa Disability - Empowering Women with Disabilities">
+  <meta property="og:description" content="Celebrating strength, talent, and leadership of women with disabilities through inclusive beauty pageants and advocacy.">
+  <meta property="og:image" content="/assets/images/Miss2.jpg">
+  <meta property="og:url" content="https://misssouthafricadisability.co.za">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Miss South Africa Disability">
+  <meta name="twitter:description" content="Empowering women with disabilities through beauty, advocacy, and leadership.">
+  <meta name="twitter:image" content="/assets/images/Miss2.jpg">
+  <title>Miss South Africa Disability - Empowering Women with Disabilities</title><!-- Preload critical fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -23,8 +32,16 @@ rel="stylesheet"
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/assets/logos/logo.jpg">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Miss SA Disability">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-TileColor" content="#f97316">
+  <meta name="msapplication-config" content="/browserconfig.xml">
 
 <!-- External CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -53,27 +70,42 @@ rel="stylesheet"
 <div class="spinner"></div>
 </div>
 
-<!-- Skip Link for Accessibility - Must be first focusable element -->
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<!-- Enhanced Skip Links for Accessibility -->
+<div class="skip-links">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#main-nav" class="skip-link">Skip to navigation</a>
+  <a href="#footer" class="skip-link">Skip to footer</a>
+</div>
 
-<!-- Accessibility Controls -->
-<div class="accessibility-controls">
-  <button id="contrast-toggle" class="contrast-toggle" aria-label="Toggle high contrast mode">
+<!-- Live Region for Announcements -->
+<div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+<div id="live-announcer-assertive" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+
+<!-- Enhanced Accessibility Controls -->
+<div class="accessibility-controls" role="toolbar" aria-label="Accessibility options">
+  <button id="contrast-toggle" class="contrast-toggle" aria-label="Toggle high contrast mode" aria-pressed="false" title="Switch to high contrast mode">
     <span aria-hidden="true">◐</span>
+    <span class="sr-only">High Contrast</span>
   </button>
-  <button id="font-increase" class="font-control" aria-label="Increase font size">A+</button>
-  <button id="font-decrease" class="font-control" aria-label="Decrease font size">A-</button>
-  <button id="font-reset" class="font-control" aria-label="Reset font size">A</button>
+  <button id="font-increase" class="font-control" aria-label="Increase font size" title="Make text larger">A+</button>
+  <button id="font-decrease" class="font-control" aria-label="Decrease font size" title="Make text smaller">A-</button>
+  <button id="font-reset" class="font-control" aria-label="Reset font size" title="Reset text to default size">A</button>
+  <button id="text-to-speech" class="text-to-speech" aria-label="Read page aloud" title="Listen to page content">
+    <i class="fas fa-volume-up" aria-hidden="true"></i>
+    <span class="sr-only">Text to Speech</span>
+  </button>
   <div class="language-toggle">
-    <button class="language-current" aria-haspopup="true" aria-expanded="false" id="language-toggle">
-      <span>English</span>
+    <button class="language-current" aria-haspopup="listbox" aria-expanded="false" id="language-toggle" aria-describedby="language-help">
+      <span data-translate="language-current">English</span>
       <i class="fas fa-chevron-down" aria-hidden="true"></i>
     </button>
-    <div class="language-dropdown" id="language-dropdown">
-      <a href="#" class="language-option" data-lang="en">English</a>
-      <a href="#" class="language-option" data-lang="zu">isiZulu</a>
-      <a href="#" class="language-option" data-lang="xh">isiXhosa</a>
+    <div class="language-dropdown" id="language-dropdown" role="listbox" aria-labelledby="language-toggle">
+      <a href="#" class="language-option" data-lang="en" role="option" tabindex="-1" data-translate="lang-english">English</a>
+      <a href="#" class="language-option" data-lang="zu" role="option" tabindex="-1" data-translate="lang-zulu">isiZulu</a>
+      <a href="#" class="language-option" data-lang="xh" role="option" tabindex="-1" data-translate="lang-xhosa">isiXhosa</a>
+      <a href="#" class="language-option" data-lang="af" role="option" tabindex="-1" data-translate="lang-afrikaans">Afrikaans</a>
     </div>
+    <div id="language-help" class="sr-only">Use arrow keys to navigate language options</div>
   </div>
 </div>
 
@@ -91,22 +123,22 @@ rel="stylesheet"
         <span class="logo-text">Miss South Africa Disability</span>
       </a>
 
-      <nav class="main-nav" role="navigation" aria-label="Main navigation">
-        <button class="mobile-nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Menu">
+      <nav id="main-nav" class="main-nav" role="navigation" aria-label="Main navigation">
+        <button class="mobile-nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle main menu" data-menu-button>
           <span class="sr-only">Toggle navigation</span>
-          <span class="hamburger"></span>
-          <span class="hamburger"></span>
-          <span class="hamburger"></span>
+          <span class="hamburger" aria-hidden="true"></span>
+          <span class="hamburger" aria-hidden="true"></span>
+          <span class="hamburger" aria-hidden="true"></span>
         </button>
 
-        <ul id="nav-menu" class="nav-menu">
-          <li><a href="/" class="nav-link active">Home</a></li>
-          <li><a href="about.html" class="nav-link">About Us</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li><a href="events.html" class="nav-link">Events</a></li>
-          <li><a href="registration.html" class="nav-link">Registration</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <ul id="nav-menu" class="nav-menu" role="menubar">
+          <li role="none"><a href="/" class="nav-link active" role="menuitem" aria-current="page" data-translate="nav-home">Home</a></li>
+          <li role="none"><a href="about.html" class="nav-link" role="menuitem" data-translate="nav-about">About Us</a></li>
+          <li role="none"><a href="gallery.html" class="nav-link" role="menuitem" data-translate="nav-gallery">Gallery</a></li>
+          <li role="none"><a href="events.html" class="nav-link" role="menuitem" data-translate="nav-events">Events</a></li>
+          <li role="none"><a href="registration.html" class="nav-link" role="menuitem" data-translate="nav-registration">Registration</a></li>
+          <li role="none"><a href="contact.html" class="nav-link" role="menuitem" data-translate="nav-contact">Contact</a></li>
+          <li role="none"><a href="blog.html" class="nav-link" role="menuitem" data-translate="nav-blog">Blog</a></li>
         </ul>
       </nav>
 
@@ -354,6 +386,63 @@ Hear from our participants and supporters
 </div>
 </section>
 
+<!-- Interactive Photo Gallery -->
+<section class="photo-gallery" aria-labelledby="gallery-title">
+  <div class="container">
+    <h2 id="gallery-title" class="animate-in" data-animation="fade-in" data-translate="gallery-title">Photo Gallery</h2>
+    <p class="section-intro animate-in" data-animation="fade-in" data-delay="100" data-translate="gallery-intro">
+      Explore moments from our events, celebrations, and community outreach programs
+    </p>
+    
+    <div class="gallery-filters" role="tablist" aria-label="Gallery categories">
+      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="gallery-grid" data-translate="filter-all">All</button>
+      <button class="filter-btn" data-filter="events" role="tab" aria-selected="false" aria-controls="gallery-grid" data-translate="filter-events">Events</button>
+      <button class="filter-btn" data-filter="winners" role="tab" aria-selected="false" aria-controls="gallery-grid" data-translate="filter-winners">Winners</button>
+      <button class="filter-btn" data-filter="community" role="tab" aria-selected="false" aria-controls="gallery-grid" data-translate="filter-community">Community</button>
+    </div>
+    
+    <div id="gallery-grid" class="gallery-grid" role="tabpanel">
+      <div class="gallery-item" data-category="winners" data-lightbox="gallery">
+        <img src="/assets/images/Miss2.jpg" alt="2023 Miss South Africa Disability winner during crowning ceremony" loading="lazy">
+        <div class="gallery-overlay">
+          <button class="gallery-btn" aria-label="View larger image of 2023 winner" data-img="/assets/images/Miss2.jpg">
+            <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="events" data-lightbox="gallery">
+        <img src="/assets/images/hero.jpg" alt="Contestants at Miss South Africa Disability event" loading="lazy">
+        <div class="gallery-overlay">
+          <button class="gallery-btn" aria-label="View larger image of contestants at event" data-img="/assets/images/hero.jpg">
+            <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="community" data-lightbox="gallery">
+        <img src="/assets/images/hero-background.jpg" alt="Community outreach program participants" loading="lazy">
+        <div class="gallery-overlay">
+          <button class="gallery-btn" aria-label="View larger image of community outreach" data-img="/assets/images/hero-background.jpg">
+            <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-labelledby="lightbox-title" aria-hidden="true">
+  <div class="lightbox-content">
+    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <img id="lightbox-image" src="" alt="" class="lightbox-img">
+    <div class="lightbox-nav">
+      <button class="lightbox-prev" aria-label="Previous image">&lt;</button>
+      <button class="lightbox-next" aria-label="Next image">&gt;</button>
+    </div>
+    <div id="lightbox-title" class="lightbox-title"></div>
+  </div>
+</div>
+
 <!-- Stats Section -->
 <section class="stats" aria-labelledby="stats-title">
 <div class="container">
@@ -450,6 +539,93 @@ Join our nationwide campaign to celebrate and advocate for the rights of persons
 </div>
 </section>
 
+<!-- Event Calendar Section -->
+<section class="event-calendar-section" aria-labelledby="calendar-title">
+  <div class="container">
+    <h2 id="calendar-title" class="animate-in" data-animation="fade-in">Event Calendar</h2>
+    <p class="section-intro animate-in" data-animation="fade-in" data-delay="100">
+      Explore upcoming events and RSVP directly from the calendar
+    </p>
+    <div id="event-calendar" class="event-calendar" role="grid" aria-label="Event calendar for October 2025" tabindex="0"></div>
+  </div>
+</section>
+
+<!-- Alumni Showcase & Resources Section -->
+<section class="alumni-resources-section" aria-labelledby="alumni-resources-title">
+  <div class="container">
+    <h2 id="alumni-resources-title" class="animate-in" data-animation="fade-in">Alumni Showcase & Resources</h2>
+    <p class="section-intro animate-in" data-animation="fade-in" data-delay="100">
+      Meet our inspiring alumni and access helpful resources for empowerment and advocacy.
+    </p>
+    <div class="alumni-showcase" role="list" aria-label="Alumni profiles">
+      <!-- Sample alumni profiles -->
+      <div class="alumni-card" role="listitem" tabindex="0">
+        <img src="/assets/images/Miss2.jpg" alt="Thando Ndlovu - Alumni" class="alumni-photo" loading="lazy">
+        <div class="alumni-info">
+          <h3 class="alumni-name">Thando Ndlovu</h3>
+          <p class="alumni-achievement">Founder, Skills4All Foundation</p>
+          <p class="alumni-bio">Thando launched a non-profit providing skills training to youth with disabilities. She is a passionate advocate for inclusion and empowerment.</p>
+        </div>
+      </div>
+      <div class="alumni-card" role="listitem" tabindex="0">
+        <img src="/assets/images/hero.jpg" alt="Lerato Khumalo - Alumni" class="alumni-photo" loading="lazy">
+        <div class="alumni-info">
+          <h3 class="alumni-name">Lerato Khumalo</h3>
+          <p class="alumni-achievement">Policy Advisor, Dept. of Social Development</p>
+          <p class="alumni-bio">Lerato works on accessibility policy and is a mentor for young women with disabilities. Her leadership inspires change nationwide.</p>
+        </div>
+      </div>
+      <div class="alumni-card" role="listitem" tabindex="0">
+        <img src="/assets/images/hero-background.jpg" alt="Sarah Mbeki - Alumni" class="alumni-photo" loading="lazy">
+        <div class="alumni-info">
+          <h3 class="alumni-name">Sarah Mbeki</h3>
+          <p class="alumni-achievement">2022 Finalist & Speaker</p>
+          <p class="alumni-bio">Sarah is a motivational speaker and disability rights advocate, sharing her story to inspire others to embrace their strengths.</p>
+        </div>
+      </div>
+    </div>
+    <div class="resources-library" aria-labelledby="resources-title">
+      <h3 id="resources-title">Downloadable Resources</h3>
+      <ul class="resources-list" role="list">
+        <li role="listitem">
+          <a href="/assets/Hu.txt" download class="resource-link">
+            <i class="fas fa-file-alt" aria-hidden="true"></i> Disability Empowerment Guide (PDF)
+          </a>
+        </li>
+        <li role="listitem">
+          <a href="/assets/logos/ite.txr" download class="resource-link">
+            <i class="fas fa-file-alt" aria-hidden="true"></i> Inclusive Leadership Toolkit (DOCX)
+          </a>
+        </li>
+        <li role="listitem">
+          <a href="/content-package.md" download class="resource-link">
+            <i class="fas fa-file-alt" aria-hidden="true"></i> Advocacy Content Package (MD)
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Event Details Modal -->
+<div id="event-modal" class="event-modal" role="dialog" aria-modal="true" aria-labelledby="event-modal-title" aria-hidden="true" tabindex="-1">
+  <div class="event-modal-content">
+    <button class="event-modal-close" aria-label="Close event details">&times;</button>
+    <h3 id="event-modal-title"></h3>
+    <p id="event-modal-date"></p>
+    <p id="event-modal-location"></p>
+    <p id="event-modal-description"></p>
+    <form id="rsvp-form" class="rsvp-form" aria-label="RSVP form">
+      <label for="rsvp-name">Name</label>
+      <input type="text" id="rsvp-name" name="name" required>
+      <label for="rsvp-email">Email</label>
+      <input type="email" id="rsvp-email" name="email" required>
+      <button type="submit" class="btn btn-primary">RSVP</button>
+      <div id="rsvp-message" class="rsvp-message" role="alert"></div>
+    </form>
+  </div>
+</div>
+
 <!-- Partners Section -->
 <section class="partners" aria-labelledby="partners-title">
 <div class="container">
@@ -485,6 +661,175 @@ Organizations that share our vision for inclusion
 </div>
 </section>
 
+<!-- Application Progress Tracker -->
+<section class="progress-tracker" aria-labelledby="progress-title">
+  <div class="container">
+    <h2 id="progress-title" class="animate-in" data-animation="fade-in" data-translate="progress-title">Application Process</h2>
+    <p class="section-intro animate-in" data-animation="fade-in" data-delay="100" data-translate="progress-intro">
+      Follow these simple steps to join our empowering community
+    </p>
+    
+    <div class="progress-steps">
+      <div class="progress-step animate-in" data-animation="fade-in-up">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3 data-translate="step1-title">Register</h3>
+          <p data-translate="step1-desc">Complete your initial registration with basic information</p>
+          <div class="step-status" data-step="1">
+            <span class="status-text" data-translate="step-pending">Pending</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="progress-step animate-in" data-animation="fade-in-up" data-delay="100">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3 data-translate="step2-title">Documents</h3>
+          <p data-translate="step2-desc">Upload required documents and verification materials</p>
+          <div class="step-status" data-step="2">
+            <span class="status-text" data-translate="step-pending">Pending</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="progress-step animate-in" data-animation="fade-in-up" data-delay="200">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3 data-translate="step3-title">Interview</h3>
+          <p data-translate="step3-desc">Participate in our virtual or in-person interview process</p>
+          <div class="step-status" data-step="3">
+            <span class="status-text" data-translate="step-pending">Pending</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="progress-step animate-in" data-animation="fade-in-up" data-delay="300">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3 data-translate="step4-title">Selection</h3>
+          <p data-translate="step4-desc">Final selection and welcome to our community</p>
+          <div class="step-status" data-step="4">
+            <span class="status-text" data-translate="step-pending">Pending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="progress-actions animate-in" data-animation="fade-in">
+      <a href="registration.html" class="btn btn-primary" data-translate="start-application">Start Your Application</a>
+      <button class="btn btn-outline" id="check-progress" data-translate="check-progress">Check Progress</button>
+    </div>
+  </div>
+</section>
+
+  <!-- Social Media Integration -->
+  <section class="social-media" aria-labelledby="social-title">
+    <div class="container">
+      <h2 id="social-title" class="animate-in" data-animation="fade-in">Follow Our Journey</h2>
+      <p class="section-intro animate-in" data-animation="fade-in" data-delay="100">
+        Stay connected with us on social media for daily updates, behind-the-scenes content, and community highlights
+      </p>
+    
+      <!-- Social Sharing Buttons -->
+      <div class="social-sharing" aria-label="Share this page">
+        <h3>Share Our Mission</h3>
+        <div class="share-buttons">
+          <button class="share-btn facebook" onclick="shareOnFacebook()" aria-label="Share on Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+          </button>
+          <button class="share-btn twitter" onclick="shareOnTwitter()" aria-label="Share on Twitter">
+            <i class="fab fa-twitter"></i>
+            <span>Twitter</span>
+          </button>
+          <button class="share-btn linkedin" onclick="shareOnLinkedIn()" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+          </button>
+          <button class="share-btn whatsapp" onclick="shareOnWhatsApp()" aria-label="Share on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </button>
+          <button class="share-btn copy" onclick="copyToClipboard()" aria-label="Copy link">
+            <i class="fas fa-link"></i>
+            <span>Copy Link</span>
+          </button>
+        </div>
+      </div>
+    
+      <!-- Instagram Feed Simulation -->
+      <div class="instagram-feed">
+        <h3>
+          <i class="fab fa-instagram"></i>
+          Latest from Instagram
+          <a href="https://instagram.com/misssouthafricadisability" target="_blank" class="follow-link">@misssouthafricadisability</a>
+        </h3>
+        <div class="instagram-grid">
+          <div class="instagram-post">
+            <img src="/assets/images/Miss2.jpg" alt="Instagram post: Winner announcement" loading="lazy">
+            <div class="post-overlay">
+              <div class="post-stats">
+                <span><i class="fas fa-heart"></i> 2.4k</span>
+                <span><i class="fas fa-comment"></i> 89</span>
+              </div>
+            </div>
+          </div>
+          <div class="instagram-post">
+            <img src="/assets/images/hero.jpg" alt="Instagram post: Event highlights" loading="lazy">
+            <div class="post-overlay">
+              <div class="post-stats">
+                <span><i class="fas fa-heart"></i> 1.8k</span>
+                <span><i class="fas fa-comment"></i> 67</span>
+              </div>
+            </div>
+          </div>
+          <div class="instagram-post">
+            <img src="/assets/images/hero-background.jpg" alt="Instagram post: Community outreach" loading="lazy">
+            <div class="post-overlay">
+              <div class="post-stats">
+                <span><i class="fas fa-heart"></i> 3.1k</span>
+                <span><i class="fas fa-comment"></i> 124</span>
+              </div>
+            </div>
+          </div>
+          <div class="instagram-post">
+            <img src="/assets/images/Miss2.jpg" alt="Instagram post: Advocacy work" loading="lazy">
+            <div class="post-overlay">
+              <div class="post-stats">
+                <span><i class="fas fa-heart"></i> 2.7k</span>
+                <span><i class="fas fa-comment"></i> 92</span>
+              </div>
+            </div>
+          </div>
+          <div class="instagram-post">
+            <img src="/assets/images/hero.jpg" alt="Instagram post: Training workshop" loading="lazy">
+            <div class="post-overlay">
+              <div class="post-stats">
+                <span><i class="fas fa-heart"></i> 1.9k</span>
+                <span><i class="fas fa-comment"></i> 73</span>
+              </div>
+            </div>
+          </div>
+          <div class="instagram-post">
+            <img src="/assets/images/hero-background.jpg" alt="Instagram post: Success story" loading="lazy">
+            <div class="post-overlay">
+              <div class="post-stats">
+                <span><i class="fas fa-heart"></i> 4.2k</span>
+                <span><i class="fas fa-comment"></i> 156</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="instagram-actions">
+          <a href="https://instagram.com/misssouthafricadisability" target="_blank" class="btn btn-outline">
+            <i class="fab fa-instagram"></i>
+            Follow Us on Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <!-- CTA Section -->
 <section class="cta-section" aria-labelledby="cta-title">
 <div class="container">
@@ -511,11 +856,16 @@ Subscribe to our newsletter for updates on events, opportunities, and disability
 <form class="newsletter-form" aria-label="Newsletter subscription form">
 <div class="form-group">
 <label for="email" class="sr-only">Email Address</label>
-<input type="email" id="email" name="email" placeholder="Your email address" required>
+<input type="email" id="email" name="email" placeholder="Your email address" autocomplete="email" required>
+<!-- Honeypot anti-spam field -->
+<div class="hp-field" aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+  <label for="website">Leave this field empty</label>
+  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+</div>
 <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
 </div>
 <p class="form-note">
-We respect your privacy. You can unsubscribe at any time.
+We respect your privacy. You can unsubscribe at any time. We will never share your email. Protected by basic spam filtering.
 </p>
 </form>
 </div>
@@ -524,7 +874,7 @@ We respect your privacy. You can unsubscribe at any time.
 </main>
 
 <!-- Footer -->
-<footer class="site-footer" role="contentinfo">
+<footer id="footer" class="site-footer" role="contentinfo">
 <div class="container">
 <div class="footer-content">
 <div class="footer-section">
@@ -580,6 +930,245 @@ Website developed by <a href="https://charleyraluswinga.space" target="_blank" r
 </div>
 </footer>
 
+<script src="translations.js" defer></script>
 <script src="script.js" defer></script>
+<!-- Live Chat Widget -->
+<div class="live-chat" id="live-chat" aria-live="polite">
+  <button id="chat-toggle" class="chat-toggle" aria-label="Open live chat" aria-haspopup="dialog" aria-expanded="false">
+    <i class="fas fa-comments" aria-hidden="true"></i>
+  </button>
+  <div class="chat-window" id="chat-window" role="dialog" aria-labelledby="chat-title" aria-modal="true" aria-hidden="true">
+    <div class="chat-header">
+      <h3 id="chat-title">Live Support</h3>
+      <button class="chat-close" id="chat-close" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+    <form id="chat-form" class="chat-form" autocomplete="off">
+      <label for="chat-input" class="sr-only">Type your message</label>
+      <input id="chat-input" name="message" type="text" placeholder="Type your message..." aria-label="Chat message" required />
+      <button type="submit" class="chat-send" aria-label="Send message">
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+      </button>
+    </form>
+    <div class="chat-status" id="chat-status" aria-live="polite"></div>
+  </div>
+</div>
+  
+  <!-- PWA & Performance Script -->
+  <script>
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+            
+            // Check for updates
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // Show update notification
+                  showUpdateNotification();
+                }
+              });
+            });
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+    
+    // PWA Install Prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      showInstallButton();
+    });
+    
+    function showInstallButton() {
+      const installBtn = document.createElement('button');
+      installBtn.className = 'install-btn';
+      installBtn.innerHTML = '<i class="fas fa-download"></i> Install App';
+      installBtn.setAttribute('aria-label', 'Install Miss South Africa Disability app');
+      
+      installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response to the install prompt: ${outcome}`);
+          deferredPrompt = null;
+          installBtn.remove();
+        }
+      });
+      
+      // Add to header
+      const header = document.querySelector('.header-content');
+      if (header) {
+        header.appendChild(installBtn);
+      }
+    }
+    
+    function showUpdateNotification() {
+      const notification = document.createElement('div');
+      notification.className = 'update-notification';
+      notification.innerHTML = `
+        <p>A new version is available!</p>
+        <button onclick="location.reload()">Update</button>
+        <button onclick="this.parentElement.remove()">Later</button>
+      `;
+      document.body.appendChild(notification);
+    }
+    
+    // Performance monitoring
+    window.addEventListener('load', () => {
+      if ('performance' in window) {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+        
+        // Send to service worker for analytics
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage({
+            type: 'PERFORMANCE_MEASURE',
+            loadTime: loadTime,
+            domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+            firstPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-paint')?.startTime,
+            firstContentfulPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint')?.startTime
+          });
+        }
+      }
+    });
+    
+    // Critical resource preloading
+    function preloadCriticalResources() {
+      const criticalImages = [
+        '/assets/images/Miss2.jpg',
+        '/assets/images/hero.jpg',
+        '/assets/images/hero-background.jpg'
+      ];
+      
+      criticalImages.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+      });
+    }
+    
+    // Preload critical resources
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', preloadCriticalResources);
+    } else {
+      preloadCriticalResources();
+    }
+    
+      // Social Media Sharing Functions
+      function shareOnFacebook() {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`;
+        openShareWindow(shareUrl, 'facebook');
+      }
+    
+      function shareOnTwitter() {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent('Empowering women with disabilities through beauty, advocacy, and leadership - Miss South Africa Disability');
+        const hashtags = encodeURIComponent('MissSADisability,Empowerment,Advocacy,Inclusion');
+        const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`;
+        openShareWindow(shareUrl, 'twitter');
+      }
+    
+      function shareOnLinkedIn() {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        const summary = encodeURIComponent('Join our movement of empowering women with disabilities through inclusive beauty pageants and advocacy programs.');
+        const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`;
+        openShareWindow(shareUrl, 'linkedin');
+      }
+    
+      function shareOnWhatsApp() {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent('Check out Miss South Africa Disability - Empowering women through beauty, advocacy, and leadership!');
+        const shareUrl = `https://wa.me/?text=${text}%20${url}`;
+        openShareWindow(shareUrl, 'whatsapp');
+      }
+    
+      function copyToClipboard() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          const btn = document.querySelector('.share-btn.copy');
+          const originalText = btn.querySelector('span').textContent;
+          btn.querySelector('span').textContent = 'Copied!';
+          btn.classList.add('copied');
+        
+          setTimeout(() => {
+            btn.querySelector('span').textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2000);
+        
+          // Announce to screen readers
+          const announcer = document.getElementById('live-announcer');
+          if (announcer) {
+            announcer.textContent = 'Link copied to clipboard';
+          }
+        }).catch(() => {
+          // Fallback for older browsers
+          const textArea = document.createElement('textarea');
+          textArea.value = window.location.href;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+        
+          const announcer = document.getElementById('live-announcer');
+          if (announcer) {
+            announcer.textContent = 'Link copied to clipboard';
+          }
+        });
+      }
+    
+      function openShareWindow(url, platform) {
+        const width = 600;
+        const height = 400;
+        const left = (window.innerWidth - width) / 2;
+        const top = (window.innerHeight - height) / 2;
+      
+        window.open(
+          url,
+          `share-${platform}`,
+          `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`
+        );
+      
+        // Track sharing for analytics
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage({
+            type: 'SOCIAL_SHARE',
+            platform: platform,
+            url: window.location.href
+          });
+        }
+      }
+    
+      // Instagram feed interaction
+      document.addEventListener('DOMContentLoaded', function() {
+        const instagramPosts = document.querySelectorAll('.instagram-post');
+      
+        instagramPosts.forEach(post => {
+          post.addEventListener('click', () => {
+            // In a real implementation, this would link to the actual Instagram post
+            window.open('https://instagram.com/misssouthafricadisability', '_blank');
+          });
+        
+          post.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              post.click();
+            }
+          });
+        });
+      });
+  </script>
 </body>
 </html>

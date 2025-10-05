@@ -20,8 +20,12 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all functionality with elite enhancements
   initElitePreloader();
-  initAccessibilityControls();
+  initEnhancedAccessibility();
   initEliteNavigation();
+  initPhotoGallery();
+  initLightbox();
+  initProgressTracker();
+  initTextToSpeech();
   initEliteCarousel();
   initEliteSmoothScrolling();
   initEliteAnimations();
@@ -79,45 +83,117 @@ function triggerEntranceAnimations() {
 }
 
 // Initialize accessibility controls
-function initAccessibilityControls() {
-  // High contrast toggle
-  const contrastToggle = document.getElementById('contrast-toggle');
-  if (contrastToggle) {
-    contrastToggle.addEventListener('click', function() {
-      document.body.classList.toggle('high-contrast');
-      const isHighContrast = document.body.classList.contains('high-contrast');
-      localStorage.setItem('highContrast', isHighContrast);
-      this.setAttribute('aria-pressed', isHighContrast);
-    });
+// ========================================
+// ENHANCED ACCESSIBILITY CONTROLS
+// ========================================
 
-    // Load saved preference
-    if (localStorage.getItem('highContrast') === 'true') {
-      document.body.classList.add('high-contrast');
-      contrastToggle.setAttribute('aria-pressed', 'true');
-    }
+function initEnhancedAccessibility() {
+  const contrastToggle = document.getElementById('contrast-toggle');
+  const fontIncrease = document.getElementById('font-increase');
+  const fontDecrease = document.getElementById('font-decrease');
+  const fontReset = document.getElementById('font-reset');
+  const textToSpeech = document.getElementById('text-to-speech');
+
+  // Load saved preferences
+  loadAccessibilityPreferences();
+
+  if (contrastToggle) {
+    contrastToggle.addEventListener('click', toggleHighContrast);
   }
 
-  // Font size controls
-  const minFontSize = 12;
-  const maxFontSize = 24;
+  if (fontIncrease) {
+    fontIncrease.addEventListener('click', () => adjustFontSize(1.1));
+  }
 
-  document.getElementById('font-increase')?.addEventListener('click', function() {
-    adjustFontSize(1, minFontSize, maxFontSize);
+  if (fontDecrease) {
+    fontDecrease.addEventListener('click', () => adjustFontSize(0.9));
+  }
+
+  if (fontReset) {
+    fontReset.addEventListener('click', () => resetFontSize());
+  }
+
+  if (textToSpeech) {
+    textToSpeech.addEventListener('click', toggleTextToSpeech);
+  }
+
+  // Enhanced keyboard navigation
+  document.addEventListener('keydown', handleGlobalKeyboard);
+  
+  // Focus management
+  initFocusManagement();
+}
+
+function loadAccessibilityPreferences() {
+  const highContrast = localStorage.getItem('high-contrast') === 'true';
+  const fontSize = localStorage.getItem('font-size') || '1';
+  
+  if (highContrast) {
+    document.body.classList.add('high-contrast');
+    const toggle = document.getElementById('contrast-toggle');
+    if (toggle) toggle.setAttribute('aria-pressed', 'true');
+  }
+  
+  if (fontSize !== '1') {
+    document.documentElement.style.fontSize = `${parseFloat(fontSize)}rem`;
+  }
+}
+
+function handleGlobalKeyboard(e) {
+  // Skip to main content (Alt + 1)
+  if (e.altKey && e.key === '1') {
+    e.preventDefault();
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.focus();
+      mainContent.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  
+  // Skip to navigation (Alt + 2)
+  if (e.altKey && e.key === '2') {
+    e.preventDefault();
+    const nav = document.getElementById('main-nav');
+    if (nav) {
+      const firstLink = nav.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+  }
+  
+  // Toggle high contrast (Alt + C)
+  if (e.altKey && e.key === 'c') {
+    e.preventDefault();
+    toggleHighContrast();
+  }
+}
+
+function initFocusManagement() {
+  // Trap focus in modals
+  const modals = document.querySelectorAll('[role="dialog"]');
+  modals.forEach(modal => {
+    modal.addEventListener('keydown', trapFocus);
   });
+}
 
-  document.getElementById('font-decrease')?.addEventListener('click', function() {
-    adjustFontSize(-1, minFontSize, maxFontSize);
-  });
-
-  document.getElementById('font-reset')?.addEventListener('click', function() {
-    document.documentElement.style.removeProperty('font-size');
-    localStorage.removeItem('fontSize');
-  });
-
-  // Load saved font size
-  const savedFontSize = localStorage.getItem('fontSize');
-  if (savedFontSize) {
-    document.documentElement.style.fontSize = savedFontSize + 'px';
+function trapFocus(e) {
+  if (e.key !== 'Tab') return;
+  
+  const modal = e.currentTarget;
+  const focusableElements = modal.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  
+  if (focusableElements.length === 0) return;
+  
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+  
+  if (e.shiftKey && document.activeElement === firstElement) {
+    e.preventDefault();
+    lastElement.focus();
+  } else if (!e.shiftKey && document.activeElement === lastElement) {
+    e.preventDefault();
+    firstElement.focus();
   }
 }
 
@@ -1287,6 +1363,15 @@ document.addEventListener('DOMContentLoaded', function() {
   initElitePerformanceOptimizations();
   initEliteKeyboardNavigation();
   initEliteAnalytics();
+
+  // Event Calendar Feature
+  initEventCalendar();
+
+    // Alumni Showcase & Resources Feature
+    initAlumniShowcaseResources();
+
+  // Live Chat Feature
+  initLiveChat();
 });
 
 // ========================================
@@ -1305,6 +1390,326 @@ function throttle(func, limit) {
       setTimeout(() => inThrottle = false, limit);
     }
   }
+}
+
+// ========================================
+// ALUMNI SHOWCASE & RESOURCES FUNCTIONALITY
+// ========================================
+function initAlumniShowcaseResources() {
+  // Keyboard accessibility for alumni cards
+  const alumniCards = document.querySelectorAll('.alumni-card');
+  alumniCards.forEach(card => {
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('expanded');
+      }
+    });
+  });
+
+  // Resource download analytics
+  const resourceLinks = document.querySelectorAll('.resource-link');
+  resourceLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      // Track download for analytics (demo)
+      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'RESOURCE_DOWNLOAD',
+          url: link.getAttribute('href')
+        });
+      }
+    });
+  });
+}
+
+// ========================================
+// LIVE CHAT WIDGET FUNCTIONALITY
+// ========================================
+function initLiveChat() {
+  const toggleBtn = document.getElementById('chat-toggle');
+  const chatWindow = document.getElementById('chat-window');
+  const closeBtn = document.getElementById('chat-close');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+  const messagesContainer = document.getElementById('chat-messages');
+  const statusEl = document.getElementById('chat-status');
+  if (!toggleBtn || !chatWindow || !form) return;
+
+  // Load messages from localStorage
+  const saved = JSON.parse(localStorage.getItem('chat-messages') || '[]');
+  saved.forEach(m => appendChatMessage(m.text, m.type, false));
+  scrollChatToBottom();
+
+  function openChat() {
+    chatWindow.setAttribute('aria-hidden', 'false');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    input.focus();
+    announceChatStatus('Chat opened');
+  }
+
+  function closeChat() {
+    chatWindow.setAttribute('aria-hidden', 'true');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.focus();
+    announceChatStatus('Chat closed');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isOpen = chatWindow.getAttribute('aria-hidden') === 'false';
+    isOpen ? closeChat() : openChat();
+  });
+  closeBtn?.addEventListener('click', closeChat);
+
+  // Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatWindow.getAttribute('aria-hidden') === 'false') {
+      closeChat();
+    }
+  });
+
+  // Form submission
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    appendChatMessage(text, 'user', true);
+    input.value = '';
+    simulateBotResponse(text);
+  });
+
+  function appendChatMessage(text, type = 'bot', persist = true) {
+    const messageEl = document.createElement('div');
+    messageEl.className = `chat-message ${type}`;
+    messageEl.textContent = text;
+    messagesContainer.appendChild(messageEl);
+    scrollChatToBottom();
+    if (persist) saveMessage(text, type);
+  }
+
+  function saveMessage(text, type) {
+    const existing = JSON.parse(localStorage.getItem('chat-messages') || '[]');
+    existing.push({ text, type, ts: Date.now() });
+    localStorage.setItem('chat-messages', JSON.stringify(existing.slice(-100)));
+  }
+
+  function scrollChatToBottom() {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function simulateBotResponse(userText) {
+    setTimeout(() => {
+      const response = generateBotReply(userText);
+      appendChatMessage(response, 'bot', true);
+      announceChatStatus('New message received');
+    }, 800);
+  }
+
+  function generateBotReply(text) {
+    const lower = text.toLowerCase();
+    if (lower.includes('hello') || lower.includes('hi')) return 'Hello! How can we assist you today?';
+    if (lower.includes('apply')) return 'You can apply on the Registration page. Let me know if you need guidance on eligibility.';
+    if (lower.includes('event')) return 'Upcoming events include workshops and the national finals. Check the Events section for details.';
+    if (lower.includes('thanks')) return 'You are most welcome! Feel free to ask anything else.';
+    return 'Thank you for your message. A team member will review it soon. Meanwhile, can I help with applications, events, or accessibility information?';
+  }
+
+  function announceChatStatus(msg) {
+    if (statusEl) statusEl.textContent = msg;
+  }
+
+  // Offline/online handling
+  function updateOnlineStatus() {
+    if (!navigator.onLine) {
+      announceChatStatus('Offline: messages will be saved and synced later');
+    } else {
+      announceChatStatus('Online');
+    }
+  }
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  updateOnlineStatus();
+
+  // Analytics via Service Worker
+  function trackChatEvent(action, detail) {
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'CHAT_EVENT',
+        action,
+        detail,
+        ts: Date.now()
+      });
+    }
+  }
+  toggleBtn.addEventListener('click', () => trackChatEvent('toggle', chatWindow.getAttribute('aria-hidden')));
+  form.addEventListener('submit', () => trackChatEvent('message_sent', 'user'));
+}
+
+// ========================================
+// EVENT CALENDAR FUNCTIONALITY
+// ========================================
+function initEventCalendar() {
+  const calendarEl = document.getElementById('event-calendar');
+  if (!calendarEl) return;
+
+  // Sample events for October 2025
+  const events = [
+    {
+      date: '2025-10-18',
+      title: '2025 National Pageant Finals',
+      location: 'Durban International Convention Centre',
+      description: 'A night of glamour, advocacy, and empowerment as we crown our 2025 ambassador.'
+    },
+    {
+      date: '2025-10-22',
+      title: 'Leadership & Advocacy Workshop',
+      location: 'Online Virtual Event',
+      description: 'An interactive workshop for aspiring leaders to hone their public speaking and advocacy skills.'
+    },
+    {
+      date: '2025-10-31',
+      title: 'Application Deadline',
+      location: 'Online',
+      description: 'Last day to apply for the 2026 pageant.'
+    }
+  ];
+
+  // Calendar rendering logic
+  const year = 2025;
+  const month = 9; // October (0-indexed)
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(year, month, 1).getDay();
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Header row
+  let html = '<div class="calendar-header">'
+    + `<button class="btn btn-outline" aria-label="Previous month" disabled>&lt;</button>`
+    + `<span style="font-weight:700;">October 2025</span>`
+    + `<button class="btn btn-outline" aria-label="Next month" disabled>&gt;</button>`
+    + '</div>';
+  // Day names
+  for (let d = 0; d < 7; d++) {
+    html += `<div class="calendar-day" role="columnheader">${dayNames[d]}</div>`;
+  }
+  // Dates
+  let day = 1;
+  for (let i = 0; i < 6; i++) { // 6 weeks
+    for (let j = 0; j < 7; j++) {
+      if (i === 0 && j < firstDay) {
+        html += `<div class="calendar-date disabled" aria-disabled="true"></div>`;
+      } else if (day > daysInMonth) {
+        html += `<div class="calendar-date disabled" aria-disabled="true"></div>`;
+      } else {
+        const dateStr = `${year}-10-${String(day).padStart(2, '0')}`;
+        const event = events.find(e => e.date === dateStr);
+        html += `<div class="calendar-date${event ? ' event-day' : ''}" tabindex="0" role="gridcell" aria-label="${event ? event.title + ' on ' : ''}${day} October 2025" data-date="${dateStr}" aria-selected="false">${day}${event ? ' <span aria-hidden="true">&#x1F4C5;</span>' : ''}</div>`;
+        day++;
+      }
+    }
+  }
+  calendarEl.innerHTML = html;
+
+  // Keyboard navigation
+  calendarEl.addEventListener('keydown', function(e) {
+    const focusableDates = Array.from(calendarEl.querySelectorAll('.calendar-date[tabindex="0"]'));
+    const active = document.activeElement;
+    const idx = focusableDates.indexOf(active);
+    if (idx === -1) return;
+    if (e.key === 'ArrowRight' && idx < focusableDates.length - 1) {
+      focusableDates[idx + 1].focus();
+    } else if (e.key === 'ArrowLeft' && idx > 0) {
+      focusableDates[idx - 1].focus();
+    } else if (e.key === 'ArrowDown' && idx + 7 < focusableDates.length) {
+      focusableDates[idx + 7].focus();
+    } else if (e.key === 'ArrowUp' && idx - 7 >= 0) {
+      focusableDates[idx - 7].focus();
+    } else if ((e.key === 'Enter' || e.key === ' ') && active.classList.contains('event-day')) {
+      active.click();
+    }
+  });
+
+  // Click handler for event days
+  calendarEl.querySelectorAll('.calendar-date.event-day').forEach(dateEl => {
+    dateEl.addEventListener('click', function() {
+      const event = events.find(e => e.date === this.dataset.date);
+      if (event) showEventModal(event);
+    });
+  });
+}
+
+function showEventModal(event) {
+  const modal = document.getElementById('event-modal');
+  if (!modal) return;
+  modal.setAttribute('aria-hidden', 'false');
+  modal.style.display = 'flex';
+  modal.focus();
+  document.body.style.overflow = 'hidden';
+  document.getElementById('event-modal-title').textContent = event.title;
+  document.getElementById('event-modal-date').textContent = `Date: ${formatDate(event.date)}`;
+  document.getElementById('event-modal-location').textContent = `Location: ${event.location}`;
+  document.getElementById('event-modal-description').textContent = event.description;
+  document.getElementById('rsvp-message').textContent = '';
+  document.getElementById('rsvp-form').reset();
+
+  // Focus trap
+  modal.addEventListener('keydown', trapFocus);
+}
+
+function closeEventModal() {
+  const modal = document.getElementById('event-modal');
+  if (!modal) return;
+  modal.setAttribute('aria-hidden', 'true');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  return `${d.getDate()} October 2025`;
+}
+
+// Modal close button
+document.addEventListener('DOMContentLoaded', function() {
+  const closeBtn = document.querySelector('.event-modal-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeEventModal);
+  }
+  // Close modal on backdrop click
+  const modal = document.getElementById('event-modal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeEventModal();
+    });
+  }
+});
+
+// RSVP form submission
+document.addEventListener('DOMContentLoaded', function() {
+  const rsvpForm = document.getElementById('rsvp-form');
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = rsvpForm.name.value.trim();
+      const email = rsvpForm.email.value.trim();
+      if (!name || !email || !validateEmail(email)) {
+        showRsvpMessage('Please enter a valid name and email.', 'error');
+        return;
+      }
+      showRsvpMessage('Thank you for your RSVP! We look forward to seeing you.', 'success');
+      rsvpForm.reset();
+    });
+  }
+});
+
+function showRsvpMessage(msg, type) {
+  const msgEl = document.getElementById('rsvp-message');
+  if (msgEl) {
+    msgEl.textContent = msg;
+    msgEl.style.color = type === 'error' ? '#ef4444' : 'var(--color-primary)';
+  }
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 // Debounce function for performance
@@ -1338,6 +1743,354 @@ function isInViewport(element) {
 // Generate unique ID
 function generateId() {
   return 'elite-' + Math.random().toString(36).substr(2, 9);
+}
+
+// ========================================
+// PHOTO GALLERY WITH FILTERS
+// ========================================
+
+function initPhotoGallery() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  
+  if (filterButtons.length === 0) return;
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      filterGallery(filter);
+      updateActiveFilter(button);
+    });
+  });
+}
+
+function filterGallery(filter) {
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  
+  galleryItems.forEach(item => {
+    const category = item.dataset.category;
+    const shouldShow = filter === 'all' || category === filter;
+    
+    if (shouldShow) {
+      item.style.display = 'block';
+      item.classList.add('animate-in');
+    } else {
+      item.style.display = 'none';
+      item.classList.remove('animate-in');
+    }
+  });
+  
+  // Announce filter change
+  const announcer = document.getElementById('live-announcer');
+  if (announcer) {
+    const visibleCount = document.querySelectorAll('.gallery-item[style*="block"]').length;
+    announcer.textContent = `Showing ${visibleCount} photos for ${filter === 'all' ? 'all categories' : filter}`;
+  }
+}
+
+function updateActiveFilter(activeButton) {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  
+  filterButtons.forEach(button => {
+    button.classList.remove('active');
+    button.setAttribute('aria-selected', 'false');
+  });
+  
+  activeButton.classList.add('active');
+  activeButton.setAttribute('aria-selected', 'true');
+}
+
+// ========================================
+// LIGHTBOX FUNCTIONALITY
+// ========================================
+
+function initLightbox() {
+  const galleryButtons = document.querySelectorAll('.gallery-btn');
+  const lightbox = document.getElementById('lightbox-modal');
+  const lightboxImg = document.getElementById('lightbox-image');
+  const lightboxClose = document.querySelector('.lightbox-close');
+  const lightboxPrev = document.querySelector('.lightbox-prev');
+  const lightboxNext = document.querySelector('.lightbox-next');
+  
+  if (!lightbox) return;
+  
+  let currentImageIndex = 0;
+  let images = [];
+  
+  // Collect all gallery images
+  galleryButtons.forEach((button, index) => {
+    const imgSrc = button.dataset.img;
+    const imgAlt = button.closest('.gallery-item').querySelector('img').alt;
+    images.push({ src: imgSrc, alt: imgAlt });
+    
+    button.addEventListener('click', () => {
+      currentImageIndex = index;
+      openLightbox(imgSrc, imgAlt);
+    });
+  });
+  
+  // Close lightbox
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+  
+  // Navigation
+  if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', showPreviousImage);
+  }
+  
+  if (lightboxNext) {
+    lightboxNext.addEventListener('click', showNextImage);
+  }
+  
+  // Keyboard navigation
+  lightbox.addEventListener('keydown', (e) => {
+    switch(e.key) {
+      case 'Escape':
+        closeLightbox();
+        break;
+      case 'ArrowLeft':
+        showPreviousImage();
+        break;
+      case 'ArrowRight':
+        showNextImage();
+        break;
+    }
+  });
+  
+  // Close on backdrop click
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+  
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.style.display = 'flex';
+    lightbox.focus();
+    document.body.style.overflow = 'hidden';
+    
+    // Announce to screen readers
+    const announcer = document.getElementById('live-announcer');
+    if (announcer) {
+      announcer.textContent = `Viewing image: ${alt}`;
+    }
+  }
+  
+  function closeLightbox() {
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Return focus to trigger button
+    const activeButton = document.querySelectorAll('.gallery-btn')[currentImageIndex];
+    if (activeButton) activeButton.focus();
+  }
+  
+  function showPreviousImage() {
+    currentImageIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
+    const image = images[currentImageIndex];
+    openLightbox(image.src, image.alt);
+  }
+  
+  function showNextImage() {
+    currentImageIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
+    const image = images[currentImageIndex];
+    openLightbox(image.src, image.alt);
+  }
+}
+
+// ========================================
+// APPLICATION PROGRESS TRACKER
+// ========================================
+
+function initProgressTracker() {
+  const checkProgressBtn = document.getElementById('check-progress');
+  
+  if (checkProgressBtn) {
+    checkProgressBtn.addEventListener('click', showProgressModal);
+  }
+  
+  // Load saved progress if available
+  loadProgressState();
+}
+
+function loadProgressState() {
+  const savedProgress = localStorage.getItem('application-progress');
+  if (savedProgress) {
+    const progress = JSON.parse(savedProgress);
+    updateProgressDisplay(progress);
+  }
+}
+
+function updateProgressDisplay(progress) {
+  const steps = document.querySelectorAll('.step-status');
+  
+  steps.forEach((step, index) => {
+    const stepNumber = index + 1;
+    const stepStatus = progress[`step${stepNumber}`] || 'pending';
+    const statusText = step.querySelector('.status-text');
+    
+    if (statusText) {
+      statusText.textContent = getStatusText(stepStatus);
+      statusText.className = `status-text status-${stepStatus}`;
+    }
+    
+    // Update step visual state
+    const stepElement = step.closest('.progress-step');
+    if (stepElement) {
+      stepElement.classList.remove('pending', 'current', 'completed');
+      stepElement.classList.add(stepStatus);
+    }
+  });
+}
+
+function getStatusText(status) {
+  const texts = {
+    pending: 'Pending',
+    current: 'In Progress',
+    completed: 'Completed'
+  };
+  return texts[status] || 'Pending';
+}
+
+function simulateProgress() {
+  // Demo function - in real app this would come from backend
+  const progress = {
+    step1: 'completed',
+    step2: 'current',
+    step3: 'pending',
+    step4: 'pending'
+  };
+  
+  localStorage.setItem('application-progress', JSON.stringify(progress));
+  updateProgressDisplay(progress);
+  
+  // Announce progress update
+  const announcer = document.getElementById('live-announcer');
+  if (announcer) {
+    announcer.textContent = 'Progress updated: Registration completed, currently on documents step';
+  }
+}
+
+function showProgressModal() {
+  // For demo purposes, simulate some progress
+  simulateProgress();
+  
+  // Scroll to progress section
+  const progressSection = document.querySelector('.progress-tracker');
+  if (progressSection) {
+    progressSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// ========================================
+// TEXT-TO-SPEECH FUNCTIONALITY
+// ========================================
+
+function initTextToSpeech() {
+  // Check if browser supports speech synthesis
+  if (!('speechSynthesis' in window)) {
+    const ttsButton = document.getElementById('text-to-speech');
+    if (ttsButton) {
+      ttsButton.style.display = 'none';
+    }
+    return;
+  }
+  
+  window.currentSpeech = null;
+  window.isSpeaking = false;
+}
+
+function toggleTextToSpeech() {
+  if (window.isSpeaking) {
+    stopSpeech();
+  } else {
+    startSpeech();
+  }
+}
+
+function startSpeech() {
+  const mainContent = document.getElementById('main-content');
+  if (!mainContent) return;
+  
+  // Get text content from main sections
+  const textContent = extractReadableContent(mainContent);
+  
+  if (textContent.trim()) {
+    window.currentSpeech = new SpeechSynthesisUtterance(textContent);
+    window.currentSpeech.rate = 0.8;
+    window.currentSpeech.pitch = 1;
+    window.currentSpeech.volume = 0.8;
+    
+    window.currentSpeech.onstart = () => {
+      window.isSpeaking = true;
+      updateTTSButton(true);
+    };
+    
+    window.currentSpeech.onend = () => {
+      window.isSpeaking = false;
+      updateTTSButton(false);
+    };
+    
+    window.currentSpeech.onerror = () => {
+      window.isSpeaking = false;
+      updateTTSButton(false);
+    };
+    
+    speechSynthesis.speak(window.currentSpeech);
+    
+    // Announce to screen readers
+    const announcer = document.getElementById('live-announcer');
+    if (announcer) {
+      announcer.textContent = 'Started reading page content aloud';
+    }
+  }
+}
+
+function stopSpeech() {
+  if (window.currentSpeech) {
+    speechSynthesis.cancel();
+    window.isSpeaking = false;
+    updateTTSButton(false);
+    
+    // Announce to screen readers
+    const announcer = document.getElementById('live-announcer');
+    if (announcer) {
+      announcer.textContent = 'Stopped reading page content';
+    }
+  }
+}
+
+function updateTTSButton(isPlaying) {
+  const ttsButton = document.getElementById('text-to-speech');
+  if (!ttsButton) return;
+  
+  const icon = ttsButton.querySelector('i');
+  if (icon) {
+    icon.className = isPlaying ? 'fas fa-stop' : 'fas fa-volume-up';
+  }
+  
+  ttsButton.setAttribute('aria-label', isPlaying ? 'Stop reading' : 'Read page aloud');
+  ttsButton.setAttribute('title', isPlaying ? 'Stop reading' : 'Listen to page content');
+}
+
+function extractReadableContent(element) {
+  // Extract text from headings and paragraphs, skip navigation and footer
+  const readableElements = element.querySelectorAll('h1, h2, h3, h4, h5, h6, p, .hero-subtitle, .section-intro');
+  let text = '';
+  
+  readableElements.forEach(el => {
+    // Skip if element is in navigation or footer
+    if (!el.closest('nav') && !el.closest('footer')) {
+      text += el.textContent.trim() + '. ';
+    }
+  });
+  
+  return text;
 }
 
 console.log('🎨 Elite UI/UX System Loaded Successfully');
