@@ -13,6 +13,7 @@ All notable changes to this project (front-end polish & accessibility work) will
 - Enhanced navigation active/focus states with improved visual feedback.
 - Design tokens extended with royal blue and soft gold palette variables.
 - Assets documentation file (`assets/README.md`) with TODOs for media.
+- Accessible testimonial slider with keyboard controls, pause/resume, and live announcements.
 
 ### Fixed
 - CSS brace mismatch causing potential parsing inconsistencies.
