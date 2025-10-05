@@ -70,12 +70,56 @@ function getSupabaseClient() {
     return supabase;
 }
 
+/**
+ * Check if Supabase is connected and working
+ */
+async function checkSupabaseConnection() {
+    try {
+        const client = getSupabaseClient();
+        if (!client) {
+            throw new Error('Supabase client not initialized');
+        }
+        
+        // Try to get the current session to test connection
+        const { data, error } = await client.auth.getSession();
+        
+        if (error && error.message !== 'Invalid Refresh Token: Refresh Token Not Found') {
+            throw error;
+        }
+        
+        console.log('✅ Supabase connection verified');
+        return { success: true, connected: true };
+    } catch (error) {
+        console.error('❌ Supabase connection failed:', error);
+        return { success: false, connected: false, error: error.message };
+    }
+}
+
+/**
+ * Get connection status indicator
+ */
+function getConnectionStatus() {
+    return {
+        url: SUPABASE_CONFIG.url,
+        hasKey: !!SUPABASE_CONFIG.anonKey,
+        clientInitialized: !!supabase
+    };
+}
+
 // Auto-initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initializeSupabase();
+document.addEventListener('DOMContentLoaded', async function() {
+    const client = initializeSupabase();
+    if (client) {
+        // Check connection after a short delay
+        setTimeout(async () => {
+            await checkSupabaseConnection();
+        }, 1000);
+    }
 });
 
 // Export for use in other scripts
 window.SUPABASE_CONFIG = SUPABASE_CONFIG;
 window.initializeSupabase = initializeSupabase;
 window.getSupabaseClient = getSupabaseClient;
+window.checkSupabaseConnection = checkSupabaseConnection;
+window.getConnectionStatus = getConnectionStatus;

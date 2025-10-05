@@ -572,6 +572,369 @@ class StorageService {
   isInitialized() {
     return this.initialized;
   }
+
+  // ===================
+  // ADVANCED STORAGE OPERATIONS
+  // ===================
+
+  /**
+   * List files in a bucket
+   */
+  async listFiles(bucketName, path = '', limit = 100) {
+    try {
+      const bucket = this.buckets[bucketName] || bucketName;
+      const { data, error } = await this.client.storage
+        .from(bucket)
+        .list(path, {
+          limit: limit,
+          offset: 0
+        });
+
+      if (error) throw error;
+
+      return {
+        success: true,
+        data: data.map(file => ({
+          ...file,
+          publicUrl: this.getPublicUrl(bucketName, `${path}${path ? '/' : ''}${file.name}`)
+        }))
+      };
+    } catch (error) {
+      console.error('List files error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Copy a file to another location
+   */
+  async copyFile(bucketName, fromPath, toPath) {
+    try {
+      const bucket = this.buckets[bucketName] || bucketName;
+      const { data, error } = await this.client.storage
+        .from(bucket)
+        .copy(fromPath, toPath);
+
+      if (error) throw error;
+
+      return {
+        success: true,
+        data: {
+          path: data.path,
+          publicUrl: this.getPublicUrl(bucketName, toPath)
+        }
+      };
+    } catch (error) {
+      console.error('Copy file error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Move a file to another location
+   */
+  async moveFile(bucketName, fromPath, toPath) {
+    try {
+      const bucket = this.buckets[bucketName] || bucketName;
+      const { data, error } = await this.client.storage
+        .from(bucket)
+        .move(fromPath, toPath);
+
+      if (error) throw error;
+
+      return {
+        success: true,
+        data: {
+          path: data.path,
+          publicUrl: this.getPublicUrl(bucketName, toPath)
+        }
+      };
+    } catch (error) {
+      console.error('Move file error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Get file metadata
+   */
+  async getFileInfo(bucketName, fileName) {
+    try {
+      // Note: Supabase doesn't have a direct getFileInfo method
+      // This is a workaround using list with the specific file
+      const bucket = this.buckets[bucketName] || bucketName;
+      const pathParts = fileName.split('/');
+      const fileNameOnly = pathParts.pop();
+      const path = pathParts.join('/');
+
+      const { data, error } = await this.client.storage
+        .from(bucket)
+        .list(path, {
+          search: fileNameOnly
+        });
+
+      if (error) throw error;
+
+      const file = data.find(f => f.name === fileNameOnly);
+      if (!file) {
+        throw new Error('File not found');
+      }
+
+      return {
+        success: true,
+        data: {
+          ...file,
+          publicUrl: this.getPublicUrl(bucketName, fileName),
+          fullPath: `${bucket}/${fileName}`
+        }
+      };
+    } catch (error) {
+      console.error('Get file info error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  // ===================
+  // IMAGE PROCESSING
+  // ===================
+
+  /**
+   * Resize image before upload (client-side)
+   */
+  async resizeImage(file, maxWidth = 1920, maxHeight = 1080, quality = 0.9) {
+    return new Promise((resolve, reject) => {
+      if (!file.type.startsWith('image/')) {
+        resolve(file); // Return original if not an image
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+
+      img.onload = () => {
+        // Calculate new dimensions
+        let { width, height } = img;
+        
+        if (width > maxWidth) {
+          height = (height * maxWidth) / width;
+          width = maxWidth;
+        }
+        
+        if (height > maxHeight) {
+          width = (width * maxHeight) / height;
+          height = maxHeight;
+        }
+
+        // Set canvas dimensions
+        canvas.width = width;
+        canvas.height = height;
+
+        // Draw and compress
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        canvas.toBlob(
+          (blob) => {
+            const resizedFile = new File([blob], file.name, {
+              type: file.type,
+              lastModified: Date.now()
+            });
+            resolve(resizedFile);
+          },
+          file.type,
+          quality
+        );
+      };
+
+      img.onerror = reject;
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  /**
+   * Generate thumbnail for image
+   */
+  async generateThumbnail(file, size = 300) {
+    return await this.resizeImage(file, size, size, 0.8);
+  }
+
+  /**
+   * Convert image to WebP format (if supported)
+   */
+  async convertToWebP(file, quality = 0.9) {
+    return new Promise((resolve, reject) => {
+      if (!file.type.startsWith('image/') || file.type === 'image/webp') {
+        resolve(file);
+        return;
+      }
+
+      // Check if browser supports WebP
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!canvas.toDataURL('image/webp').startsWith('data:image/webp')) {
+        resolve(file); // WebP not supported
+        return;
+      }
+
+      const img = new Image();
+      
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        
+        canvas.toBlob(
+          (blob) => {
+            const webpFile = new File([blob], file.name.replace(/\.[^/.]+$/, '.webp'), {
+              type: 'image/webp',
+              lastModified: Date.now()
+            });
+            resolve(webpFile);
+          },
+          'image/webp',
+          quality
+        );
+      };
+
+      img.onerror = reject;
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  // ===================
+  // BATCH OPERATIONS
+  // ===================
+
+  /**
+   * Upload multiple files with progress tracking
+   */
+  async uploadFilesWithProgress(files, bucketName, options = {}, progressCallback = null) {
+    const results = [];
+    let completed = 0;
+    
+    for (const file of files) {
+      try {
+        const result = await this.uploadFile(file, bucketName, null, options);
+        results.push({
+          file: file.name,
+          ...result
+        });
+        
+        completed++;
+        
+        if (progressCallback) {
+          progressCallback({
+            completed,
+            total: files.length,
+            progress: Math.round((completed / files.length) * 100),
+            currentFile: file.name,
+            result
+          });
+        }
+      } catch (error) {
+        console.error(`Error uploading ${file.name}:`, error);
+        results.push({
+          file: file.name,
+          success: false,
+          error: error.message
+        });
+        completed++;
+        
+        if (progressCallback) {
+          progressCallback({
+            completed,
+            total: files.length,
+            progress: Math.round((completed / files.length) * 100),
+            currentFile: file.name,
+            result: { success: false, error: error.message }
+          });
+        }
+      }
+    }
+
+    return results;
+  }
+
+  /**
+   * Delete multiple files
+   */
+  async deleteFiles(bucketName, fileNames) {
+    try {
+      const bucket = this.buckets[bucketName] || bucketName;
+      const { error } = await this.client.storage
+        .from(bucket)
+        .remove(fileNames);
+
+      if (error) throw error;
+
+      return { success: true, deletedCount: fileNames.length };
+    } catch (error) {
+      console.error('Delete files error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  // ===================
+  // STORAGE ANALYTICS
+  // ===================
+
+  /**
+   * Get storage usage statistics
+   */
+  async getStorageStats() {
+    try {
+      const stats = {};
+      
+      for (const [key, bucket] of Object.entries(this.buckets)) {
+        const { data } = await this.listFiles(key);
+        if (data) {
+          stats[key] = {
+            fileCount: data.length,
+            totalSize: data.reduce((sum, file) => sum + (file.metadata?.size || 0), 0)
+          };
+        }
+      }
+
+      return { success: true, data: stats };
+    } catch (error) {
+      console.error('Storage stats error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Clean up old files (older than specified days)
+   */
+  async cleanupOldFiles(bucketName, daysOld = 30) {
+    try {
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - daysOld);
+
+      const { data: files } = await this.listFiles(bucketName);
+      if (!files) return { success: true, deletedCount: 0 };
+
+      const oldFiles = files.filter(file => 
+        new Date(file.created_at) < cutoffDate
+      );
+
+      if (oldFiles.length === 0) {
+        return { success: true, deletedCount: 0 };
+      }
+
+      const filePaths = oldFiles.map(file => file.name);
+      const result = await this.deleteFiles(bucketName, filePaths);
+
+      return {
+        success: result.success,
+        deletedCount: result.success ? oldFiles.length : 0,
+        error: result.error
+      };
+    } catch (error) {
+      console.error('Cleanup error:', error);
+      return { success: false, error: error.message };
+    }
+  }
 }
 
 // Create global instance

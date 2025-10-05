@@ -732,6 +732,184 @@ class RealTimeService {
   isInitialized() {
     return this.initialized;
   }
+
+  /**
+   * Get active subscriptions count
+   */
+  getActiveSubscriptionsCount() {
+    return this.subscriptions.size;
+  }
+
+  /**
+   * Get subscription info
+   */
+  getSubscriptionInfo() {
+    const info = {};
+    this.subscriptions.forEach((subscription, key) => {
+      info[key] = {
+        connected: subscription.state === 'joined',
+        topic: subscription.topic
+      };
+    });
+    return info;
+  }
+
+  // ===================
+  // UI HELPER METHODS
+  // ===================
+
+  /**
+   * Add event to UI
+   */
+  addEventToUI(container, eventData) {
+    const eventEl = this.createEventElement(eventData);
+    container.insertBefore(eventEl, container.firstChild);
+  }
+
+  /**
+   * Update event in UI
+   */
+  updateEventInUI(container, eventData) {
+    const existingEvent = container.querySelector(`[data-event-id="${eventData.id}"]`);
+    if (existingEvent) {
+      const updatedEvent = this.createEventElement(eventData);
+      existingEvent.replaceWith(updatedEvent);
+    }
+  }
+
+  /**
+   * Remove event from UI
+   */
+  removeEventFromUI(container, eventData) {
+    const eventEl = container.querySelector(`[data-event-id="${eventData.id}"]`);
+    if (eventEl) {
+      eventEl.remove();
+    }
+  }
+
+  /**
+   * Create event element
+   */
+  createEventElement(eventData) {
+    const eventEl = document.createElement('div');
+    eventEl.className = 'event-card';
+    eventEl.setAttribute('data-event-id', eventData.id);
+    eventEl.innerHTML = `
+      <div class="event-card-content">
+        <h3>${eventData.title}</h3>
+        <p class="event-description">${eventData.description || ''}</p>
+        <div class="event-meta">
+          <span class="event-date">
+            <i class="fas fa-calendar"></i>
+            ${new Date(eventData.start_date).toLocaleDateString()}
+          </span>
+          <span class="event-location">
+            <i class="fas fa-location-marker"></i>
+            ${eventData.location || 'TBA'}
+          </span>
+        </div>
+      </div>
+    `;
+    return eventEl;
+  }
+
+  /**
+   * Create media element
+   */
+  createMediaElement(mediaData) {
+    const mediaEl = document.createElement('div');
+    mediaEl.className = 'media-item';
+    mediaEl.setAttribute('data-media-id', mediaData.id);
+    
+    if (mediaData.media_type === 'image') {
+      mediaEl.innerHTML = `
+        <div class="media-item-content">
+          <img src="${mediaData.media_url}" alt="${mediaData.alt_text || mediaData.title}" loading="lazy" />
+          <div class="media-overlay">
+            <h4>${mediaData.title}</h4>
+            ${mediaData.description ? `<p>${mediaData.description}</p>` : ''}
+          </div>
+        </div>
+      `;
+    } else if (mediaData.media_type === 'video') {
+      mediaEl.innerHTML = `
+        <div class="media-item-content">
+          <video controls poster="${mediaData.thumbnail_url || ''}">
+            <source src="${mediaData.media_url}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="media-overlay">
+            <h4>${mediaData.title}</h4>
+            ${mediaData.description ? `<p>${mediaData.description}</p>` : ''}
+          </div>
+        </div>
+      `;
+    }
+    
+    return mediaEl;
+  }
+
+  /**
+   * Create blog post element
+   */
+  createBlogPostElement(postData) {
+    const postEl = document.createElement('article');
+    postEl.className = 'blog-post-card';
+    postEl.setAttribute('data-post-id', postData.id);
+    postEl.innerHTML = `
+      <div class="blog-post-content">
+        ${postData.featured_image_url ? `<img src="${postData.featured_image_url}" alt="${postData.title}" class="blog-post-image" />` : ''}
+        <div class="blog-post-body">
+          <h3><a href="/blog-post.html?slug=${postData.slug}">${postData.title}</a></h3>
+          <p class="blog-post-excerpt">${postData.excerpt || ''}</p>
+          <div class="blog-post-meta">
+            <span class="blog-post-date">
+              <i class="fas fa-clock"></i>
+              ${new Date(postData.published_at).toLocaleDateString()}
+            </span>
+            ${postData.reading_time ? `<span class="reading-time">${postData.reading_time} min read</span>` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+    return postEl;
+  }
+
+  /**
+   * Show connection status indicator
+   */
+  showConnectionStatus(isConnected) {
+    let indicator = document.getElementById('realtime-status');
+    
+    if (!indicator) {
+      indicator = document.createElement('div');
+      indicator.id = 'realtime-status';
+      indicator.style.cssText = `
+        position: fixed;
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      `;
+      document.body.appendChild(indicator);
+    }
+    
+    if (isConnected) {
+      indicator.innerHTML = '<i class="fas fa-wifi"></i> Live updates active';
+      indicator.style.backgroundColor = '#dcfce7';
+      indicator.style.color = '#166534';
+      indicator.style.border = '1px solid #bbf7d0';
+    } else {
+      indicator.innerHTML = '<i class="fas fa-wifi-slash"></i> Connection lost';
+      indicator.style.backgroundColor = '#fef2f2';
+      indicator.style.color = '#dc2626';
+      indicator.style.border = '1px solid #fecaca';
+    }
+  }
 }
 
 // Create global instance

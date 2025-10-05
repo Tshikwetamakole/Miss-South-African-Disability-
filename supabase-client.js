@@ -19,17 +19,41 @@ class SupabaseClient {
    */
   async init() {
     try {
-      // Load Supabase from CDN if not already loaded
-      if (typeof supabase === 'undefined') {
-        await this.loadSupabaseSDK();
+      // Check if we have access to the global Supabase instance
+      if (typeof window !== 'undefined' && window.getSupabaseClient) {
+        this.supabase = window.getSupabaseClient();
+        if (this.supabase) {
+          console.log('✅ Using existing Supabase client from global config');
+        }
       }
+      
+      // If no global client, create our own
+      if (!this.supabase) {
+        // Load Supabase from CDN if not already loaded
+        if (typeof window.supabase === 'undefined') {
+          await this.loadSupabaseSDK();
+        }
 
-      // Create Supabase client
-      this.supabase = supabase.createClient(
-        SUPABASE_CONFIG.url,
-        SUPABASE_CONFIG.anonKey,
-        SUPABASE_CONFIG.options
-      );
+        // Create Supabase client using global config or fallback
+        const config = window.SUPABASE_CONFIG || {
+          url: 'https://nkehxuiyjgdatkyfvkgq.supabase.co',
+          anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5rZWh4dWl5amdkYXRreWZ2a2dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2NTc4OTIsImV4cCI6MjA3NTIzMzg5Mn0.M6BDXx5iwfRhZgXydSKXlMUZBdJlH8ti5w9tH9MtlQY',
+          options: {
+            auth: {
+              autoRefreshToken: true,
+              persistSession: true,
+              detectSessionInUrl: true,
+              flowType: 'pkce'
+            }
+          }
+        };
+        
+        this.supabase = window.supabase.createClient(
+          config.url,
+          config.anonKey,
+          config.options
+        );
+      }
 
       // Check for existing session
       const { data: { session } } = await this.supabase.auth.getSession();

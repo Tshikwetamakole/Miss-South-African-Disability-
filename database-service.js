@@ -375,6 +375,112 @@ class DatabaseService {
   }
 
   // ===================
+  // UTILITY METHODS
+  // ===================
+
+  /**
+   * Generic database query with error handling
+   */
+  async executeQuery(queryBuilder) {
+    try {
+      const { data, error } = await queryBuilder;
+      
+      if (error) throw error;
+      return { success: true, data };
+    } catch (error) {
+      console.error('Database query error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Check if user exists in profiles table
+   */
+  async userExists(userId) {
+    try {
+      const { data, error } = await this.client
+        .from('profiles')
+        .select('id')
+        .eq('id', userId)
+        .single();
+      
+      return { success: true, exists: !!data };
+    } catch (error) {
+      return { success: true, exists: false };
+    }
+  }
+
+  /**
+   * Get user statistics
+   */
+  async getUserStats(userId) {
+    try {
+      const [applications, events, messages] = await Promise.all([
+        this.getUserApplications(userId),
+        this.client.from('event_registrations').select('id').eq('user_id', userId),
+        this.client.from('contact_messages').select('id').eq('email', 
+          (await this.getProfile(userId)).data?.email || ''
+        )
+      ]);
+
+      return {
+        success: true,
+        data: {
+          applications: applications.data?.length || 0,
+          events: events.data?.length || 0,
+          messages: messages.data?.length || 0
+        }
+      };
+    } catch (error) {
+      console.error('Error getting user stats:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Search across multiple tables
+   */
+  async globalSearch(query, limit = 20) {
+    try {
+      const searchResults = await Promise.allSettled([
+        // Search blog posts
+        this.client
+          .from('blog_posts')
+          .select('id, title, excerpt, slug, published_at')
+          .eq('is_published', true)
+          .or(`title.ilike.%${query}%, content.ilike.%${query}%`)
+          .limit(limit),
+        
+        // Search events
+        this.client
+          .from('events')
+          .select('id, title, description, start_date, location')
+          .or(`title.ilike.%${query}%, description.ilike.%${query}%`)
+          .limit(limit),
+        
+        // Search contestants
+        this.client
+          .from('contestants')
+          .select('id, user_id, title, platform_statement')
+          .eq('is_active', true)
+          .or(`title.ilike.%${query}%, platform_statement.ilike.%${query}%`)
+          .limit(limit)
+      ]);
+
+      const results = {
+        blog_posts: searchResults[0].status === 'fulfilled' ? searchResults[0].value.data || [] : [],
+        events: searchResults[1].status === 'fulfilled' ? searchResults[1].value.data || [] : [],
+        contestants: searchResults[2].status === 'fulfilled' ? searchResults[2].value.data || [] : []
+      };
+
+      return { success: true, data: results };
+    } catch (error) {
+      console.error('Global search error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  // ===================
   // REAL-TIME SUBSCRIPTIONS
   // ===================
 
@@ -382,28 +488,73 @@ class DatabaseService {
    * Subscribe to real-time updates for a table
    */
   subscribeToTable(tableName, callback, filter = null) {
-    let subscription = this.client
-      .channel(`${tableName}_changes`)
-      .on('postgres_changes', 
-        { 
-          event: '*', 
-          schema: 'public', 
-          table: tableName,
-          filter: filter 
-        }, 
-        callback
-      )
-      .subscribe();
-    
-    return subscription;
+    if (!this.client) {
+      console.error('Database client not initialized');
+      return null;
+    }
+
+    try {
+      let subscription = this.client
+        .channel(`${tableName}_changes`)
+        .on('postgres_changes', 
+          { 
+            event: '*', 
+            schema: 'public', 
+            table: tableName,
+            filter: filter 
+          }, 
+          callback
+        )
+        .subscribe();
+      
+      console.log(`📡 Subscribed to ${tableName} changes`);
+      return subscription;
+    } catch (error) {
+      console.error(`Error subscribing to ${tableName}:`, error);
+      return null;
+    }
   }
 
   /**
    * Unsubscribe from real-time updates
    */
   unsubscribe(subscription) {
-    if (subscription) {
+    if (subscription && this.client) {
       this.client.removeChannel(subscription);
+      console.log('📡 Unsubscribed from real-time updates');
+    }
+  }
+
+  /**
+   * Get database health status
+   */
+  async getHealthStatus() {
+    try {
+      const startTime = Date.now();
+      
+      // Simple query to test connection
+      const { error } = await this.client
+        .from('profiles')
+        .select('id')
+        .limit(1);
+      
+      const responseTime = Date.now() - startTime;
+      
+      if (error) throw error;
+      
+      return {
+        success: true,
+        status: 'healthy',
+        responseTime: `${responseTime}ms`,
+        timestamp: new Date().toISOString()
+      };
+    } catch (error) {
+      return {
+        success: false,
+        status: 'unhealthy',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      };
     }
   }
 }

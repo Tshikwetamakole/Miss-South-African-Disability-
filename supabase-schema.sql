@@ -229,36 +229,238 @@ ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE media_gallery ENABLE ROW LEVEL SECURITY;
 
--- Create RLS Policies (basic examples - you can customize these)
+-- Create RLS Policies (comprehensive security policies)
 
--- Profiles: Users can read their own profile, admins can read all
+-- Helper function to check if user is admin
+CREATE OR REPLACE FUNCTION is_admin(user_id UUID)
+RETURNS BOOLEAN AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT 1 FROM profiles 
+    WHERE id = user_id AND role = 'admin'
+  );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Helper function to check if user has specific role
+CREATE OR REPLACE FUNCTION has_role(user_id UUID, required_role TEXT)
+RETURNS BOOLEAN AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT 1 FROM profiles 
+    WHERE id = user_id AND role = required_role::user_role
+  );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- ===================
+-- PROFILES POLICIES
+-- ===================
+
+-- Users can view own profile, admins can view all
 CREATE POLICY "Users can view own profile" ON profiles
-  FOR SELECT USING (auth.uid() = id);
+  FOR SELECT USING (
+    auth.uid() = id OR 
+    is_admin(auth.uid())
+  );
 
+-- Users can update own profile
 CREATE POLICY "Users can update own profile" ON profiles
   FOR UPDATE USING (auth.uid() = id);
 
--- Events: Public read access, admin write access
-CREATE POLICY "Events are publicly readable" ON events
-  FOR SELECT USING (true);
+-- Only authenticated users can insert profiles (handled by triggers)
+CREATE POLICY "Authenticated users can create profile" ON profiles
+  FOR INSERT WITH CHECK (auth.uid() = id);
 
--- Blog posts: Published posts are publicly readable
-CREATE POLICY "Published blog posts are publicly readable" ON blog_posts
-  FOR SELECT USING (is_published = true);
+-- Admins can update any profile
+CREATE POLICY "Admins can update any profile" ON profiles
+  FOR UPDATE USING (is_admin(auth.uid()));
 
--- Media gallery: Public media is readable by all
-CREATE POLICY "Public media is readable" ON media_gallery
-  FOR SELECT USING (is_public = true);
+-- ===================
+-- CONTESTANTS POLICIES
+-- ===================
 
--- Applications: Users can only see their own applications
+-- Public can read active contestants
+CREATE POLICY "Active contestants are publicly readable" ON contestants
+  FOR SELECT USING (is_active = true);
+
+-- Users can create their own contestant record
+CREATE POLICY "Users can create own contestant record" ON contestants
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- Users can update their own contestant record
+CREATE POLICY "Users can update own contestant record" ON contestants
+  FOR UPDATE USING (auth.uid() = user_id);
+
+-- Admins can manage all contestant records
+CREATE POLICY "Admins can manage contestants" ON contestants
+  FOR ALL USING (is_admin(auth.uid()));
+
+-- ===================
+-- APPLICATIONS POLICIES
+-- ===================
+
+-- Users can only see their own applications
 CREATE POLICY "Users can view own applications" ON applications
-  FOR SELECT USING (auth.uid() = user_id);
+  FOR SELECT USING (
+    auth.uid() = user_id OR 
+    is_admin(auth.uid()) OR
+    has_role(auth.uid(), 'judge')
+  );
 
+-- Users can create applications
 CREATE POLICY "Users can create applications" ON applications
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 
-CREATE POLICY "Users can update own applications" ON applications
+-- Users can update own applications (only if not submitted)
+CREATE POLICY "Users can update own draft applications" ON applications
+  FOR UPDATE USING (
+    auth.uid() = user_id AND 
+    status = 'draft'
+  );
+
+-- Admins and judges can update any application
+CREATE POLICY "Admins and judges can update applications" ON applications
+  FOR UPDATE USING (
+    is_admin(auth.uid()) OR 
+    has_role(auth.uid(), 'judge')
+  );
+
+-- ===================
+-- EVENTS POLICIES
+-- ===================
+
+-- Events are publicly readable
+CREATE POLICY "Events are publicly readable" ON events
+  FOR SELECT USING (true);
+
+-- Admins can manage events
+CREATE POLICY "Admins can manage events" ON events
+  FOR ALL USING (is_admin(auth.uid()));
+
+-- ===================
+-- EVENT REGISTRATIONS POLICIES
+-- ===================
+
+-- Users can view their own registrations
+CREATE POLICY "Users can view own registrations" ON event_registrations
+  FOR SELECT USING (
+    auth.uid() = user_id OR 
+    is_admin(auth.uid())
+  );
+
+-- Users can register for events
+CREATE POLICY "Users can register for events" ON event_registrations
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- Users can update their own registrations
+CREATE POLICY "Users can update own registrations" ON event_registrations
   FOR UPDATE USING (auth.uid() = user_id);
+
+-- Admins can manage all registrations
+CREATE POLICY "Admins can manage registrations" ON event_registrations
+  FOR ALL USING (is_admin(auth.uid()));
+
+-- ===================
+-- SPONSORS POLICIES
+-- ===================
+
+-- Sponsors are publicly readable if active
+CREATE POLICY "Active sponsors are publicly readable" ON sponsors
+  FOR SELECT USING (is_active = true);
+
+-- Admins can manage sponsors
+CREATE POLICY "Admins can manage sponsors" ON sponsors
+  FOR ALL USING (is_admin(auth.uid()));
+
+-- ===================
+-- BLOG POSTS POLICIES
+-- ===================
+
+-- Published blog posts are publicly readable
+CREATE POLICY "Published blog posts are publicly readable" ON blog_posts
+  FOR SELECT USING (is_published = true);
+
+-- Authors can view their own posts (published or draft)
+CREATE POLICY "Authors can view own posts" ON blog_posts
+  FOR SELECT USING (
+    auth.uid() = author_id OR 
+    is_admin(auth.uid())
+  );
+
+-- Authors can create blog posts
+CREATE POLICY "Authors can create posts" ON blog_posts
+  FOR INSERT WITH CHECK (
+    auth.uid() = author_id AND
+    (is_admin(auth.uid()) OR has_role(auth.uid(), 'contestant'))
+  );
+
+-- Authors can update their own posts
+CREATE POLICY "Authors can update own posts" ON blog_posts
+  FOR UPDATE USING (auth.uid() = author_id);
+
+-- Admins can manage all blog posts
+CREATE POLICY "Admins can manage blog posts" ON blog_posts
+  FOR ALL USING (is_admin(auth.uid()));
+
+-- ===================
+-- CONTACT MESSAGES POLICIES
+-- ===================
+
+-- Users can create contact messages
+CREATE POLICY "Anyone can create contact messages" ON contact_messages
+  FOR INSERT WITH CHECK (true);
+
+-- Only admins can read contact messages
+CREATE POLICY "Admins can read contact messages" ON contact_messages
+  FOR SELECT USING (is_admin(auth.uid()));
+
+-- Admins can update contact messages
+CREATE POLICY "Admins can update contact messages" ON contact_messages
+  FOR UPDATE USING (is_admin(auth.uid()));
+
+-- ===================
+-- NEWSLETTER POLICIES
+-- ===================
+
+-- Anyone can subscribe to newsletter
+CREATE POLICY "Anyone can subscribe to newsletter" ON newsletter_subscriptions
+  FOR INSERT WITH CHECK (true);
+
+-- Users can update their own subscription
+CREATE POLICY "Users can update own subscription" ON newsletter_subscriptions
+  FOR UPDATE USING (true); -- Email-based identification
+
+-- Admins can read all subscriptions
+CREATE POLICY "Admins can read subscriptions" ON newsletter_subscriptions
+  FOR SELECT USING (is_admin(auth.uid()));
+
+-- ===================
+-- MEDIA GALLERY POLICIES
+-- ===================
+
+-- Public media is readable by all
+CREATE POLICY "Public media is readable" ON media_gallery
+  FOR SELECT USING (is_public = true);
+
+-- Admins can see all media
+CREATE POLICY "Admins can see all media" ON media_gallery
+  FOR SELECT USING (is_admin(auth.uid()));
+
+-- Authenticated users can upload media
+CREATE POLICY "Authenticated users can upload media" ON media_gallery
+  FOR INSERT WITH CHECK (
+    auth.uid() = uploaded_by AND
+    auth.uid() IS NOT NULL
+  );
+
+-- Users can update their own uploads
+CREATE POLICY "Users can update own uploads" ON media_gallery
+  FOR UPDATE USING (auth.uid() = uploaded_by);
+
+-- Admins can manage all media
+CREATE POLICY "Admins can manage media" ON media_gallery
+  FOR ALL USING (is_admin(auth.uid()));
 
 -- Function to automatically update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()

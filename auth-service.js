@@ -394,6 +394,193 @@ class AuthService {
   }
 
   // ===================
+  // SECURITY METHODS
+  // ===================
+
+  /**
+   * Validate password strength
+   */
+  validatePassword(password) {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+    
+    const errors = [];
+    
+    if (password.length < minLength) {
+      errors.push(`Password must be at least ${minLength} characters long`);
+    }
+    if (!hasUpperCase) {
+      errors.push('Password must contain at least one uppercase letter');
+    }
+    if (!hasLowerCase) {
+      errors.push('Password must contain at least one lowercase letter');
+    }
+    if (!hasNumbers) {
+      errors.push('Password must contain at least one number');
+    }
+    if (!hasSpecialChars) {
+      errors.push('Password must contain at least one special character');
+    }
+    
+    return {
+      isValid: errors.length === 0,
+      errors: errors,
+      strength: this.calculatePasswordStrength(password)
+    };
+  }
+
+  /**
+   * Calculate password strength score
+   */
+  calculatePasswordStrength(password) {
+    let score = 0;
+    
+    // Length bonus
+    score += Math.min(password.length * 2, 25);
+    
+    // Character type bonuses
+    if (/[a-z]/.test(password)) score += 5;
+    if (/[A-Z]/.test(password)) score += 5;
+    if (/\d/.test(password)) score += 5;
+    if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) score += 10;
+    
+    // Variety bonus
+    const uniqueChars = new Set(password).size;
+    score += uniqueChars * 2;
+    
+    // Cap at 100
+    score = Math.min(score, 100);
+    
+    if (score < 30) return 'weak';
+    if (score < 60) return 'medium';
+    if (score < 80) return 'strong';
+    return 'very-strong';
+  }
+
+  /**
+   * Validate email format
+   */
+  validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return {
+      isValid: emailRegex.test(email),
+      error: emailRegex.test(email) ? null : 'Invalid email format'
+    };
+  }
+
+  /**
+   * Check if email is already registered
+   */
+  async checkEmailExists(email) {
+    try {
+      // This is a simple check - in production you might want a more secure method
+      const { data, error } = await this.client
+        .from('profiles')
+        .select('email')
+        .eq('email', email.toLowerCase())
+        .single();
+      
+      return {
+        exists: !!data,
+        error: error && error.code !== 'PGRST116' ? error.message : null
+      };
+    } catch (error) {
+      console.error('Email check error:', error);
+      return { exists: false, error: error.message };
+    }
+  }
+
+  /**
+   * Log security event
+   */
+  async logSecurityEvent(event, details = {}) {
+    try {
+      const eventData = {
+        user_id: this.currentUser?.id || null,
+        event_type: event,
+        details: details,
+        ip_address: await this.getUserIP(),
+        user_agent: navigator.userAgent,
+        timestamp: new Date().toISOString()
+      };
+      
+      // In a production app, you might want to log this to a security events table
+      console.log('Security Event:', eventData);
+      
+      return { success: true };
+    } catch (error) {
+      console.error('Security logging error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Get user IP address (simplified version)
+   */
+  async getUserIP() {
+    try {
+      // In production, you might use a service like ipapi.co or similar
+      return 'unknown';
+    } catch (error) {
+      return 'unknown';
+    }
+  }
+
+  // ===================
+  // SESSION MANAGEMENT
+  // ===================
+
+  /**
+   * Refresh user session
+   */
+  async refreshSession() {
+    try {
+      const { data, error } = await this.client.auth.refreshSession();
+      if (error) throw error;
+      
+      this.currentUser = data.user;
+      return { success: true, session: data.session };
+    } catch (error) {
+      console.error('Session refresh error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Get session expiry time
+   */
+  async getSessionExpiry() {
+    try {
+      const session = await this.getSession();
+      if (!session) return null;
+      
+      return new Date(session.expires_at * 1000);
+    } catch (error) {
+      console.error('Session expiry error:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Check if session is about to expire (within 5 minutes)
+   */
+  async isSessionExpiringSoon() {
+    try {
+      const expiry = await this.getSessionExpiry();
+      if (!expiry) return false;
+      
+      const fiveMinutesFromNow = new Date(Date.now() + 5 * 60 * 1000);
+      return expiry <= fiveMinutesFromNow;
+    } catch (error) {
+      console.error('Session expiry check error:', error);
+      return false;
+    }
+  }
+
+  // ===================
   // UTILITY METHODS
   // ===================
 
@@ -416,10 +603,26 @@ class AuthService {
    */
   requireAuth(redirectUrl = '/login.html') {
     if (!this.isAuthenticated()) {
-      window.location.href = `${redirectUrl}?redirect=${encodeURIComponent(window.location.pathname)}`;
+      const currentPath = window.location.pathname + window.location.search;
+      window.location.href = `${redirectUrl}?redirect=${encodeURIComponent(currentPath)}`;
       return false;
     }
     return true;
+  }
+
+  /**
+   * Handle redirect after login
+   */
+  handlePostLoginRedirectFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect');
+    
+    if (redirectUrl && redirectUrl !== window.location.pathname) {
+      window.location.href = redirectUrl;
+      return true;
+    }
+    
+    return false;
   }
 
   /**
@@ -433,6 +636,33 @@ class AuthService {
     } catch (error) {
       console.error('Get session error:', error);
       return null;
+    }
+  }
+
+  /**
+   * Get auth status summary
+   */
+  async getAuthStatus() {
+    try {
+      const session = await this.getSession();
+      const profile = await this.getCurrentProfile();
+      
+      return {
+        isAuthenticated: this.isAuthenticated(),
+        user: this.currentUser,
+        profile: profile,
+        session: {
+          exists: !!session,
+          expiresAt: session?.expires_at ? new Date(session.expires_at * 1000) : null,
+          isExpiringSoon: await this.isSessionExpiringSoon()
+        }
+      };
+    } catch (error) {
+      console.error('Auth status error:', error);
+      return {
+        isAuthenticated: false,
+        error: error.message
+      };
     }
   }
 }
