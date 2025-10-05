@@ -104,56 +104,47 @@ rel="stylesheet"
   <!-- Upcoming Events Section -->
   <section id="upcoming-events" class="section">
     <div class="container">
-      <h1 class="section-title">Upcoming Events</h1>
+        <h1 id="upcoming-events-title" class="section-title">Upcoming Events</h1>
       <p class="section-intro">
         Join us at our next activities and gatherings. Be part of the movement!
       </p>
       <div class="events-grid">
-        <article id="pageant-2025" class="event-card animate-in" data-animation="fade-in-up">
+        <article id="pageant-2025" class="event-card animate-in" data-animation="fade-in-up" aria-labelledby="event-title-pageant-2025" aria-describedby="event-desc-pageant-2025 event-loc-pageant-2025">
           <div class="event-date">
             <span class="event-day">18</span>
             <span class="event-month">Oct</span>
           </div>
           <div class="event-details">
-            <h3>2025 National Pageant Finals</h3>
-            <p class="event-location">
-              Durban International Convention Centre
-            </p>
-            <p class="event-description">
-              A night of glamour, advocacy, and empowerment as we crown our 2025 ambassador. Tickets available soon.
-            </p>
+            <h3 id="event-title-pageant-2025">2025 National Pageant Finals</h3>
+            <p class="event-location" id="event-loc-pageant-2025">Durban International Convention Centre</p>
+            <p class="event-description" id="event-desc-pageant-2025">A night of glamour, advocacy, and empowerment as we crown our 2025 ambassador. Tickets available soon.</p>
+            <a class="event-link btn btn-outline btn-sm" href="#pageant-2025" aria-label="Learn more about 2025 National Pageant Finals">Learn More</a>
           </div>
         </article>
 
-        <article id="advocacy-workshop" class="event-card animate-in" data-animation="fade-in-up" data-delay="100">
+        <article id="advocacy-workshop" class="event-card animate-in" data-animation="fade-in-up" data-delay="100" aria-labelledby="event-title-advocacy-workshop" aria-describedby="event-desc-advocacy-workshop event-loc-advocacy-workshop">
           <div class="event-date">
             <span class="event-day">22</span>
             <span class="event-month">Nov</span>
           </div>
           <div class="event-details">
-            <h3>Leadership &amp; Advocacy Workshop</h3>
-            <p class="event-location">
-              Online Virtual Event
-            </p>
-            <p class="event-description">
-              An interactive workshop for aspiring leaders to hone their public speaking and advocacy skills. Limited spots available.
-            </p>
+            <h3 id="event-title-advocacy-workshop">Leadership &amp; Advocacy Workshop</h3>
+            <p class="event-location" id="event-loc-advocacy-workshop">Online Virtual Event</p>
+            <p class="event-description" id="event-desc-advocacy-workshop">An interactive workshop for aspiring leaders to hone their public speaking and advocacy skills. Limited spots available.</p>
+            <a class="event-link btn btn-outline btn-sm" href="#advocacy-workshop" aria-label="Learn more about Leadership and Advocacy Workshop">Learn More</a>
           </div>
         </article>
 
-        <article id="international-day-2025" class="event-card animate-in" data-animation="fade-in-up" data-delay="200">
+        <article id="international-day-2025" class="event-card animate-in" data-animation="fade-in-up" data-delay="200" aria-labelledby="event-title-international-day-2025" aria-describedby="event-desc-international-day-2025 event-loc-international-day-2025">
           <div class="event-date">
             <span class="event-day">03</span>
             <span class="event-month">Dec</span>
           </div>
           <div class="event-details">
-            <h3>International Day of Persons with Disabilities 2025</h3>
-            <p class="event-location">
-              Nationwide Awareness Campaign
-            </p>
-            <p class="event-description">
-              Join our nationwide campaign to celebrate and advocate for the rights of persons with disabilities. More details to follow.
-            </p>
+            <h3 id="event-title-international-day-2025">International Day of Persons with Disabilities 2025</h3>
+            <p class="event-location" id="event-loc-international-day-2025">Nationwide Awareness Campaign</p>
+            <p class="event-description" id="event-desc-international-day-2025">Join our nationwide campaign to celebrate and advocate for the rights of persons with disabilities. More details to follow.</p>
+            <a class="event-link btn btn-outline btn-sm" href="#international-day-2025" aria-label="Learn more about International Day of Persons with Disabilities 2025 event">Learn More</a>
           </div>
         </article>
       </div>
@@ -163,26 +154,23 @@ rel="stylesheet"
   <!-- Past Events Section -->
   <section id="past-events" class="section section-secondary">
     <div class="container">
-      <h2 class="section-title">Past Events</h2>
+        <h2 id="past-events-title" class="section-title">Past Events</h2>
       <p class="section-intro">
         A look back at our memorable moments and milestones.
       </p>
       <div class="events-grid">
-        <article id="pageant-2023" class="event-card event-card-past animate-in" data-animation="fade-in-up">
+        <article id="pageant-2023" class="event-card event-card-past animate-in" data-animation="fade-in-up" aria-labelledby="event-title-pageant-2023" aria-describedby="event-desc-pageant-2023 event-loc-pageant-2023">
           <div class="event-date">
             <span class="event-day">15</span>
             <span class="event-month">Oct '23</span>
           </div>
           <div class="event-details">
-            <h3>2023 National Pageant Finals</h3>
-
-            <p class="event-location">
+            <h3 id="event-title-pageant-2023">2023 National Pageant Finals</h3>
+            <p class="event-location" id="event-loc-pageant-2023">
               Johannesburg Convention Center
             </p>
-            <p class="event-description">
-
-              A day of celebration and commitment to creating an inclusive society for all.
-            </p>
+            <p class="event-description" id="event-desc-pageant-2023">A day of celebration and commitment to creating an inclusive society for all.</p>
+            <a class="event-link btn btn-outline btn-sm" href="#pageant-2023" aria-label="Review details of 2023 National Pageant Finals">Details</a>
 
           </div>
         </article>
@@ -192,11 +180,12 @@ rel="stylesheet"
 </main>
 
 <!-- Footer -->
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
 <div class="container">
 <div class="footer-content">
 <div class="footer-section">
-<a href="/" class="footer-logo">
+<h2 id="footer-heading" class="sr-only">Site Footer</h2>
+<a href="/" class="footer-logo" aria-label="Miss South Africa Disability home">
 <img src="/assets/logos/logo.svg" alt="Miss South Africa Disability Logo" width="200">
 </a>
 <p>
@@ -242,6 +231,9 @@ Empowering women with disabilities through advocacy, community, and leadership.
 </div>
 </div>
 </footer>
+
+<!-- Floating Support CTA -->
+<button class="support-cta" id="support-cta" aria-label="Support Us - Open contact page" onclick="window.location.href='contact.html'">Support Us</button>
 
 <script src="script.js"></script>
   <!-- Supabase Configuration and Services -->
