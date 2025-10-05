@@ -1,0 +1,495 @@
+<!-- Authentication Modal -->
+<!-- Add this HTML to your pages that need authentication -->
+
+<div id="authModal" class="auth-modal" style="display: none;" role="dialog" aria-labelledby="authModalTitle" aria-modal="true">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header">
+            <h2 id="authModalTitle">Sign In</h2>
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+        </div>
+        
+        <div class="auth-modal-body">
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form" style="display: block;">
+                <h3>Welcome Back!</h3>
+                <p>Sign in to your account to continue</p>
+                
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="email" required 
+                           autocomplete="email" aria-describedby="loginEmailHelp">
+                    <small id="loginEmailHelp" class="form-help">We'll never share your email</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required 
+                           autocomplete="current-password" minlength="6">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button type="button" class="btn btn-link switch-to-forgot">
+                        Forgot Password?
+                    </button>
+                </div>
+                
+                <div class="auth-switch">
+                    <p>Don't have an account? 
+                        <button type="button" class="btn btn-link switch-to-signup">
+                            Sign Up Here
+                        </button>
+                    </p>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form" style="display: none;">
+                <h3>Join Our Community!</h3>
+                <p>Create your account to get started</p>
+                
+                <div class="form-group">
+                    <label for="signupFullName">Full Name</label>
+                    <input type="text" id="signupFullName" name="fullName" required 
+                           autocomplete="name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" name="email" required 
+                           autocomplete="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPhone">Phone Number (Optional)</label>
+                    <input type="tel" id="signupPhone" name="phone" 
+                           autocomplete="tel">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" name="password" required 
+                           autocomplete="new-password" minlength="6"
+                           aria-describedby="passwordHelp">
+                    <small id="passwordHelp" class="form-help">
+                        Must be at least 6 characters long
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required 
+                           autocomplete="new-password" minlength="6">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="terms-of-service.html" target="_blank">Terms of Service</a> 
+                        and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </div>
+                
+                <div class="auth-switch">
+                    <p>Already have an account? 
+                        <button type="button" class="btn btn-link switch-to-login">
+                            Sign In Here
+                        </button>
+                    </p>
+                </div>
+            </form>
+            
+            <!-- Forgot Password Form -->
+            <form id="forgotPasswordForm" class="auth-form" style="display: none;">
+                <h3>Reset Your Password</h3>
+                <p>Enter your email address and we'll send you a reset link</p>
+                
+                <div class="form-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" name="email" required 
+                           autocomplete="email">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                </div>
+                
+                <div class="auth-switch">
+                    <p>Remember your password? 
+                        <button type="button" class="btn btn-link switch-to-login">
+                            Sign In Here
+                        </button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- User Menu (Add to your navigation) -->
+<div class="user-menu">
+    <!-- Show when NOT authenticated -->
+    <div class="auth-login">
+        <button class="btn btn-outline login-trigger">Sign In</button>
+        <button class="btn btn-primary signup-trigger">Sign Up</button>
+    </div>
+    
+    <!-- Show when authenticated -->
+    <div class="auth-logout" style="display: none;">
+        <div class="auth-user" style="display: none;">
+            <span class="user-greeting">Welcome, <span class="user-name">User</span>!</span>
+            <div class="user-dropdown">
+                <button class="user-avatar" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="profile.html" class="dropdown-item">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="my-applications.html" class="dropdown-item">
+                        <i class="fas fa-file-alt"></i> My Applications
+                    </a>
+                    <a href="my-rsvps.html" class="dropdown-item">
+                        <i class="fas fa-calendar-check"></i> My RSVPs
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Container -->
+<div id="notificationContainer" class="notification-container"></div>
+
+<style>
+/* Authentication Modal Styles */
+.auth-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    max-width: 450px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.auth-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.auth-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.close-modal:hover {
+    background-color: #f5f5f5;
+}
+
+.auth-modal-body {
+    padding: 2rem;
+}
+
+.auth-form h3 {
+    margin: 0 0 0.5rem 0;
+    color: #f97316;
+    font-size: 1.25rem;
+}
+
+.auth-form p {
+    margin: 0 0 1.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #f97316;
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.1);
+}
+
+.form-help {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.form-actions {
+    margin: 1.5rem 0 1rem 0;
+}
+
+.auth-switch {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.auth-switch p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background-color: #f97316;
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #ea580c;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #f97316;
+    border: 1px solid #f97316;
+}
+
+.btn-outline:hover {
+    background-color: #f97316;
+    color: white;
+}
+
+.btn-link {
+    background: none;
+    color: #f97316;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.btn-link:hover {
+    color: #ea580c;
+}
+
+/* User Menu Styles */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.auth-login {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.user-avatar {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #f97316;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.user-avatar:hover {
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 1000;
+    display: none;
+}
+
+.user-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #333;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 0.5rem 0;
+}
+
+/* Notification Styles */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+}
+
+.notification {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-width: 350px;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification-success {
+    border-left: 4px solid #10b981;
+}
+
+.notification-error {
+    border-left: 4px solid #ef4444;
+}
+
+.notification-info {
+    border-left: 4px solid #3b82f6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .auth-modal-body {
+        padding: 1.5rem;
+    }
+    
+    .auth-login {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.625rem 1.25rem;
+    }
+}
+</style>

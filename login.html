@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Login to Miss South Africa Disability - Access your contestant dashboard and account." />
+  <meta name="keywords" content="login, signin, miss south africa disability, account" />
+  <title>Login - Miss South Africa Disability</title>
+
+  <!-- Preload critical fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
+  <link rel="apple-touch-icon" href="/assets/logos/logo.jpg">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .auth-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    }
+
+    .auth-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .auth-header h1 {
+      color: #f97316;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-header p {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #f97316;
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    }
+
+    .form-group input:invalid {
+      border-color: #ef4444;
+    }
+
+    .form-error {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .auth-btn {
+      width: 100%;
+      background: #f97316;
+      color: white;
+      padding: 0.875rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-bottom: 1rem;
+    }
+
+    .auth-btn:hover:not(:disabled) {
+      background: #ea580c;
+    }
+
+    .auth-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .auth-links {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .auth-links a {
+      color: #f97316;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+
+    .auth-links a:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 1.5rem 0;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    .alert {
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .alert-success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .alert-error {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .back-home {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .back-home:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .auth-card {
+        padding: 2rem;
+      }
+      
+      .back-home {
+        position: static;
+        color: #f97316;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back to Home -->
+  <a href="/" class="back-home">
+    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+    Back to Home
+  </a>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Welcome Back</h1>
+        <p>Sign in to your Miss South Africa Disability account</p>
+      </div>
+
+      <!-- Alert Messages -->
+      <div id="alert-message" class="alert" style="display: none;"></div>
+
+      <!-- Login Form -->
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            autocomplete="email"
+            aria-describedby="email-error"
+            placeholder="Enter your email"
+          />
+          <div id="email-error" class="form-error" role="alert"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+            autocomplete="current-password"
+            aria-describedby="password-error"
+            placeholder="Enter your password"
+            minlength="6"
+          />
+          <div id="password-error" class="form-error" role="alert"></div>
+        </div>
+
+        <button type="submit" id="login-btn" class="auth-btn">
+          <span id="login-text">Sign In</span>
+        </button>
+      </form>
+
+      <div class="auth-links">
+        <a href="#" id="forgot-password-link">Forgot your password?</a>
+      </div>
+
+      <div class="divider">Don't have an account?</div>
+
+      <div class="auth-links">
+        <a href="register.html">Create an account</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase Configuration and Services -->
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+  <script src="auth-service.js"></script>
+
+  <script>
+    // Login form handler
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('login-form');
+      const loginBtn = document.getElementById('login-btn');
+      const loginText = document.getElementById('login-text');
+      const alertMessage = document.getElementById('alert-message');
+      const forgotPasswordLink = document.getElementById('forgot-password-link');
+
+      // Check if user is already logged in
+      const checkAuthStatus = setInterval(() => {
+        if (authService && authService.initialized) {
+          if (authService.isAuthenticated()) {
+            window.location.href = '/profile.html';
+          }
+          clearInterval(checkAuthStatus);
+        }
+      }, 100);
+
+      // Handle form submission
+      loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        if (!authService || !authService.initialized) {
+          showAlert('Authentication service not ready. Please try again.', 'error');
+          return;
+        }
+
+        const formData = new FormData(loginForm);
+        const email = formData.get('email').trim();
+        const password = formData.get('password');
+
+        // Basic validation
+        if (!email || !password) {
+          showAlert('Please fill in all fields.', 'error');
+          return;
+        }
+
+        if (!isValidEmail(email)) {
+          showAlert('Please enter a valid email address.', 'error');
+          return;
+        }
+
+        // Show loading state
+        setLoadingState(true);
+
+        try {
+          const result = await authService.signIn(email, password);
+          
+          if (result.success) {
+            showAlert(result.message, 'success');
+            
+            // Redirect after successful login
+            setTimeout(() => {
+              const urlParams = new URLSearchParams(window.location.search);
+              const redirectUrl = urlParams.get('redirect') || '/profile.html';
+              window.location.href = redirectUrl;
+            }, 1000);
+          } else {
+            showAlert(result.error, 'error');
+          }
+        } catch (error) {
+          showAlert('An unexpected error occurred. Please try again.', 'error');
+          console.error('Login error:', error);
+        } finally {
+          setLoadingState(false);
+        }
+      });
+
+      // Handle forgot password
+      forgotPasswordLink.addEventListener('click', async function(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('email').value.trim();
+        
+        if (!email) {
+          showAlert('Please enter your email address first.', 'error');
+          document.getElementById('email').focus();
+          return;
+        }
+
+        if (!isValidEmail(email)) {
+          showAlert('Please enter a valid email address.', 'error');
+          return;
+        }
+
+        if (!authService || !authService.initialized) {
+          showAlert('Authentication service not ready. Please try again.', 'error');
+          return;
+        }
+
+        setLoadingState(true);
+
+        try {
+          const result = await authService.resetPassword(email);
+          
+          if (result.success) {
+            showAlert(result.message, 'success');
+          } else {
+            showAlert(result.error, 'error');
+          }
+        } catch (error) {
+          showAlert('Failed to send reset email. Please try again.', 'error');
+          console.error('Reset password error:', error);
+        } finally {
+          setLoadingState(false);
+        }
+      });
+
+      // Helper functions
+      function showAlert(message, type) {
+        alertMessage.textContent = message;
+        alertMessage.className = `alert alert-${type}`;
+        alertMessage.style.display = 'block';
+        
+        // Auto-hide success messages
+        if (type === 'success') {
+          setTimeout(() => {
+            alertMessage.style.display = 'none';
+          }, 5000);
+        }
+      }
+
+      function setLoadingState(loading) {
+        loginBtn.disabled = loading;
+        
+        if (loading) {
+          loginText.innerHTML = '<span class="loading-spinner"></span>Signing in...';
+        } else {
+          loginText.textContent = 'Sign In';
+        }
+      }
+
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      // Real-time form validation
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+
+      emailInput.addEventListener('blur', function() {
+        const email = this.value.trim();
+        const errorDiv = document.getElementById('email-error');
+        
+        if (email && !isValidEmail(email)) {
+          errorDiv.textContent = 'Please enter a valid email address.';
+          errorDiv.style.display = 'block';
+          this.style.borderColor = '#ef4444';
+        } else {
+          errorDiv.style.display = 'none';
+          this.style.borderColor = '#e5e7eb';
+        }
+      });
+
+      passwordInput.addEventListener('blur', function() {
+        const password = this.value;
+        const errorDiv = document.getElementById('password-error');
+        
+        if (password && password.length < 6) {
+          errorDiv.textContent = 'Password must be at least 6 characters long.';
+          errorDiv.style.display = 'block';
+          this.style.borderColor = '#ef4444';
+        } else {
+          errorDiv.style.display = 'none';
+          this.style.borderColor = '#e5e7eb';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
