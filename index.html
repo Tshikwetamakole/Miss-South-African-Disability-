@@ -119,65 +119,87 @@ rel="stylesheet"
 <main id="main-content" role="main">
 <!-- Hero Section -->
 <section class="hero" aria-labelledby="hero-title">
+  <!-- Floating Particles -->
+  <div class="hero-particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
 
-<div class="hero-content">
-<h1 id="hero-title">Beauty, Reimagined.</h1>
-<p class="hero-subtitle">
-Celebrating the strength, talent, and leadership of women with disabilities in South Africa.
-</p>
-<div class="hero-actions">
-  <a href="registration.html" class="btn btn-primary">Apply for 2026</a>
-  <a href="#about" class="btn btn-outline">Learn More</a>
-</div>
-<p class="hero-deadline">Applications for the 2026 pageant close October 31, 2025</p>
-</div>
+  <div class="hero-content">
+    <h1 id="hero-title" class="hero-title">Beauty, Reimagined.</h1>
+    <p class="hero-subtitle lead">
+      Celebrating the strength, talent, and leadership of women with disabilities in South Africa.
+    </p>
+    <div class="hero-actions">
+      <a href="registration.html" class="btn btn-primary btn-lg">Apply for 2026</a>
+      <a href="#about" class="btn btn-outline btn-lg">Learn More</a>
+    </div>
+    <p class="hero-deadline">Applications for the 2026 pageant close October 31, 2025</p>
+  </div>
 
+  <!-- Scroll Indicator -->
+  <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+    Scroll to explore
+  </div>
 </section>
 
 <!-- About Section -->
 <section id="about" class="section about-section" aria-labelledby="about-title">
-<div class="container">
-<h2 id="about-title">About Miss South Africa Disability</h2>
-<div class="about-grid">
-<div class="about-content">
-<p class="section-intro">
-Miss South Africa Disability is more than a pageant; it's a movement. We are a pioneering platform dedicated to empowering women with disabilities through inclusive beauty pageants, advocacy programs, and leadership development initiatives. Our mission is to challenge stereotypes, break down barriers, and create a world where women with disabilities are celebrated for their abilities, beauty, and potential.
-</p>
-<div class="about-features">
-<div class="feature animate-in" data-animation="fade-in-up">
-<img src="/assets/logos/logo.svg" alt="" width="48" height="48" aria-hidden="true">
-<h3>Empowerment</h3>
-<p>
-Building confidence and leadership skills for a new generation of change-makers.
-</p>
-</div>
-<div class="feature animate-in" data-animation="fade-in-up" data-delay="100">
-<img src="/assets/logos/logo.svg" alt="" width="48" height="48" aria-hidden="true">
-<h3>Advocacy</h3>
-<p>
-Championing disability rights and promoting a more inclusive and accessible society.
-</p>
-</div>
-<div class="feature animate-in" data-animation="fade-in-up" data-delay="200">
-<img src="/assets/logos/logo.svg" alt="" width="48" height="48" aria-hidden="true">
-<h3>Community</h3>
-<p>
-Creating supportive networks and fostering a sense of belonging and sisterhood.
-</p>
-</div>
-</div>
-</div>
-<div class="about-image">
-<img
-src="https://via.placeholder.com/600x400"
-alt="Contestants at Miss South Africa Disability event smiling and supporting each other"
-loading="lazy"
-width="600"
-height="400"
->
-</div>
-</div>
-</div>
+  <div class="container">
+    <div class="section-header">
+      <h2 id="about-title" class="section-title">About Miss South Africa Disability</h2>
+      <p class="section-intro lead">
+        Miss South Africa Disability is more than a pageant; it's a movement. We are a pioneering platform dedicated to empowering women with disabilities through inclusive beauty pageants, advocacy programs, and leadership development initiatives.
+      </p>
+    </div>
+    
+    <div class="about-grid">
+      <div class="about-content">
+        <p>
+          Our mission is to challenge stereotypes, break down barriers, and create a world where women with disabilities are celebrated for their abilities, beauty, and potential.
+        </p>
+        <div class="about-features">
+          <div class="feature animate-in" data-animation="fade-in-up">
+            <img src="/assets/logos/logo.svg" alt="" width="48" height="48" aria-hidden="true">
+            <h3>Empowerment</h3>
+            <p>
+              Building confidence and leadership skills for a new generation of change-makers.
+            </p>
+          </div>
+          <div class="feature animate-in" data-animation="fade-in-up" data-delay="100">
+            <img src="/assets/logos/logo.svg" alt="" width="48" height="48" aria-hidden="true">
+            <h3>Advocacy</h3>
+            <p>
+              Championing disability rights and promoting a more inclusive and accessible society.
+            </p>
+          </div>
+          <div class="feature animate-in" data-animation="fade-in-up" data-delay="200">
+            <img src="/assets/logos/logo.svg" alt="" width="48" height="48" aria-hidden="true">
+            <h3>Community</h3>
+            <p>
+              Creating supportive networks and fostering a sense of belonging and sisterhood.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <img
+          src="https://via.placeholder.com/600x400"
+          alt="Contestants at Miss South Africa Disability event smiling and supporting each other"
+          loading="lazy"
+          width="600"
+          height="400"
+        >
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Alumni Stories Section -->
