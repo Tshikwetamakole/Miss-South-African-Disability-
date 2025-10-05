@@ -1420,29 +1420,27 @@ function initEliteAnalytics() {
   window.addEventListener('scroll', trackScrollDepth, { passive: true });
 }
 
-// ========================================
-// INITIALIZE ALL ELITE FEATURES
-// ========================================
-
-// Add to the DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', function() {
-  // ... existing initialization code ...
-  
-  // Add new elite features
+  initCarousel();
+  initSmoothScrolling();
+  initAnimations();
+  initFormValidation();
+  initLazyLoading();
+  initCountUpAnimation();
+  initSkipLink();
+  initFaqAccordion();
+  initEliteParallax();
+  initEliteScrollAnimations();
+  initEliteHeroEffects();
+  initEliteGlowEffects();
+  initEliteParticleSystem();
+  initEventCalendar();
+  initAlumniShowcaseResources();
+  initLiveChat();
+  initTestimonialSlider();
   initEliteLanguageToggle();
   initElitePerformanceOptimizations();
   initEliteKeyboardNavigation();
   initEliteAnalytics();
-
-  // Event Calendar Feature
-  initEventCalendar();
-
-    // Alumni Showcase & Resources Feature
-    initAlumniShowcaseResources();
-
-  // Live Chat Feature
-  initLiveChat();
-  initTestimonialSlider();
 });
 
 // ========================================
@@ -2163,10 +2161,6 @@ function extractReadableContent(element) {
   
   return text;
 }
-
-console.log('🎨 Elite UI/UX System Loaded Successfully');
-console.log('✨ Premium experience activated with performance optimizations');
-console.log('♿ WCAG AA accessibility compliance enabled');
 
 // ========================================
 // TESTIMONIAL SLIDER (Accessible)

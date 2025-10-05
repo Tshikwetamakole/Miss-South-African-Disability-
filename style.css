@@ -244,11 +244,14 @@ h6 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-muted);
-/* Removed redundant mobile accessibility controls positioning block (duplicate logic later with proper media queries) */
-  font-size: var(--fs-lg);
-  color: var(--color-text);
+}
+
+p {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
   font-weight: 400;
   line-height: 1.6;
+  margin-bottom: var(--sp-4);
 }
 
 .text-gradient {
@@ -276,10 +279,6 @@ a:focus-visible {
   border-radius: var(--radius-sm);
 }
 
-a:hover, a:focus {
-  color: var(--secondary-color);
-  text-decoration: none;
-}
 
 /* ========================================
    ELITE LAYOUT & CONTAINER SYSTEM
@@ -533,11 +532,6 @@ a:hover, a:focus {
   }
 }
 
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-  }
-}
 
 @media (max-width: 768px) {
   .nav-menu {
@@ -1007,7 +1001,6 @@ img[loading="lazy"]:not([src]) {
     padding: var(--sp-1) var(--sp-3);
   }
 }
-}
 
 .nav-link:hover::after,
 .nav-link.active::after,
@@ -1100,15 +1093,6 @@ img[loading="lazy"]:not([src]) {
   background: var(--glass-bg-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-}
-
-.header-social {
-  gap: var(--sp-2);
-}
-
-.header-social a {
-  width: 36px;
-  height: 36px;
 }
 
 @media (min-width: 640px) {
@@ -1409,35 +1393,6 @@ img[loading="lazy"]:not([src]) {
   }
 }
   
-/* Removed duplicate mobile accessibility controls positioning block (already handled in responsive section) */
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: clamp(var(--fs-2xl), 12vw, var(--fs-3xl));
-    line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-    font-size: var(--fs-base);
-  }
-  
-  .hero-actions .btn {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .container {
-    padding: 0 var(--sp-3);
-  }
-  
-  .section {
-    padding: var(--sp-12) 0;
-  }
-  
-  .accessibility-controls {
-    scale: 0.9;
-  }
-}
 
 /* ========================================
    ELITE BUTTON SYSTEM
@@ -1992,11 +1947,6 @@ img[loading="lazy"]:not([src]) {
     grid-template-columns: 1fr;
   }
 }
-/* Removed stray unmatched closing braces that caused syntax errors */
-
-
-
-/* Other sections will be styled in the next steps */
 
 /* Pre-loader styles */
 .preloader {
