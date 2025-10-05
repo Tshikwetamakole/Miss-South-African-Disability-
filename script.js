@@ -117,6 +117,11 @@ function initEnhancedAccessibility() {
     textToSpeech.addEventListener('click', toggleTextToSpeech);
   }
 
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+  }
+
   // Enhanced keyboard navigation
   document.addEventListener('keydown', handleGlobalKeyboard);
   
@@ -126,6 +131,7 @@ function initEnhancedAccessibility() {
 
 function loadAccessibilityPreferences() {
   const highContrast = localStorage.getItem('high-contrast') === 'true';
+  const darkMode = localStorage.getItem('dark-mode') === 'true';
   const fontSize = localStorage.getItem('font-size') || '1';
   
   if (highContrast) {
@@ -134,8 +140,39 @@ function loadAccessibilityPreferences() {
     if (toggle) toggle.setAttribute('aria-pressed', 'true');
   }
   
+  if (darkMode) {
+    document.body.classList.add('dark-mode');
+    const toggle = document.getElementById('dark-mode-toggle');
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', 'true');
+      const icon = toggle.querySelector('i');
+      if (icon) icon.className = 'fas fa-sun';
+    }
+  }
+  
   if (fontSize !== '1') {
     document.documentElement.style.fontSize = `${parseFloat(fontSize)}rem`;
+  }
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const isActive = document.body.classList.contains('dark-mode');
+  const toggle = document.getElementById('dark-mode-toggle');
+  if (toggle) {
+    toggle.setAttribute('aria-pressed', isActive.toString());
+    toggle.title = isActive ? 'Switch to light mode' : 'Switch to dark mode';
+    const icon = toggle.querySelector('i');
+    if (icon) {
+      icon.className = isActive ? 'fas fa-sun' : 'fas fa-moon';
+    }
+  }
+  localStorage.setItem('dark-mode', isActive.toString());
+  
+  // Announce to screen readers
+  const announcer = document.getElementById('live-announcer');
+  if (announcer) {
+    announcer.textContent = `Switched to ${isActive ? 'dark' : 'light'} mode`;
   }
 }
 

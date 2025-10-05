@@ -123,6 +123,19 @@
   --z-toast: 1080;
 }
 
+/* Dark mode variables */
+.dark-mode {
+  --color-bg: #000000;
+  --color-surface: #0a0a0a;
+  --color-surface-elevated: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-muted: #b0b0b0;
+  --color-text-subtle: #888888;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-hover: rgba(255, 255, 255, 0.1);
+}
+
 /* High contrast mode variables */
 .high-contrast {
   --color-bg: #ffffff;
@@ -1907,10 +1920,10 @@ img[loading="lazy"]:not([src]) {
   }
 }
 
-/* Animation styles */
+/* Enhanced Animation styles with reduced motion respect */
 .animate-in {
   opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s var(--ease-out-quart), transform 0.6s var(--ease-out-quart);
 }
 
 .animate-in.animated {
@@ -1931,6 +1944,34 @@ img[loading="lazy"]:not([src]) {
 
 .animate-in[data-animation="fade-in"].animated {
   transform: scale(1);
+}
+
+.animate-in[data-animation="fade-in-left"] {
+  transform: translateX(-30px);
+}
+
+.animate-in[data-animation="fade-in-left"].animated {
+  transform: translateX(0);
+}
+
+.animate-in[data-animation="fade-in-right"] {
+  transform: translateX(30px);
+}
+
+.animate-in[data-animation="fade-in-right"].animated {
+  transform: translateX(0);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    transition: opacity 0.2s ease;
+    transform: none !important;
+  }
+  
+  .animate-in[data-animation*="fade-in"] {
+    transform: none !important;
+  }
 }
 
 /* Responsive design */
@@ -3618,6 +3659,34 @@ select:focus-visible {
 }
 
 .accessibility-controls button[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  border-color: var(--color-primary);
+}
+
+.dark-mode-toggle {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: var(--sp-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: var(--fs-xs);
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+  background: var(--glass-bg-hover);
+  color: var(--color-text);
+  border-color: var(--color-primary);
+}
+
+.dark-mode-toggle[aria-pressed="true"] {
   background: var(--color-primary);
   color: var(--color-bg);
   border-color: var(--color-primary);
