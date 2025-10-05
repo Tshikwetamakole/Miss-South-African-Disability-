@@ -1420,29 +1420,6 @@ function initEliteAnalytics() {
   window.addEventListener('scroll', trackScrollDepth, { passive: true });
 }
 
-  initCarousel();
-  initSmoothScrolling();
-  initAnimations();
-  initFormValidation();
-  initLazyLoading();
-  initCountUpAnimation();
-  initSkipLink();
-  initFaqAccordion();
-  initEliteParallax();
-  initEliteScrollAnimations();
-  initEliteHeroEffects();
-  initEliteGlowEffects();
-  initEliteParticleSystem();
-  initEventCalendar();
-  initAlumniShowcaseResources();
-  initLiveChat();
-  initTestimonialSlider();
-  initEliteLanguageToggle();
-  initElitePerformanceOptimizations();
-  initEliteKeyboardNavigation();
-  initEliteAnalytics();
-});
-
 // ========================================
 // ELITE UTILITY FUNCTIONS
 // ========================================
