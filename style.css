@@ -2864,6 +2864,19 @@ img[loading="lazy"]:not([src]) {
   gap: var(--sp-8);
 }
 
+/* Accessible testimonial slider */
+.testimonial-slider { position: relative; margin-top: var(--sp-8); }
+.testimonial-track { position: relative; }
+.testimonial.slide { transition: opacity var(--transition-normal); }
+.testimonial.slide[hidden] { display: block !important; opacity: 0; height: 0; overflow: hidden; padding: 0; margin: 0; border: 0; }
+.testimonial.slide.active { opacity: 1; height: auto; }
+.testimonial-controls { display: flex; gap: var(--sp-2); justify-content: center; margin-top: var(--sp-4); }
+.testimonial-indicators { display: flex; justify-content: center; gap: var(--sp-2); margin-top: var(--sp-3); }
+.testimonial-indicators .indicator { width: 12px; height: 12px; border-radius: 50%; background: var(--color-border); border: none; cursor: pointer; transition: background var(--transition-fast), transform var(--transition-fast); }
+.testimonial-indicators .indicator.active { background: var(--color-primary); box-shadow: 0 0 8px rgba(249,115,22,0.6); transform: scale(1.1); }
+.testimonial-prev, .testimonial-next, .testimonial-pause { min-height: 36px; }
+.testimonial-pause[aria-pressed="true"] { background: var(--color-primary); color: var(--color-bg); }
+
 .testimonial {
   background: var(--glass-bg);
   backdrop-filter: blur(12px) saturate(1.8);

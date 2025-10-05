@@ -1405,6 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Live Chat Feature
   initLiveChat();
+  initTestimonialSlider();
 });
 
 // ========================================
@@ -2129,3 +2130,89 @@ function extractReadableContent(element) {
 console.log('🎨 Elite UI/UX System Loaded Successfully');
 console.log('✨ Premium experience activated with performance optimizations');
 console.log('♿ WCAG AA accessibility compliance enabled');
+
+// ========================================
+// TESTIMONIAL SLIDER (Accessible)
+// ========================================
+function initTestimonialSlider() {
+  const slider = document.querySelector('.testimonial-slider');
+  if (!slider) return;
+  const slides = Array.from(slider.querySelectorAll('.testimonial.slide'));
+  const prevBtn = slider.querySelector('[data-action="prev"]');
+  const nextBtn = slider.querySelector('[data-action="next"]');
+  const pauseBtn = slider.querySelector('[data-action="pause"]');
+  const indicators = Array.from(slider.querySelectorAll('.testimonial-indicators .indicator'));
+  const live = document.getElementById('testimonial-live');
+  let current = 0;
+  let paused = false;
+  let intervalId = null;
+  const ROTATE_MS = 8000;
+
+  function announce(msg) {
+    if (live) { live.textContent = ''; setTimeout(()=> live.textContent = msg, 30); }
+  }
+
+  function showSlide(index, userInitiated=false) {
+    if (index === current) return;
+    const prevSlide = slides[current];
+    current = (index + slides.length) % slides.length;
+    slides.forEach((s,i)=> {
+      if (i === current) { s.classList.add('active'); s.removeAttribute('hidden'); }
+      else { s.classList.remove('active'); s.setAttribute('hidden',''); }
+    });
+    indicators.forEach((ind,i)=> {
+      const active = i === current;
+      ind.classList.toggle('active', active);
+      ind.setAttribute('aria-selected', active ? 'true':'false');
+    });
+    const activeCite = slides[current].querySelector('cite')?.textContent || 'Testimonial';
+    if (!paused) announce(`Showing testimonial: ${activeCite}`);
+    if (userInitiated) resetAuto();
+  }
+
+  function next() { showSlide(current+1); }
+  function prev() { showSlide(current-1); }
+
+  function startAuto() {
+    if (prefersReducedMotion) return; // respect reduced motion
+    if (intervalId) clearInterval(intervalId);
+    if (!paused) intervalId = setInterval(next, ROTATE_MS);
+  }
+
+  function resetAuto() { if (!paused) startAuto(); }
+
+  function togglePause() {
+    paused = !paused;
+    pauseBtn.setAttribute('aria-pressed', paused.toString());
+    pauseBtn.textContent = paused ? 'Resume' : 'Pause';
+    if (paused) { clearInterval(intervalId); announce('Auto rotation paused'); }
+    else { announce('Auto rotation resumed'); startAuto(); }
+  }
+
+  // Event bindings
+  nextBtn?.addEventListener('click', ()=> { next(); });
+  prevBtn?.addEventListener('click', ()=> { prev(); });
+  pauseBtn?.addEventListener('click', togglePause);
+  indicators.forEach(ind => ind.addEventListener('click', (e)=> {
+    const target = parseInt(ind.dataset.target,10);
+    showSlide(target, true);
+  }));
+
+  // Keyboard navigation on slider region
+  slider.addEventListener('keydown', (e)=> {
+    if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+    if (e.key === ' ') { e.preventDefault(); togglePause(); }
+  });
+
+  // Pause on pointer hover/focus for better control
+  slider.addEventListener('mouseenter', ()=> { if (!paused) clearInterval(intervalId); });
+  slider.addEventListener('mouseleave', ()=> { if (!paused) startAuto(); });
+  slider.addEventListener('focusin', ()=> { if (!paused) clearInterval(intervalId); });
+  slider.addEventListener('focusout', ()=> { if (!paused) startAuto(); });
+
+  // Initialize first slide ARIA mapping
+  slides.forEach((s,i)=> s.id = `testimonial-slide-${i}`);
+  showSlide(0);
+  startAuto();
+}

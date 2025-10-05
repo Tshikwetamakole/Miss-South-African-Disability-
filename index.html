@@ -333,61 +333,63 @@ Representatives speaking at national disability rights forum
 </div>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Testimonials Section (Slider) -->
 <section class="testimonials" aria-labelledby="testimonials-title">
-<div class="container">
-<h2 id="testimonials-title">Inspiring Stories</h2>
-<p class="section-intro">
-Hear from our participants and supporters
-</p>
-
-<div class="testimonial-grid">
-<blockquote class="testimonial animate-in" data-animation="fade-in-up">
-<div class="testimonial-content">
-<p>
-"Being part of Miss South Africa Disability transformed my self-perception. I went from hiding my disability to embracing it as part of my identity and strength."
-</p>
-</div>
-<footer class="testimonial-footer">
-<img src="/assets/images/Miss2.jpg" alt="Sarah Mbeki" width="60" height="60" style="border-radius: 50%; object-fit: cover;">
-<div>
-<cite>Sarah Mbeki</cite>
-<span>2022 Finalist</span>
-</div>
-</footer>
-</blockquote>
-
-<blockquote class="testimonial animate-in" data-animation="fade-in-up" data-delay="100">
-<div class="testimonial-content">
-<p>
-"This platform doesn't just celebrate beauty—it creates advocates who change perceptions about disability in our communities and nationwide."
-</p>
-</div>
-<footer class="testimonial-footer">
-<img src="/assets/images/hero.jpg" alt="Dr. Nomalanga Khumalo" width="60" height="60" style="border-radius: 50%; object-fit: cover;">
-<div>
-<cite>Dr. Nomalanga Khumalo</cite>
-<span>Pageant Judge & Disability Rights Advocate</span>
-</div>
-</footer>
-</blockquote>
-
-<blockquote class="testimonial animate-in" data-animation="fade-in-up" data-delay="200">
-<div class="testimonial-content">
-<p>
-"As a sponsor, we've witnessed firsthand how this initiative empowers women with disabilities to become leaders and change-makers in their communities."
-</p>
-</div>
-<footer class="testimonial-footer">
-<img src="/assets/logos/logo.svg" alt="Mr. Van Heerden" width="60" height="60" style="border-radius: 50%; object-fit: cover;">
-<div>
-<cite>Mr. Van Heerden</cite>
-<span>Corporate Partnership Director</span>
-</div>
-</footer>
-</blockquote>
-</div>
-</div>
+  <div class="container">
+    <h2 id="testimonials-title">Inspiring Stories</h2>
+    <p class="section-intro">Hear from our participants and supporters</p>
+    <div class="testimonial-slider" role="region" aria-roledescription="carousel" aria-label="Testimonials" aria-live="off">
+      <div class="testimonial-track">
+        <blockquote class="testimonial slide active" data-index="0">
+          <div class="testimonial-content">
+            <p>"Being part of Miss South Africa Disability transformed my self-perception. I went from hiding my disability to embracing it as part of my identity and strength."</p>
+          </div>
+          <footer class="testimonial-footer">
+            <img src="/assets/images/Miss2.jpg" alt="Portrait of Sarah Mbeki" width="60" height="60" style="border-radius:50%; object-fit:cover;">
+            <div>
+              <cite>Sarah Mbeki</cite>
+              <span>2022 Finalist</span>
+            </div>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial slide" data-index="1" hidden>
+          <div class="testimonial-content">
+            <p>"This platform doesn't just celebrate beauty—it creates advocates who change perceptions about disability in our communities and nationwide."</p>
+          </div>
+          <footer class="testimonial-footer">
+            <img src="/assets/images/hero.jpg" alt="Portrait of Dr. Nomalanga Khumalo" width="60" height="60" style="border-radius:50%; object-fit:cover;">
+            <div>
+              <cite>Dr. Nomalanga Khumalo</cite>
+              <span>Pageant Judge & Disability Rights Advocate</span>
+            </div>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial slide" data-index="2" hidden>
+          <div class="testimonial-content">
+            <p>"As a sponsor, we've witnessed firsthand how this initiative empowers women with disabilities to become leaders and change-makers in their communities."</p>
+          </div>
+          <footer class="testimonial-footer">
+            <img src="/assets/logos/logo.svg" alt="Logo avatar representing Mr. Van Heerden" width="60" height="60" style="border-radius:50%; object-fit:cover;">
+            <div>
+              <cite>Mr. Van Heerden</cite>
+              <span>Corporate Partnership Director</span>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+      <div class="testimonial-controls" role="toolbar" aria-label="Testimonial navigation controls">
+        <button class="testimonial-prev btn btn-outline btn-sm" aria-label="Previous testimonial" data-action="prev">◂</button>
+        <button class="testimonial-next btn btn-outline btn-sm" aria-label="Next testimonial" data-action="next">▸</button>
+        <button class="testimonial-pause btn btn-secondary btn-sm" aria-pressed="false" aria-label="Pause testimonial auto-rotation" data-action="pause">Pause</button>
+      </div>
+      <div class="testimonial-indicators" role="tablist" aria-label="Select testimonial slide">
+        <button role="tab" aria-selected="true" aria-controls="testimonial-slide-0" data-target="0" class="indicator active"></button>
+        <button role="tab" aria-selected="false" aria-controls="testimonial-slide-1" data-target="1" class="indicator"></button>
+        <button role="tab" aria-selected="false" aria-controls="testimonial-slide-2" data-target="2" class="indicator"></button>
+      </div>
+      <div class="sr-only" aria-live="polite" id="testimonial-live" aria-atomic="true"></div>
+    </div>
+  </div>
 </section>
 
 <!-- Interactive Photo Gallery -->
